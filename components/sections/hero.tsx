@@ -1,3 +1,4 @@
+// components/sections/hero.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -9,20 +10,26 @@ import { LogoHero } from "@/components/logo-hero";
 import { RotatingWord } from "@/components/rotating-word";
 import { GridBackground } from "../grid-background";
 import { getCalApi } from "@calcom/embed-react";
+import { VideoMockup } from "@/components/video-mockup";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const rotatingWords = ["profitable", "scalable", "measurable", "converting"];
+const rotatingWords = [
+  "profitable",
+  "scalable",
+  "measurable",
+  "revenue-driven",
+];
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
-  // State pour forcer la réinitialisation des animations motion.dev
   const [animationKey, setAnimationKey] = useState(0);
 
   // Initialiser Cal.com
@@ -43,7 +50,6 @@ export function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Fonction pour jouer l'animation (toujours la même séquence)
       const playAnimation = () => {
         const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
@@ -67,81 +73,88 @@ export function Hero() {
           );
         }
 
-        // 3. Headline (géré par motion.dev, on attend juste)
-        // Les animations lettre par lettre se jouent automatiquement
+        // 3. Headline (géré par motion.dev)
 
         // 4. Subheadline
         tl.fromTo(
           subheadRef.current,
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.5 },
-          "+=1.2", // Attend la fin de l'animation lettre par lettre
+          "+=1.2",
         );
 
-        // 5. CTA
-        tl.fromTo(
-          ctaRef.current,
-          { opacity: 0, scale: 0.95 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.4,
-            ease: "back.out(1.2)",
-          },
-          "-=0.2",
-        );
-
-        // 6. Badge
+        // 5. Badge (preuve sociale)
         tl.fromTo(
           badgeRef.current,
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.4 },
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.2)" },
           "-=0.2",
+        );
+
+        // 6. Vidéo (démonstration)
+        tl.fromTo(
+          videoRef.current,
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.2)",
+          },
+          "-=0.1",
+        );
+
+        // 7. CTA (action finale)
+        tl.fromTo(
+          ctaRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+          "-=0.3",
         );
 
         return tl;
       };
 
-      // ScrollTrigger qui joue TOUJOURS l'animation
       ScrollTrigger.create({
         trigger: heroRef.current,
         start: "top 80%",
         end: "bottom 20%",
         onEnter: () => {
-          setAnimationKey((prev) => prev + 1); // ✅ Force motion.dev à rejouer
+          setAnimationKey((prev) => prev + 1);
           playAnimation();
         },
         onEnterBack: () => {
-          setAnimationKey((prev) => prev + 1); // ✅ Force motion.dev à rejouer
+          setAnimationKey((prev) => prev + 1);
           playAnimation();
         },
         onLeave: () => {
-          // Reset des éléments GSAP
           gsap.set(
             [
               logoRef.current,
               subheadRef.current,
-              ctaRef.current,
               badgeRef.current,
+              videoRef.current,
+              ctaRef.current,
             ],
             { clearProps: "all" },
           );
         },
         onLeaveBack: () => {
-          // Reset des éléments GSAP
           gsap.set(
             [
               logoRef.current,
               subheadRef.current,
-              ctaRef.current,
               badgeRef.current,
+              videoRef.current,
+              ctaRef.current,
             ],
             { clearProps: "all" },
           );
         },
       });
 
-      // Parallax au scroll (séparé)
+      // Parallax
       gsap.to(heroRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
@@ -162,19 +175,18 @@ export function Hero() {
     <section ref={heroRef} className="relative overflow-hidden bg-background">
       <GridBackground />
 
-      <div className="container mx-auto px-6 pb-16 pt-12 md:pb-24 md:pt-16 lg:pb-32 lg:pt-20">
+      <div className="container relative z-10 mx-auto px-6 pb-16 pt-12 md:pb-24 md:pt-16 lg:pb-32 lg:pt-20">
         <div className="mx-auto max-w-4xl text-center">
           {/* Logo */}
           <div ref={logoRef} className="mb-10 md:mb-14 lg:mb-16">
             <LogoHero />
           </div>
 
-          {/* Headline avec animation lettre par lettre */}
+          {/* Headline */}
           <h1
             ref={headlineRef}
             className="text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
           >
-            {/* ✅ Key change force la réinitialisation */}
             <motion.span
               key={animationKey}
               initial="hidden"
@@ -190,7 +202,6 @@ export function Hero() {
                 },
               }}
             >
-              {/* Ligne 1 - animation lettre par lettre */}
               <span className="block">
                 {"I don't make websites pretty.".split("").map((char, i) => (
                   <motion.span
@@ -206,7 +217,6 @@ export function Hero() {
                 ))}
               </span>
 
-              {/* Ligne 2 - animation lettre par lettre + rotation */}
               <span className="mt-1 block">
                 {"I make them ".split("").map((char, i) => (
                   <motion.span
@@ -236,33 +246,40 @@ export function Hero() {
             ref={subheadRef}
             className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground md:mt-6 md:text-xl lg:leading-loose"
           >
-            Landing pages that turn traffic into revenue—not just Figma files
-            that look good in screenshots.
+            Landing pages that turn traffic into paying customers—not just Figma
+            files that look good in screenshots.
           </p>
 
-          {/* CTA */}
-          <div
-            ref={ctaRef}
-            className="mt-8 flex flex-col items-center gap-4 md:mt-10 md:gap-5"
-          >
+          {/* Badge social proof */}
+          <div ref={badgeRef} className="mt-8 md:mt-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground">
+              <div className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+              <span>No agency fluff. Just a dev who ships</span>
+            </div>
+          </div>
+
+          {/* Vidéo de démonstration */}
+          <div ref={videoRef} className="mt-12 md:mt-16 lg:mt-20">
+            <VideoMockup
+              src="/presentation.webm"
+              poster="/presentation-poster.jpg"
+            />
+          </div>
+
+          {/* CTA principal */}
+          <div ref={ctaRef} className="mt-12 md:mt-14">
             <Button
               size="lg"
-              className="text-base font-medium"
+              className="text-base font-medium shadow-lg transition-all hover:shadow-xl hover:shadow-primary/20"
               data-cal-namespace="audit-hero"
               data-cal-link="franck-zinsou-0odrm8/audit"
               data-cal-config='{"layout":"column_view"}'
             >
-              Request a free conversion audit
+              Get your free conversion audit
             </Button>
-
-            {/* Badge */}
-            <div
-              ref={badgeRef}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2 text-sm font-medium text-foreground"
-            >
-              <div className="h-2 w-2 animate-pulse rounded-full bg-primary" />
-              <span>2-5X trial signups for SaaS startups</span>
-            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              15-minute call. No pitch, just actionable fixes.
+            </p>
           </div>
         </div>
       </div>
