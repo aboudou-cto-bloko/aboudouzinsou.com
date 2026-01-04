@@ -1,7 +1,7 @@
 // components/video-mockup.tsx
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Play, Volume2, VolumeX } from "lucide-react";
 
 interface VideoMockupProps {
@@ -11,12 +11,69 @@ interface VideoMockupProps {
 }
 
 export function VideoMockup({ src, poster, className }: VideoMockupProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isInView, setIsInView] = useState(false);
+  const [hasUserInteracted, setHasUserInteracted] = useState(false);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Intersection Observer - Autoplay/Autopause
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  useEffect(() => {
+    if (!containerRef.current || !videoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+
+          // Si user n'a pas encore interagi, autoplay/autopause
+          if (!hasUserInteracted) {
+            if (entry.isIntersecting) {
+              // Entre dans le viewport → autoplay
+              videoRef.current
+                ?.play()
+                .then(() => {
+                  setIsPlaying(true);
+                })
+                .catch((error) => {
+                  // Autoplay peut échouer si audio non muted
+                  console.log("Autoplay prevented:", error);
+                });
+            } else {
+              // Sort du viewport → autopause
+              videoRef.current?.pause();
+              setIsPlaying(false);
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.5, // 50% du composant visible
+        rootMargin: "0px", // Pas de marge
+      },
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [hasUserInteracted]);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // Contrôles manuels
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   const handlePlayPause = () => {
     if (!videoRef.current) return;
+
+    setHasUserInteracted(true); // User a pris le contrôle
 
     if (isPlaying) {
       videoRef.current.pause();
@@ -36,7 +93,7 @@ export function VideoMockup({ src, poster, className }: VideoMockupProps) {
   };
 
   return (
-    <div className={`group relative ${className}`}>
+    <div ref={containerRef} className={`group relative ${className}`}>
       {/* Mockup téléphone */}
       <div className="relative mx-auto w-full max-w-[300px] lg:max-w-[340px]">
         {/* Cadre téléphone */}
@@ -80,7 +137,7 @@ export function VideoMockup({ src, poster, className }: VideoMockupProps) {
                   {/* Bouton mute/unmute */}
                   <button
                     onClick={toggleMute}
-                    className="absolute bottom-6 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all hover:bg-black/80 hover:scale-110"
+                    className="absolute bottom-6 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm transition-all hover:scale-110 hover:bg-black/80"
                     aria-label={isMuted ? "Unmute" : "Mute"}
                   >
                     {isMuted ? (
