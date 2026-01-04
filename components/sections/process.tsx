@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -38,241 +34,99 @@ const steps = [
   },
 ];
 
+// Variants Motion
+const stepVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (index: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: index * 0.2,
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const badgeVariants = {
+  hidden: {
+    scale: 0.8,
+    opacity: 0,
+    borderColor: "rgb(229, 231, 235)",
+  },
+  visible: (index: number) => ({
+    scale: 1,
+    opacity: 1,
+    borderColor: "hsl(var(--primary))",
+    transition: {
+      delay: index * 0.2,
+      duration: 0.4,
+      ease: "backOut",
+    },
+  }),
+};
+
+const lineVariants = {
+  hidden: { scaleY: 0 },
+  visible: (index: number) => ({
+    scaleY: 1,
+    backgroundColor: "hsl(var(--primary))",
+    transition: {
+      delay: index * 0.2 + 0.3,
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  }),
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: index * 0.2 + 0.2,
+      duration: 0.4,
+    },
+  }),
+};
+
 export function Process() {
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const stepsRef = useRef<HTMLDivElement[]>([]);
-  const badgesRef = useRef<HTMLDivElement[]>([]);
-  const linesRef = useRef<HTMLDivElement[]>([]);
-  const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
-    // Reset des refs
-    stepsRef.current = [];
-    badgesRef.current = [];
-    linesRef.current = [];
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2, rootMargin: "0px 0px -100px 0px" },
+    );
 
-    const ctx = gsap.context(() => {
-      const playAnimation = () => {
-        const tl = gsap.timeline();
-
-        // Reset initial de tous les badges et lignes (IMPORTANT !)
-        badgesRef.current.forEach((badge) => {
-          if (badge) {
-            gsap.set(badge, {
-              borderColor: "rgb(229, 231, 235)",
-              color: "rgb(156, 163, 175)",
-            });
-          }
-        });
-
-        linesRef.current.forEach((line) => {
-          if (line) {
-            gsap.set(line, {
-              height: 0,
-              backgroundColor: "rgb(229, 231, 235)",
-            });
-          }
-        });
-
-        // Animer chaque step de haut en bas (01 → 04)
-        stepsRef.current.forEach((step, index) => {
-          if (!step) return;
-
-          const stepTl = gsap.timeline();
-          const badge = badgesRef.current[index];
-          const line = linesRef.current[index];
-
-          // Badge (bordure + numéro)
-          if (badge) {
-            stepTl.to(badge, {
-              borderColor: "var(--primary)",
-              color: "var(--primary)",
-              duration: 0.6,
-              ease: "power2.out",
-            });
-          }
-
-          // Ligne de connexion
-          if (line && index < steps.length - 1) {
-            stepTl.to(
-              line,
-              {
-                height: "100%",
-                backgroundColor: "var(--primary)",
-                duration: 0.4,
-                ease: "power1.out",
-              },
-              "-=0.3",
-            );
-          }
-
-          // Contenu
-          const header = step.querySelector(".step-header");
-          const description = step.querySelector(".step-description");
-
-          stepTl
-            .fromTo(
-              header,
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-              "-=0.4",
-            )
-            .fromTo(
-              description,
-              { opacity: 0, y: 15 },
-              { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
-              "-=0.2",
-            );
-
-          // Ajoute au timeline principal avec stagger
-          tl.add(stepTl, index * 0.5);
-        });
-
-        return tl;
-      };
-
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top 70%",
-        end: "bottom 30%",
-        onEnter: () => {
-          setAnimationKey((prev) => prev + 1); // Force remount titres
-          playAnimation();
-        },
-        onEnterBack: () => {
-          setAnimationKey((prev) => prev + 1); // Force remount titres
-          playAnimation();
-        },
-        onLeave: () => {
-          // Reset à l'état gris quand on sort
-          badgesRef.current.forEach((badge) => {
-            if (badge) {
-              gsap.set(badge, {
-                borderColor: "rgb(229, 231, 235)",
-                color: "rgb(156, 163, 175)",
-              });
-            }
-          });
-          linesRef.current.forEach((line) => {
-            if (line) {
-              gsap.set(line, {
-                height: 0,
-                backgroundColor: "rgb(229, 231, 235)",
-              });
-            }
-          });
-          // Reset contenu
-          stepsRef.current.forEach((step) => {
-            if (step) {
-              const header = step.querySelector(".step-header");
-              const description = step.querySelector(".step-description");
-              gsap.set([header, description], { clearProps: "all" });
-            }
-          });
-        },
-        onLeaveBack: () => {
-          // Reset à l'état gris quand on sort
-          badgesRef.current.forEach((badge) => {
-            if (badge) {
-              gsap.set(badge, {
-                borderColor: "rgb(229, 231, 235)",
-                color: "rgb(156, 163, 175)",
-              });
-            }
-          });
-          linesRef.current.forEach((line) => {
-            if (line) {
-              gsap.set(line, {
-                height: 0,
-                backgroundColor: "rgb(229, 231, 235)",
-              });
-            }
-          });
-          // Reset contenu
-          stepsRef.current.forEach((step) => {
-            if (step) {
-              const header = step.querySelector(".step-header");
-              const description = step.querySelector(".step-description");
-              gsap.set([header, description], { clearProps: "all" });
-            }
-          });
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <section ref={sectionRef} className="bg-background py-16 lg:py-24">
       <div className="container mx-auto px-6">
-        {/* Section header avec animation lettre par lettre */}
-        <div
-          ref={titleRef}
-          className="mx-auto mb-12 max-w-2xl text-center lg:mb-16"
-        >
-          {/* Title animé lettre par lettre */}
+        {/* Section header */}
+        <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
           <motion.h2
-            key={`title-${animationKey}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
             className="text-3xl font-bold tracking-tight sm:text-4xl"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.03,
-                },
-              },
-            }}
           >
-            {"How This Works".split("").map((char, i) => (
-              <motion.span
-                key={`title-${i}`}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1 },
-                }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            How This Works
           </motion.h2>
 
-          {/* Subtitle animé lettre par lettre */}
           <motion.p
-            key={`subtitle-${animationKey}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-4 text-lg leading-relaxed text-muted-foreground"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.02,
-                  delayChildren: 0.5,
-                },
-              },
-            }}
           >
-            {"No surprises. No scope creep. Just a clear path from discovery to launch."
-              .split("")
-              .map((char, i) => (
-                <motion.span
-                  key={`subtitle-${i}`}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
+            No surprises. No scope creep. Just a clear path from discovery to
+            launch.
           </motion.p>
         </div>
 
@@ -280,47 +134,64 @@ export function Process() {
         <div className="mx-auto max-w-3xl">
           <div className="relative">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
-                {/* Step container */}
-                <div
-                  ref={(el) => {
-                    if (el) stepsRef.current[index] = el;
-                  }}
-                  className="group relative flex gap-6 pb-16 transition-all duration-300 last:pb-0 hover:translate-x-2 lg:gap-8 lg:pb-20"
-                >
-                  {/* Badge circulaire + ligne */}
+              <motion.div
+                key={index}
+                custom={index}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={stepVariants}
+                className="relative"
+              >
+                <div className="group relative flex gap-6 pb-16 transition-all duration-300 last:pb-0 hover:translate-x-2 lg:gap-8 lg:pb-20">
+                  {/* Badge + ligne */}
                   <div className="relative flex shrink-0 flex-col items-center">
                     {/* Badge numéro */}
-                    <div
-                      ref={(el) => {
-                        if (el) badgesRef.current[index] = el;
-                      }}
+                    <motion.div
+                      custom={index}
+                      variants={badgeVariants}
                       className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] bg-background transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg lg:h-20 lg:w-20"
                     >
-                      <span className="text-2xl font-bold transition-all duration-300 lg:text-3xl">
+                      <motion.span
+                        custom={index}
+                        initial={{ opacity: 0, color: "rgb(156, 163, 175)" }}
+                        animate={
+                          isVisible
+                            ? {
+                                opacity: 1,
+                                color: "hsl(var(--primary))",
+                                transition: { delay: index * 0.2 + 0.2 },
+                              }
+                            : {}
+                        }
+                        className="text-2xl font-bold lg:text-3xl"
+                      >
                         {step.number}
-                      </span>
-                    </div>
+                      </motion.span>
+                    </motion.div>
 
-                    {/* Ligne de connexion (sauf dernier) */}
+                    {/* Ligne de connexion */}
                     {index < steps.length - 1 && (
-                      <div
-                        ref={(el) => {
-                          if (el) linesRef.current[index] = el;
-                        }}
-                        className="absolute top-16 w-[3px] transition-all duration-300 group-hover:w-1 lg:top-20"
+                      <motion.div
+                        custom={index}
+                        variants={lineVariants}
+                        className="absolute top-16 w-[3px] origin-top transition-all duration-300 group-hover:w-1 lg:top-20"
                         style={{
                           bottom: "-4rem",
                           left: "calc(50% - 1.5px)",
+                          backgroundColor: "rgb(229, 231, 235)",
                         }}
                       />
                     )}
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 pt-3 lg:pt-4">
+                  <motion.div
+                    custom={index}
+                    variants={contentVariants}
+                    className="flex-1 pt-3 lg:pt-4"
+                  >
                     {/* Title + Duration */}
-                    <div className="step-header mb-3 flex flex-col gap-1">
+                    <div className="mb-3 flex flex-col gap-1">
                       <h3 className="text-2xl font-semibold transition-colors duration-300 group-hover:text-primary lg:text-3xl">
                         {step.title}
                       </h3>
@@ -330,12 +201,12 @@ export function Process() {
                     </div>
 
                     {/* Description */}
-                    <p className="step-description leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                    <p className="leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                       {step.description}
                     </p>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
