@@ -264,3 +264,149 @@
 .transform-style-3d {
     transform-style: preserve-3d;
 }
+
+/* Animations CSS légères */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mobile-fade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+}
+
+.animate-fade-in-delay {
+    animation: fade-in 0.6s ease-out 0.2s both;
+}
+
+/* Mobile: fade simple via IntersectionObserver */
+@media (max-width: 767px) {
+    .mobile-fade-target {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+            opacity 0.4s ease-out,
+            transform 0.4s ease-out;
+    }
+
+    .mobile-fade-target.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animations délais échelonnés */
+.animate-fade-in-delay-1 {
+    animation: fade-in 0.6s ease-out 0.3s both;
+}
+
+/* Mobile: fade via IntersectionObserver */
+@media (max-width: 767px) {
+    .cta-card-mobile {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.5s ease-out,
+            transform 0.5s ease-out;
+    }
+
+    .cta-card-mobile.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .cta-card-mobile.visible h2,
+    .cta-card-mobile.visible p,
+    .cta-card-mobile.visible .cta-button,
+    .cta-card-mobile.visible .social-badge,
+    .cta-card-mobile.visible .urgency-text {
+        animation: mobile-cascade 0.4s ease-out both;
+    }
+
+    .cta-card-mobile.visible p {
+        animation-delay: 0.1s;
+    }
+    .cta-card-mobile.visible .cta-button {
+        animation-delay: 0.2s;
+    }
+    .cta-card-mobile.visible .social-badge {
+        animation-delay: 0.3s;
+    }
+    .cta-card-mobile.visible .urgency-text {
+        animation-delay: 0.4s;
+    }
+}
+
+@keyframes mobile-cascade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loader overlay - fade out uniquement */
+.loader-overlay {
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
+
+.loader-overlay.fade-out {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+/* Animation logo CSS simple */
+.logo-path {
+    opacity: 0;
+    animation: logo-reveal 1.2s ease-out forwards;
+}
+
+.logo-path-1 {
+    animation-delay: 0s;
+}
+
+.logo-path-2 {
+    animation-delay: 0.3s;
+}
+
+@keyframes logo-reveal {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Préférer pas d'animation sur mobile */
+@media (max-width: 767px) {
+    .logo-path {
+        animation: none;
+        opacity: 1;
+    }
+}

@@ -1,28 +1,34 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { getCalApi } from "@calcom/embed-react";
-import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
+// Lazy load Cal.com
+const loadCal = async () => {
+  const { getCalApi } = await import("@calcom/embed-react");
+  return getCalApi({ namespace: "audit-cta" });
+};
+
+// Lazy load GSAP (desktop only)
+const loadGSAP = async () => {
+  if (typeof window === "undefined" || window.innerWidth < 768) return null;
+  const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+    import("gsap"),
+    import("gsap/ScrollTrigger"),
+  ]);
+  gsap.registerPlugin(ScrollTrigger);
+  return { gsap, ScrollTrigger };
+};
 
 export function FinalCTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadRef = useRef<HTMLParagraphElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
-  const urgencyRef = useRef<HTMLParagraphElement>(null);
+  const [calLoaded, setCalLoaded] = useState(false);
 
-  // Initialiser Cal.com
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "audit-cta" });
+  // Lazy load Cal.com on user interaction
+  const handleCalClick = async () => {
+    if (!calLoaded) {
+      const cal = await loadCal();
       cal("ui", {
         hideEventTypeDetails: false,
         layout: "column_view",
@@ -32,109 +38,78 @@ export function FinalCTA() {
           },
         },
       });
-    })();
-  }, []);
+      setCalLoaded(true);
+    }
+  };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const playAnimation = () => {
-        const tl = gsap.timeline();
-
-        // 1. Card container reveal
-        tl.fromTo(
-          cardRef.current,
-          { opacity: 0, y: 40, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            ease: "power2.out",
-          },
-        );
-
-        // 2. Headline (on attend motion.dev)
-        // Pas d'animation GSAP ici
-
-        // 3. Subheadline (on attend motion.dev)
-        // Pas d'animation GSAP ici
-
-        // 4. Button avec bounce
-        tl.fromTo(
-          buttonRef.current,
-          { opacity: 0, scale: 0.9 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.5,
-            ease: "back.out(1.5)",
-          },
-          "+=1.2", // Attend la fin des headlines
-        );
-
-        // 5. Badge social proof
-        tl.fromTo(
-          badgeRef.current,
-          { opacity: 0, y: 15 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.2",
-        );
-
-        // 6. Urgence subtile
-        tl.fromTo(
-          urgencyRef.current,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 0.4,
-          },
-          "-=0.2",
-        );
-
-        return tl;
-      };
-
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top 70%",
-        end: "bottom 30%",
-        onEnter: () => playAnimation(),
-        onEnterBack: () => playAnimation(),
-        onLeave: () => {
-          gsap.set(
-            [
-              cardRef.current,
-              headlineRef.current,
-              subheadRef.current,
-              buttonRef.current,
-              badgeRef.current,
-              urgencyRef.current,
-            ],
-            { clearProps: "all" },
-          );
+    // Mobile: IntersectionObserver simple
+    if (window.innerWidth < 768) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
         },
-        onLeaveBack: () => {
-          gsap.set(
-            [
-              cardRef.current,
-              headlineRef.current,
-              subheadRef.current,
-              buttonRef.current,
-              badgeRef.current,
-              urgencyRef.current,
-            ],
-            { clearProps: "all" },
-          );
-        },
-      });
-    }, sectionRef);
+        { threshold: 0.3 },
+      );
 
-    return () => ctx.revert();
+      if (cardRef.current) observer.observe(cardRef.current);
+
+      return () => observer.disconnect();
+    }
+
+    let ctx: ReturnType<(typeof import("gsap"))["gsap"]["context"]> | null =
+      null;
+
+    loadGSAP().then((libs) => {
+      if (!libs) return;
+      const { gsap, ScrollTrigger } = libs;
+
+      ctx = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top 70%",
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline();
+
+            // Card reveal
+            tl.fromTo(
+              cardRef.current,
+              { opacity: 0, y: 40 },
+              { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            );
+
+            // Elements cascade
+            const elements = [
+              cardRef.current?.querySelector("h2"),
+              cardRef.current?.querySelector("p"),
+              cardRef.current?.querySelector(".cta-button"),
+              cardRef.current?.querySelector(".social-badge"),
+              cardRef.current?.querySelector(".urgency-text"),
+            ];
+
+            tl.fromTo(
+              elements.filter(Boolean),
+              { opacity: 0, y: 20 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                stagger: 0.15,
+                ease: "power2.out",
+              },
+              "-=0.3",
+            );
+          },
+        });
+      }, sectionRef);
+    });
+
+    return () => ctx?.revert();
   }, []);
 
   return (
@@ -146,115 +121,62 @@ export function FinalCTA() {
         {/* CTA Card */}
         <div
           ref={cardRef}
-          className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-8 text-center shadow-lg transition-all duration-300 hover:shadow-xl lg:p-12"
+          className="cta-card-mobile mx-auto max-w-3xl rounded-2xl border border-border bg-card p-8 text-center shadow-lg transition-all duration-300 md:hover:shadow-xl lg:p-12"
         >
-          {/* Headline avec animation lettre par lettre */}
-          <motion.h2
-            ref={headlineRef}
-            className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.025,
-                  delayChildren: 0.4, // Commence après card reveal
-                },
-              },
-            }}
-          >
-            {"Get Your Free Conversion Audit".split("").map((char, i) => (
-              <motion.span
-                key={`headline-${i}`}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1 },
-                }}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </motion.h2>
+          {/* Headline - CSS animation simple */}
+          <h2 className="animate-fade-in text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            Get Your Free Conversion Audit
+          </h2>
 
-          {/* Subheadline avec animation lettre par lettre */}
-          <motion.p
-            ref={subheadRef}
-            className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.015,
-                  delayChildren: 1.2, // Commence après headline
-                },
-              },
-            }}
-          >
-            {"15-minute call. I'll show you what's costing you conversions. No pitch, just actionable fixes."
-              .split("")
-              .map((char, i) => (
-                <motion.span
-                  key={`subhead-${i}`}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 },
-                  }}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
-          </motion.p>
+          {/* Subheadline */}
+          <p className="animate-fade-in-delay-1 mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            15-minute call. I&apos;ll show you what&apos;s costing you
+            conversions. No pitch, just actionable fixes.
+          </p>
 
-          {/* CTA avec Cal.com */}
-          <div ref={buttonRef} className="mt-8">
+          {/* CTA Button avec Cal.com lazy */}
+          <div className="cta-button mt-8">
             <Button
               size="lg"
-              className="text-base font-medium transition-transform hover:scale-105"
+              className="text-base font-medium transition-transform md:hover:scale-105"
               data-cal-namespace="audit-cta"
               data-cal-link="franck-zinsou-0odrm8/audit"
               data-cal-config='{"layout":"column_view"}'
+              onClick={handleCalClick}
             >
               Book my free audit
             </Button>
           </div>
 
-          {/* Social proof badge avec avatars réels */}
-          <div
-            ref={badgeRef}
-            className="mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-background px-4 py-2.5"
-          >
+          {/* Social proof badge - SVG inline */}
+          <div className="social-badge mt-6 inline-flex items-center gap-3 rounded-full border border-border bg-background px-4 py-2.5">
             <div className="flex -space-x-2">
-              {/* Avatars générés via DiceBear API (public & gratuit) */}
-              <Image
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah&backgroundColor=b6e3f4"
-                alt="Founder avatar"
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-full ring-2 ring-background"
-              />
-              <Image
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike&backgroundColor=c0aede"
-                alt="Founder avatar"
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-full ring-2 ring-background"
-              />
-              <Image
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=d1d4f9"
-                alt="Founder avatar"
-                width={32}
-                height={32}
-                className="h-8 w-8 rounded-full ring-2 ring-background"
-              />
+              {/* Avatar 1 - Inline SVG */}
+              <div className="h-8 w-8 rounded-full bg-blue-100 ring-2 ring-background">
+                <svg viewBox="0 0 32 32" className="h-full w-full">
+                  <circle cx="16" cy="16" r="16" fill="#b6e3f4" />
+                  <circle cx="16" cy="14" r="5" fill="#1e3a8a" />
+                  <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#1e3a8a" />
+                </svg>
+              </div>
+
+              {/* Avatar 2 */}
+              <div className="h-8 w-8 rounded-full bg-purple-100 ring-2 ring-background">
+                <svg viewBox="0 0 32 32" className="h-full w-full">
+                  <circle cx="16" cy="16" r="16" fill="#c0aede" />
+                  <circle cx="16" cy="14" r="5" fill="#6b21a8" />
+                  <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#6b21a8" />
+                </svg>
+              </div>
+
+              {/* Avatar 3 */}
+              <div className="h-8 w-8 rounded-full bg-indigo-100 ring-2 ring-background">
+                <svg viewBox="0 0 32 32" className="h-full w-full">
+                  <circle cx="16" cy="16" r="16" fill="#d1d4f9" />
+                  <circle cx="16" cy="14" r="5" fill="#4338ca" />
+                  <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#4338ca" />
+                </svg>
+              </div>
             </div>
             <span className="text-sm font-medium text-foreground">
               Join 50+ founders who got their audit
@@ -262,7 +184,7 @@ export function FinalCTA() {
           </div>
 
           {/* Urgence subtile */}
-          <p ref={urgencyRef} className="mt-4 text-xs text-muted-foreground">
+          <p className="urgency-text mt-4 text-xs text-muted-foreground">
             Limited slots available this month
           </p>
         </div>
