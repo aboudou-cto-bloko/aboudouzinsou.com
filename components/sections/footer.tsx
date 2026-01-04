@@ -100,7 +100,7 @@ export function Footer() {
           {/* CTA droite */}
           <a
             ref={ctaRef}
-            href="mailto:contact@franckzinsou.com"
+            href="mailto:aboudou@aboudouzinsou.com"
             className="text-sm font-medium text-primary transition-all duration-300 hover:text-primary/80 hover:underline"
           >
             Get in touch
