@@ -34,18 +34,10 @@ const steps = [
   },
 ];
 
-// Variants Motion
+// ✅ Variants sans fonctions (delay géré dans transition)
 const stepVariants = {
   hidden: { opacity: 0, x: -20 },
-  visible: (index: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: index * 0.2,
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  }),
+  visible: { opacity: 1, x: 0 },
 };
 
 const badgeVariants = {
@@ -54,41 +46,24 @@ const badgeVariants = {
     opacity: 0,
     borderColor: "rgb(229, 231, 235)",
   },
-  visible: (index: number) => ({
+  visible: {
     scale: 1,
     opacity: 1,
     borderColor: "hsl(var(--primary))",
-    transition: {
-      delay: index * 0.2,
-      duration: 0.4,
-      ease: "backOut",
-    },
-  }),
+  },
 };
 
 const lineVariants = {
   hidden: { scaleY: 0 },
-  visible: (index: number) => ({
+  visible: {
     scaleY: 1,
     backgroundColor: "hsl(var(--primary))",
-    transition: {
-      delay: index * 0.2 + 0.3,
-      duration: 0.4,
-      ease: "easeOut",
-    },
-  }),
+  },
 };
 
 const contentVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: index * 0.2 + 0.2,
-      duration: 0.4,
-    },
-  }),
+  visible: { opacity: 1, y: 0 },
 };
 
 export function Process() {
@@ -108,7 +83,6 @@ export function Process() {
   return (
     <section ref={sectionRef} className="bg-background py-16 lg:py-24">
       <div className="container mx-auto px-6">
-        {/* Section header */}
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -130,40 +104,51 @@ export function Process() {
           </motion.p>
         </div>
 
-        {/* Timeline */}
         <div className="mx-auto max-w-3xl">
           <div className="relative">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                custom={index}
                 initial="hidden"
                 animate={isVisible ? "visible" : "hidden"}
                 variants={stepVariants}
+                transition={{
+                  delay: index * 0.2,
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 className="relative"
               >
-                <div className="group relative flex gap-6 pb-16 transition-all duration-300 last:pb-0 hover:translate-x-2 lg:gap-8 lg:pb-20">
+                <div className="group relative flex gap-4 pb-12 transition-all duration-300 last:pb-0 hover:translate-x-2 md:gap-6 md:pb-16 lg:gap-8 lg:pb-20">
                   {/* Badge + ligne */}
                   <div className="relative flex shrink-0 flex-col items-center">
                     {/* Badge numéro */}
                     <motion.div
-                      custom={index}
+                      initial="hidden"
+                      animate={isVisible ? "visible" : "hidden"}
                       variants={badgeVariants}
-                      className="flex h-16 w-16 items-center justify-center rounded-full border-[3px] bg-background transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg lg:h-20 lg:w-20"
+                      transition={{
+                        delay: index * 0.2,
+                        duration: 0.4,
+                        ease: "backOut",
+                      }}
+                      className="flex h-14 w-14 items-center justify-center rounded-full border-[3px] bg-background transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg md:h-16 md:w-16 lg:h-20 lg:w-20"
                     >
                       <motion.span
-                        custom={index}
                         initial={{ opacity: 0, color: "rgb(156, 163, 175)" }}
                         animate={
                           isVisible
                             ? {
                                 opacity: 1,
                                 color: "hsl(var(--primary))",
-                                transition: { delay: index * 0.2 + 0.2 },
                               }
-                            : {}
+                            : { opacity: 0, color: "rgb(156, 163, 175)" }
                         }
-                        className="text-2xl font-bold lg:text-3xl"
+                        transition={{
+                          delay: index * 0.2 + 0.2,
+                          duration: 0.3,
+                        }}
+                        className="text-xl font-bold md:text-2xl lg:text-3xl"
                       >
                         {step.number}
                       </motion.span>
@@ -172,11 +157,17 @@ export function Process() {
                     {/* Ligne de connexion */}
                     {index < steps.length - 1 && (
                       <motion.div
-                        custom={index}
+                        initial="hidden"
+                        animate={isVisible ? "visible" : "hidden"}
                         variants={lineVariants}
-                        className="absolute top-16 w-[3px] origin-top transition-all duration-300 group-hover:w-1 lg:top-20"
+                        transition={{
+                          delay: index * 0.2 + 0.3,
+                          duration: 0.4,
+                          ease: "easeOut",
+                        }}
+                        className="absolute top-14 w-[3px] origin-top transition-all duration-300 group-hover:w-1 md:top-16 lg:top-20"
                         style={{
-                          bottom: "-4rem",
+                          bottom: "-3rem",
                           left: "calc(50% - 1.5px)",
                           backgroundColor: "rgb(229, 231, 235)",
                         }}
@@ -186,22 +177,25 @@ export function Process() {
 
                   {/* Content */}
                   <motion.div
-                    custom={index}
+                    initial="hidden"
+                    animate={isVisible ? "visible" : "hidden"}
                     variants={contentVariants}
-                    className="flex-1 pt-3 lg:pt-4"
+                    transition={{
+                      delay: index * 0.2 + 0.2,
+                      duration: 0.4,
+                    }}
+                    className="flex-1 pt-2 md:pt-3 lg:pt-4"
                   >
-                    {/* Title + Duration */}
-                    <div className="mb-3 flex flex-col gap-1">
-                      <h3 className="text-2xl font-semibold transition-colors duration-300 group-hover:text-primary lg:text-3xl">
+                    <div className="mb-2 flex flex-col gap-1 md:mb-3">
+                      <h3 className="text-xl font-semibold transition-colors duration-300 group-hover:text-primary md:text-2xl lg:text-3xl">
                         {step.title}
                       </h3>
-                      <p className="text-sm font-medium text-primary">
+                      <p className="text-xs font-medium text-primary md:text-sm">
                         {step.duration}
                       </p>
                     </div>
 
-                    {/* Description */}
-                    <p className="leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                    <p className="text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground md:text-base">
                       {step.description}
                     </p>
                   </motion.div>
