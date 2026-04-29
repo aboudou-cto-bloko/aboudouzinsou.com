@@ -7,6 +7,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { ReadingProgress } from "@/components/reading-progress";
 import { CopyCodeButtons } from "@/components/code-copy";
 import { ViewCounter } from "@/components/view-counter";
+import { LikeButton } from "@/components/like-button";
 import { FloatingRelated } from "@/components/floating-related";
 import {
   getPostBySlug,
@@ -85,7 +86,7 @@ export default async function ArticlePage({ params }: Props) {
             {post.frontmatter.title}
           </h1>
 
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
             <span className="badge badge--meta">{post.readingTime}</span>
             {post.frontmatter.date && (
               <span style={{ fontSize: "var(--text-xs)", color: "#888888" }}>
@@ -97,6 +98,7 @@ export default async function ArticlePage({ params }: Props) {
               <span key={tag} className="badge badge--tag">#{tag}</span>
             ))}
           </div>
+          <LikeButton slug={`${section}/${slug}`} />
 
           {(post.frontmatter.github || post.frontmatter.npm) && (
             <p style={{ marginTop: "0.875rem", fontSize: "var(--text-xs)", color: "#555" }}>

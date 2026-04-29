@@ -393,6 +393,57 @@
   gap: 0.5rem;
 }
 
+/* ── Like button ─────────────────────────────────────────── */
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: #555;
+  font-family: var(--font-jost), sans-serif;
+  font-size: var(--text-xs);
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+  line-height: 1;
+  user-select: none;
+}
+
+.like-btn:hover {
+  color: #c94c4c;
+  border-color: rgba(201, 76, 76, 0.25);
+  background: rgba(201, 76, 76, 0.05);
+}
+
+.like-btn--active {
+  color: #c94c4c;
+  border-color: rgba(201, 76, 76, 0.3);
+  background: rgba(201, 76, 76, 0.06);
+}
+
+/* ── Post stats row (in lists) ───────────────────────────── */
+.post-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge--stat {
+  border-color: rgba(255, 255, 255, 0.06);
+  color: #4a4a4a;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-item__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.4rem;
+}
+
 /* ── Load more button ────────────────────────────────────── */
 .load-more-btn {
   display: flex;

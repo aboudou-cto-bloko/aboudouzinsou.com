@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getStats, incrementViews } from "@/lib/db";
+import { getStats, toggleLike } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -8,15 +8,17 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const { views } = await getStats(slug);
-  return NextResponse.json({ slug, count: views });
+  const { likes } = await getStats(slug);
+  return NextResponse.json({ slug, count: likes });
 }
 
 export async function POST(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const count = await incrementViews(slug);
+  const body = await req.json().catch(() => ({}));
+  const action: "like" | "unlike" = body.action === "unlike" ? "unlike" : "like";
+  const count = await toggleLike(slug, action);
   return NextResponse.json({ slug, count });
 }

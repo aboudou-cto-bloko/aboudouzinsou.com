@@ -1,57 +1,85 @@
-import path from "path";
-import fs from "fs";
+import { createClient } from "@libsql/client";
+import type { Client } from "@libsql/client";
 
-// Uses node:sqlite (built-in Node.js 22.5+). Falls back to no-op if unavailable.
-// For persistent views in production, replace with Turso: https://turso.tech
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _db: any = null;
+// Local:      TURSO_DATABASE_URL=file:.data/site.db  (default, no token needed)
+// Production: TURSO_DATABASE_URL=libsql://your-db.turso.io  +  TURSO_AUTH_TOKEN=...
+let _client: Client | null = null;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getDb(): any {
-  if (_db !== undefined && _db !== null) return _db;
+function getClient(): Client {
+  if (_client) return _client;
+  const url =
+    process.env.TURSO_DATABASE_URL ??
+    (process.env.NODE_ENV === "production" ? "file:/tmp/site.db" : "file:.data/site.db");
+  _client = createClient({ url, authToken: process.env.TURSO_AUTH_TOKEN });
+  return _client;
+}
+
+let _init: Promise<void> | null = null;
+
+function init(): Promise<void> {
+  if (_init) return _init;
+  _init = getClient()
+    .execute(
+      `CREATE TABLE IF NOT EXISTS stats (
+        slug    TEXT PRIMARY KEY,
+        views   INTEGER NOT NULL DEFAULT 0,
+        likes   INTEGER NOT NULL DEFAULT 0
+      )`
+    )
+    .then(() => undefined)
+    .catch(() => { _init = null; });
+  return _init!;
+}
+
+export async function getStats(slug: string): Promise<{ views: number; likes: number }> {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { DatabaseSync } = require("node:sqlite");
-    const dir =
-      process.env.NODE_ENV === "production"
-        ? "/tmp"
-        : path.join(process.cwd(), ".data");
-    fs.mkdirSync(dir, { recursive: true });
-    _db = new DatabaseSync(path.join(dir, "views.db"));
-    _db.exec(
-      "CREATE TABLE IF NOT EXISTS views (slug TEXT PRIMARY KEY, count INTEGER DEFAULT 0)"
-    );
-    return _db;
+    await init();
+    const res = await getClient().execute({ sql: "SELECT views, likes FROM stats WHERE slug = ?", args: [slug] });
+    const row = res.rows[0];
+    if (!row) return { views: 0, likes: 0 };
+    return { views: Number(row.views), likes: Number(row.likes) };
   } catch {
-    _db = null;
-    return null;
+    return { views: 0, likes: 0 };
   }
 }
 
-export function getViewCount(slug: string): number {
-  const db = getDb();
-  if (!db) return 0;
+export async function incrementViews(slug: string): Promise<number> {
   try {
-    const row = db.prepare("SELECT count FROM views WHERE slug = ?").get(slug) as
-      | { count: number }
-      | undefined;
-    return row?.count ?? 0;
+    await init();
+    await getClient().execute({
+      sql: "INSERT INTO stats (slug, views) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET views = views + 1",
+      args: [slug],
+    });
+    return (await getStats(slug)).views;
   } catch {
     return 0;
   }
 }
 
-export function incrementView(slug: string): number {
-  const db = getDb();
-  if (!db) return 0;
+export async function toggleLike(slug: string, action: "like" | "unlike"): Promise<number> {
   try {
-    db
-      .prepare(
-        "INSERT INTO views (slug, count) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET count = count + 1"
-      )
-      .run(slug);
-    return getViewCount(slug);
+    await init();
+    const delta = action === "like" ? 1 : -1;
+    await getClient().execute({
+      sql: "INSERT INTO stats (slug, likes) VALUES (?, MAX(0, ?)) ON CONFLICT(slug) DO UPDATE SET likes = MAX(0, likes + ?)",
+      args: [slug, Math.max(0, delta), delta],
+    });
+    return (await getStats(slug)).likes;
   } catch {
     return 0;
+  }
+}
+
+export async function getAllStats(): Promise<Record<string, { views: number; likes: number }>> {
+  try {
+    await init();
+    const res = await getClient().execute("SELECT slug, views, likes FROM stats WHERE views > 0 OR likes > 0");
+    const out: Record<string, { views: number; likes: number }> = {};
+    for (const row of res.rows) {
+      out[String(row.slug)] = { views: Number(row.views), likes: Number(row.likes) };
+    }
+    return out;
+  } catch {
+    return {};
   }
 }

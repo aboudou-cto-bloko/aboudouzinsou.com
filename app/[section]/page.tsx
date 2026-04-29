@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostsForSection, SECTION_LABELS, SECTIONS } from "@/lib/content";
 import type { Section, Post } from "@/lib/content";
+import { PostStats } from "@/components/post-stats";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ section: string }> };
@@ -31,7 +32,7 @@ const TOPIC_LABELS: Record<string, string> = {
   outils: "Outils",
 };
 
-function PostList({ posts }: { posts: Post[] }) {
+function PostList({ posts, section }: { posts: Post[]; section: string }) {
   return (
     <ul role="list" style={{ listStyle: "none" }}>
       {posts.map((post) => (
@@ -40,11 +41,16 @@ function PostList({ posts }: { posts: Post[] }) {
             <div className="post-item__body">
               <span className="post-item__title">{post.frontmatter.title}</span>
               {post.excerpt && <span className="post-item__excerpt">{post.excerpt}</span>}
+              <div className="post-item__footer">
+                <PostStats slug={`${section}/${post.slug}`} />
+                <span className="badge badge--meta">{post.readingTime}</span>
+                {post.frontmatter.date && (
+                  <span style={{ fontSize: "var(--text-xs)", color: "#444" }}>
+                    {formatDate(post.frontmatter.date)}
+                  </span>
+                )}
+              </div>
             </div>
-            <span className="post-item__meta">
-              <span className="badge badge--meta">{post.readingTime}</span>
-              {post.frontmatter.date && <span>{formatDate(post.frontmatter.date)}</span>}
-            </span>
           </Link>
         </li>
       ))}
@@ -132,11 +138,11 @@ export default async function SectionPage({ params }: Props) {
                   >
                     {group.label}
                   </p>
-                  <PostList posts={group.posts} />
+                  <PostList posts={group.posts} section={section} />
                 </div>
               ))
             ) : (
-              <PostList posts={ungrouped} />
+              <PostList posts={ungrouped} section={section} />
             )}
           </section>
 
