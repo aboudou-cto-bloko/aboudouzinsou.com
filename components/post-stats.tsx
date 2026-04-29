@@ -28,15 +28,17 @@ export function PostStats({ slug }: { slug: string }) {
       .catch(() => {});
   }, [slug]);
 
-  if (!stats || (stats.views === 0 && stats.likes === 0)) return null;
+  if (!stats) return null;
 
   return (
     <span className="post-stats" aria-label="Statistiques">
-      {stats.likes > 0 && (
-        <span className="badge badge--stat" title={`${stats.likes} like${stats.likes > 1 ? "s" : ""}`}>
-          ♥ {fmt(stats.likes)}
-        </span>
-      )}
+      <span
+        className="badge badge--stat"
+        title={`${stats.likes} like${stats.likes !== 1 ? "s" : ""}`}
+        style={stats.likes === 0 ? { opacity: 0.3 } : undefined}
+      >
+        ♥ {fmt(stats.likes)}
+      </span>
       {stats.views > 0 && (
         <span className="badge badge--stat" title={`${stats.views} vue${stats.views > 1 ? "s" : ""}`}>
           {fmt(stats.views)} vues

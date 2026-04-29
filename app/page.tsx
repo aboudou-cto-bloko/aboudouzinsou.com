@@ -35,9 +35,7 @@ export default function HomePage() {
         <p className="tagline-sub">
           Builder SaaS · Cotonou, Bénin · Marché africain francophone
         </p>
-        <p className="tagline-invite">
-          Journal public d&apos;un dev qui fait, pas qui enseigne.
-        </p>
+
         <div className="content-badges">
           {counts.articles > 0 && (
             <span className="badge">{counts.articles} article{counts.articles > 1 ? "s" : ""}</span>
@@ -62,6 +60,8 @@ export default function HomePage() {
       <footer style={{ paddingBlock: "5rem 3rem" }}>
         <p style={{ fontSize: "var(--text-xs)", color: "#555" }}>
           <a href="https://github.com/aboudou-cto-bloko" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {" · "}
+          <a href="https://www.linkedin.com/in/fran%C3%A7oisab8099316/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {" · "}
           <a href="https://pixel-mart-bj.com" target="_blank" rel="noopener noreferrer">Pixel-Mart</a>
           {" · "}

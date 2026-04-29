@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Github, Mail, ExternalLink } from "lucide-react";
+import { Github, Mail, ExternalLink, Linkedin } from "lucide-react";
+import { StackBadge } from "@/components/stack-badge";
 
 export const metadata: Metadata = {
   title: "À propos — Aboudou Zinsou",
   description:
     "Dev full-stack SaaS, marché africain francophone. Je construis des produits numériques pour l'Afrique.",
 };
-
-function Tech({ name }: { name: string }) {
-  return <span className="badge badge--meta">{name}</span>;
-}
 
 type ProjectProps = {
   name: string;
@@ -65,7 +62,7 @@ function Project({ name, description, stack, github, npm, live }: ProjectProps) 
       <p className="about-project__desc">{description}</p>
       <div className="about-project__stack">
         {stack.map((t) => (
-          <Tech key={t} name={t} />
+          <StackBadge key={t} name={t} />
         ))}
       </div>
     </div>
@@ -189,6 +186,15 @@ export default function AboutPage() {
           >
             <Mail size={14} strokeWidth={1.5} />
             <span>aboudouzinsou@yahoo.com</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/fran%C3%A7oisab8099316/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-contact__item"
+          >
+            <Linkedin size={14} strokeWidth={1.5} />
+            <span>linkedin.com/in/françoisab8099316</span>
           </a>
           <a
             href="https://github.com/aboudou-cto-bloko"
