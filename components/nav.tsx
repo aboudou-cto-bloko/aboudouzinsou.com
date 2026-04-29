@@ -4,16 +4,7 @@ import { SECTION_LABELS, SECTIONS } from "@/lib/content";
 export function Nav() {
   return (
     <header className="site-container">
-      <nav
-        aria-label="Navigation principale"
-        style={{
-          display: "flex",
-          alignItems: "baseline",
-          gap: "2rem",
-          paddingBlock: "2.5rem",
-          justifyContent: "space-between",
-        }}
-      >
+      <nav aria-label="Navigation principale" className="site-nav">
         <Link
           href="/"
           style={{ fontWeight: 500, fontSize: "var(--text-sm)", letterSpacing: "-0.01em" }}
@@ -22,10 +13,7 @@ export function Nav() {
           Aboudou Zinsou
         </Link>
 
-        <ul
-          role="list"
-          style={{ display: "flex", gap: "1.75rem", listStyle: "none" }}
-        >
+        <ul role="list" className="site-nav__links">
           {SECTIONS.filter((s) => s !== "ressources").map((section) => (
             <li key={section}>
               <Link

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Nav } from "@/components/nav";
+import { ArticleEntrance } from "@/components/article-motion";
 import { getPostsForSection, SECTION_LABELS, SECTIONS } from "@/lib/content";
 import type { Section, Post } from "@/lib/content";
 import type { Metadata } from "next";
@@ -96,53 +97,55 @@ export default async function SectionPage({ params }: Props) {
     <>
       <Nav />
       <main className="site-container">
-        <section style={{ paddingBlock: "3rem 4rem" }}>
-          <h1
-            style={{
-              fontSize: "var(--text-xl)",
-              fontWeight: 500,
-              letterSpacing: "-0.02em",
-              lineHeight: 1.2,
-            }}
-          >
-            {label}
-          </h1>
-        </section>
+        <ArticleEntrance>
+          <section style={{ paddingBlock: "3rem 4rem" }}>
+            <h1
+              style={{
+                fontSize: "var(--text-xl)",
+                fontWeight: 500,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.2,
+              }}
+            >
+              {label}
+            </h1>
+          </section>
 
-        <section aria-label={`Liste ${label.toLowerCase()}`}>
-          {posts.length === 0 && (
-            <p style={{ color: "#888888", fontSize: "var(--text-sm)" }}>
-              Aucun contenu pour l&apos;instant.
-            </p>
-          )}
+          <section aria-label={`Liste ${label.toLowerCase()}`}>
+            {posts.length === 0 && (
+              <p style={{ color: "#888888", fontSize: "var(--text-sm)" }}>
+                Aucun contenu pour l&apos;instant.
+              </p>
+            )}
 
-          {hasTopics ? (
-            grouped.map((group) => (
-              <div key={group.label} style={{ marginBottom: "3rem" }}>
-                <p
-                  style={{
-                    fontSize: "var(--text-xs)",
-                    color: "#555",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {group.label}
-                </p>
-                <PostList posts={group.posts} />
-              </div>
-            ))
-          ) : (
-            <PostList posts={ungrouped} />
-          )}
-        </section>
+            {hasTopics ? (
+              grouped.map((group) => (
+                <div key={group.label} style={{ marginBottom: "3rem" }}>
+                  <p
+                    style={{
+                      fontSize: "var(--text-xs)",
+                      color: "#555",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {group.label}
+                  </p>
+                  <PostList posts={group.posts} />
+                </div>
+              ))
+            ) : (
+              <PostList posts={ungrouped} />
+            )}
+          </section>
 
-        <footer style={{ paddingBlock: "5rem 3rem" }}>
-          <Link href="/" style={{ fontSize: "var(--text-xs)", color: "#555" }}>
-            ← Accueil
-          </Link>
-        </footer>
+          <footer style={{ paddingBlock: "5rem 3rem" }}>
+            <Link href="/" style={{ fontSize: "var(--text-xs)", color: "#555" }}>
+              ← Accueil
+            </Link>
+          </footer>
+        </ArticleEntrance>
       </main>
     </>
   );
