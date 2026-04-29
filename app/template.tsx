@@ -1,8 +1,13 @@
 "use client";
+import { useEffect } from "react";
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
 export default function Template({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}
