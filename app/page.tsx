@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { Nav } from "@/components/nav";
-import { ArticleEntrance } from "@/components/article-motion";
-import { getRecentPosts, SECTION_LABELS } from "@/lib/content";
+import { PostFeed } from "@/components/post-feed";
+import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,63 +8,66 @@ export const metadata: Metadata = {
     "Dev full-stack SaaS, marché africain francophone. J'écris sur ce que je construis.",
 };
 
-function formatDate(dateStr?: string): string {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("fr-FR", { year: "numeric", month: "short", day: "numeric" });
-}
-
 export default function HomePage() {
-  const posts = getRecentPosts(30);
+  const posts = getRecentPosts(100);
+
+  const counts = SECTIONS.reduce(
+    (acc, s) => ({ ...acc, [s]: getPostsForSection(s).length }),
+    {} as Record<string, number>
+  );
+
+  const feedPosts = posts.map((p) => ({
+    slug: p.slug,
+    section: p.section,
+    url: p.url,
+    frontmatter: { title: p.frontmatter.title, date: p.frontmatter.date },
+    excerpt: p.excerpt,
+    readingTime: p.readingTime,
+  }));
 
   return (
-    <>
-      <Nav />
+    <main className="site-container">
+      {/* Tagline — Twitter-style */}
+      <section className="tagline-section">
+        <h1 className="tagline-headline">
+          Je construis.<br />J&apos;écris ce que j&apos;apprends.
+        </h1>
+        <p className="tagline-sub">
+          Builder SaaS · Cotonou, Bénin · Marché africain francophone
+        </p>
+        <p className="tagline-invite">
+          Journal public d&apos;un dev qui fait, pas qui enseigne.
+        </p>
+        <div className="content-badges">
+          {counts.articles > 0 && (
+            <span className="badge">{counts.articles} article{counts.articles > 1 ? "s" : ""}</span>
+          )}
+          {counts.insights > 0 && (
+            <span className="badge">{counts.insights} insight{counts.insights > 1 ? "s" : ""}</span>
+          )}
+          {counts.tutoriels > 0 && (
+            <span className="badge">{counts.tutoriels} tutoriel{counts.tutoriels > 1 ? "s" : ""}</span>
+          )}
+          {counts.devlog > 0 && (
+            <span className="badge">{counts.devlog} devlog{counts.devlog > 1 ? "s" : ""}</span>
+          )}
+        </div>
+      </section>
 
-      <main className="site-container">
-        <ArticleEntrance>
-          <section style={{ paddingBlock: "3rem 4rem" }}>
-            <p style={{ fontSize: "var(--text-sm)", color: "#888888", lineHeight: 1.6, maxWidth: "52ch" }}>
-              Je construis des SaaS pour le marché africain francophone.
-              J&apos;écris sur ce que j&apos;apprends en chemin.
-            </p>
-          </section>
+      {/* Feed */}
+      <section aria-label="Publications">
+        <PostFeed posts={feedPosts} />
+      </section>
 
-          <section aria-label="Publications récentes">
-            <ul role="list" style={{ listStyle: "none" }}>
-              {posts.map((post) => (
-                <li key={`${post.section}-${post.slug}`}>
-                  <Link href={post.url} className="post-item" aria-label={post.frontmatter.title}>
-                    <span className="post-item__title">{post.frontmatter.title}</span>
-                    <span className="post-item__meta" aria-label="Section et date">
-                      <span style={{ marginRight: "0.75rem", color: "#555" }}>
-                        {SECTION_LABELS[post.section]}
-                      </span>
-                      {formatDate(post.frontmatter.date)}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {posts.length === 0 && (
-              <p style={{ color: "#888888", fontSize: "var(--text-sm)", paddingBlock: "3rem" }}>
-                Aucun contenu pour l&apos;instant.
-              </p>
-            )}
-          </section>
-
-          <footer style={{ paddingBlock: "5rem 3rem" }}>
-            <p style={{ fontSize: "var(--text-xs)", color: "#555" }}>
-              <Link href="https://github.com/aboudou-cto-bloko">GitHub</Link>
-              {" · "}
-              <Link href="https://pixel-mart-bj.com">Pixel-Mart</Link>
-              {" · "}
-              <Link href="https://www.npmjs.com/package/moneroo">moneroo</Link>
-            </p>
-          </footer>
-        </ArticleEntrance>
-      </main>
-    </>
+      <footer style={{ paddingBlock: "5rem 3rem" }}>
+        <p style={{ fontSize: "var(--text-xs)", color: "#555" }}>
+          <a href="https://github.com/aboudou-cto-bloko" target="_blank" rel="noopener noreferrer">GitHub</a>
+          {" · "}
+          <a href="https://pixel-mart-bj.com" target="_blank" rel="noopener noreferrer">Pixel-Mart</a>
+          {" · "}
+          <a href="https://npmjs.com/package/moneroo" target="_blank" rel="noopener noreferrer">moneroo</a>
+        </p>
+      </footer>
+    </main>
   );
 }

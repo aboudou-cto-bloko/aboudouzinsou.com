@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Nav } from "@/components/nav";
-import { ArticleEntrance } from "@/components/article-motion";
 import { getPostsForSection, SECTION_LABELS, SECTIONS } from "@/lib/content";
 import type { Section, Post } from "@/lib/content";
 import type { Metadata } from "next";
@@ -38,11 +36,14 @@ function PostList({ posts }: { posts: Post[] }) {
     <ul role="list" style={{ listStyle: "none" }}>
       {posts.map((post) => (
         <li key={post.slug}>
-          <Link href={post.url} className="post-item" aria-label={post.frontmatter.title}>
-            <span className="post-item__title">{post.frontmatter.title}</span>
+          <Link href={post.url} className="post-item post-item--section" aria-label={post.frontmatter.title}>
+            <div className="post-item__body">
+              <span className="post-item__title">{post.frontmatter.title}</span>
+              {post.excerpt && <span className="post-item__excerpt">{post.excerpt}</span>}
+            </div>
             <span className="post-item__meta">
-              {post.readingTime}
-              {post.frontmatter.date && <> · {formatDate(post.frontmatter.date)}</>}
+              <span className="badge badge--meta">{post.readingTime}</span>
+              {post.frontmatter.date && <span>{formatDate(post.frontmatter.date)}</span>}
             </span>
           </Link>
         </li>
@@ -95,9 +96,8 @@ export default async function SectionPage({ params }: Props) {
 
   return (
     <>
-      <Nav />
       <main className="site-container">
-        <ArticleEntrance>
+        <div>
           <section style={{ paddingBlock: "3rem 4rem" }}>
             <h1
               style={{
@@ -145,7 +145,7 @@ export default async function SectionPage({ params }: Props) {
               ← Accueil
             </Link>
           </footer>
-        </ArticleEntrance>
+        </div>
       </main>
     </>
   );

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
+import { Nav } from "@/components/nav";
+import { GlobalUI } from "@/components/global-ui";
 import "./globals.css";
 
 const jost = Jost({
@@ -23,19 +25,15 @@ export const metadata: Metadata = {
     url: "https://aboudouzinsou.com",
     siteName: "Aboudou Zinsou",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={jost.variable}>
       <body style={{ background: "#090909", color: "#f0f0f0" }}>
+        <Nav />
+        <GlobalUI />
         {children}
       </body>
     </html>

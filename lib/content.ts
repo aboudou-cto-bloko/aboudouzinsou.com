@@ -37,7 +37,24 @@ export type Post = {
   content: string;
   readingTime: string;
   url: string;
+  excerpt: string;
 };
+
+function getExcerpt(description: string | undefined, content: string, maxLength = 130): string {
+  if (description) return description.length > maxLength ? description.slice(0, maxLength).replace(/\s+\S*$/, "") + "…" : description;
+  const stripped = content
+    .replace(/^#{1,6}\s+.+$/gm, "")
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`[^`]+`/g, "")
+    .replace(/!\[.*?\]\(.*?\)/g, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_~#>|]/g, "")
+    .replace(/\n+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (stripped.length <= maxLength) return stripped;
+  return stripped.slice(0, maxLength).replace(/\s+\S*$/, "") + "…";
+}
 
 // Derive a clean slug from a filename (strip date prefix, extension)
 function toSlug(filename: string): string {
@@ -60,13 +77,15 @@ export function getPostsForSection(section: Section): Post[] {
       const { data, content } = matter(raw);
       const slug = toSlug(filename);
 
+      const fm = data as PostFrontmatter;
       return {
         slug,
         section,
-        frontmatter: data as PostFrontmatter,
+        frontmatter: fm,
         content,
         readingTime: readingTime(content).text,
         url: `/${section}/${slug}`,
+        excerpt: getExcerpt(fm.description, content),
       };
     })
     .filter((p) => p.frontmatter.status !== "archived")
