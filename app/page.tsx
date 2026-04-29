@@ -1,4 +1,5 @@
 import { PostFeed } from "@/components/post-feed";
+import { TypewriterHeadline } from "@/components/typewriter-headline";
 import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
 
@@ -27,11 +28,9 @@ export default function HomePage() {
 
   return (
     <main className="site-container">
-      {/* Tagline — Twitter-style */}
+      {/* Tagline */}
       <section className="tagline-section">
-        <h1 className="tagline-headline">
-          Je construis.<br />J&apos;écris ce que j&apos;apprends.
-        </h1>
+        <TypewriterHeadline />
         <p className="tagline-sub">
           Builder SaaS · Cotonou, Bénin · Marché africain francophone
         </p>
