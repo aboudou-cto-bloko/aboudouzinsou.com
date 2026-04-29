@@ -2,6 +2,8 @@
 import { SearchModal } from "./search-modal";
 import { FloatingNav } from "./floating-nav";
 import { BackToTop } from "./back-to-top";
+import { NewsletterModal } from "./newsletter-modal";
+import { NewsletterWidget } from "./newsletter-widget";
 
 export function GlobalUI() {
   return (
@@ -9,6 +11,8 @@ export function GlobalUI() {
       <SearchModal />
       <FloatingNav />
       <BackToTop />
+      <NewsletterModal />
+      <NewsletterWidget />
     </>
   );
 }

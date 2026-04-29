@@ -77,6 +77,7 @@ export default async function ArticlePage({ params }: Props) {
           </nav>
 
           <h1
+            className="shimmer"
             style={{
               fontSize: "var(--text-xl)",
               fontWeight: 500,
@@ -147,6 +148,9 @@ export default async function ArticlePage({ params }: Props) {
             </ul>
           </aside>
         )}
+
+        {/* Newsletter trigger sentinel */}
+        <div data-newsletter-trigger aria-hidden="true" />
 
         <footer style={{ paddingBlock: "3rem" }}>
           <ShareButton title={post.frontmatter.title} />

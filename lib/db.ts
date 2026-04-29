@@ -19,13 +19,10 @@ let _init: Promise<void> | null = null;
 function init(): Promise<void> {
   if (_init) return _init;
   _init = getClient()
-    .execute(
-      `CREATE TABLE IF NOT EXISTS stats (
-        slug    TEXT PRIMARY KEY,
-        views   INTEGER NOT NULL DEFAULT 0,
-        likes   INTEGER NOT NULL DEFAULT 0
-      )`
-    )
+    .batch([
+      { sql: `CREATE TABLE IF NOT EXISTS stats (slug TEXT PRIMARY KEY, views INTEGER NOT NULL DEFAULT 0, likes INTEGER NOT NULL DEFAULT 0)` },
+      { sql: `CREATE TABLE IF NOT EXISTS subscribers (email TEXT PRIMARY KEY, source TEXT, created_at TEXT DEFAULT (datetime('now')))` },
+    ])
     .then(() => undefined)
     .catch(() => { _init = null; });
   return _init!;
@@ -81,5 +78,17 @@ export async function getAllStats(): Promise<Record<string, { views: number; lik
     return out;
   } catch {
     return {};
+  }
+}
+
+export async function subscribeEmail(email: string, source = "site"): Promise<"ok" | "exists" | "error"> {
+  try {
+    await init();
+    const existing = await getClient().execute({ sql: "SELECT email FROM subscribers WHERE email = ?", args: [email] });
+    if (existing.rows.length > 0) return "exists";
+    await getClient().execute({ sql: "INSERT INTO subscribers (email, source) VALUES (?, ?)", args: [email, source] });
+    return "ok";
+  } catch {
+    return "error";
   }
 }

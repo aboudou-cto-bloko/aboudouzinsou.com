@@ -13,7 +13,7 @@ export function Nav() {
           style={{ fontWeight: 500, fontSize: "var(--text-sm)", letterSpacing: "-0.01em" }}
           aria-label="Accueil — Aboudou Zinsou"
         >
-          {"{AZ}"}
+          <span className="shimmer shimmer--slow">{"{AZ}"}</span>
         </Link>
 
         {/* Links — row 2 on mobile (full width, scrollable) */}
