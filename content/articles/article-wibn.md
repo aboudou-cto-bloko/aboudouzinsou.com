@@ -1,9 +1,10 @@
 ---
 title: "WIBN — trouver des idées SaaS en analysant la douleur sur Reddit"
 format: article
-status: draft
+status: published
 tags: [wibn, saas, idées, reddit, groq, inngest, ia, validation]
 github: https://github.com/aboudou-cto-bloko/wibn
+date: 2026-04-29
 created: 2026-04-29
 updated: 2026-04-29
 ---

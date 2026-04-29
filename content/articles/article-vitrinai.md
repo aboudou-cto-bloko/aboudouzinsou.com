@@ -1,9 +1,10 @@
 ---
 title: "VitrinAI — diagnostiquer la présence digitale d'une PME ouest-africaine"
 format: article
-status: draft
+status: published
 tags: [vitrinai, saas, afrique, pme, seo, performance, diagnostic, nextjs, convex]
 github: https://github.com/aboudou-cto-bloko/vitrinai
+date: 2026-04-29
 created: 2026-04-29
 updated: 2026-04-29
 ---

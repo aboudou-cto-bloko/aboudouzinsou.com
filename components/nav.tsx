@@ -36,6 +36,14 @@ export function Nav() {
               À propos
             </Link>
           </li>
+          <li>
+            <Link
+              href="/links"
+              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300, whiteSpace: "nowrap" }}
+            >
+              Links
+            </Link>
+          </li>
         </ul>
 
         {/* Search — grid area 1/2 on mobile (same line as brand) */}

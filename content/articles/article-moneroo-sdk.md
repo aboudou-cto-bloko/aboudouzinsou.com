@@ -1,10 +1,11 @@
 ---
 title: "Il n'existait pas de SDK TypeScript pour Moneroo. Alors je l'ai construit."
 format: article
-status: draft
+status: published
 tags: [moneroo, sdk, typescript, npm, afrique, paiement, open-source]
 github: https://github.com/aboudou-cto-bloko/moneroo-tools
 npm: https://www.npmjs.com/package/moneroo
+date: 2026-04-29
 created: 2026-04-29
 updated: 2026-04-29
 ---

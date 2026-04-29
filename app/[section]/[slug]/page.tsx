@@ -9,6 +9,7 @@ import { CopyCodeButtons } from "@/components/code-copy";
 import { ViewCounter } from "@/components/view-counter";
 import { LikeButton } from "@/components/like-button";
 import { FloatingRelated } from "@/components/floating-related";
+import { ShareButton } from "@/components/share-button";
 import {
   getPostBySlug,
   getPostsForSection,
@@ -67,11 +68,13 @@ export default async function ArticlePage({ params }: Props) {
       <main className="site-container">
         {/* Header */}
         <header data-article-header style={{ paddingBlock: "2.5rem 2rem" }}>
-          <p style={{ fontSize: "var(--text-xs)", color: "#555", marginBottom: "1.25rem" }}>
-            <Link href={`/${section}`} style={{ color: "#888888" }}>
+          <nav aria-label="Fil d'ariane" className="breadcrumb">
+            <Link href="/" className="breadcrumb__item">Accueil</Link>
+            <span className="breadcrumb__sep" aria-hidden="true">/</span>
+            <Link href={`/${section}`} className="breadcrumb__item">
               {SECTION_LABELS[section as Section]}
             </Link>
-          </p>
+          </nav>
 
           <h1
             style={{
@@ -145,10 +148,13 @@ export default async function ArticlePage({ params }: Props) {
           </aside>
         )}
 
-        <footer style={{ paddingBlock: "4rem 3rem" }}>
-          <Link href={`/${section}`} style={{ fontSize: "var(--text-xs)", color: "#555" }}>
-            ← {SECTION_LABELS[section as Section]}
-          </Link>
+        <footer style={{ paddingBlock: "3rem" }}>
+          <ShareButton title={post.frontmatter.title} />
+          <div style={{ marginTop: "2rem" }}>
+            <Link href={`/${section}`} style={{ fontSize: "var(--text-xs)", color: "#555" }}>
+              ← {SECTION_LABELS[section as Section]}
+            </Link>
+          </div>
         </footer>
       </main>
 

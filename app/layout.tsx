@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     siteName: "Aboudou Zinsou",
   },
   icons: { icon: "/favicon.ico" },
+  alternates: {
+    types: { "application/rss+xml": "https://aboudouzinsou.com/feed.xml" },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
