@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     url: "https://aboudouzinsou.com",
     siteName: "Aboudou Zinsou",
   },
-  icons: { icon: "/favicon.ico" },
   alternates: {
     types: { "application/rss+xml": "https://aboudouzinsou.com/feed.xml" },
   },
