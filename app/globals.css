@@ -686,27 +686,44 @@
 }
 
 /* ── Load more button ────────────────────────────────────── */
-.load-more-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  margin-top: 2rem;
-  padding: 0.625rem 1rem;
-  background: transparent;
-  border: 1px solid #1e1e1e;
-  color: #666;
-  font-family: var(--font-jost), sans-serif;
-  font-size: var(--text-xs);
-  font-weight: 300;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: border-color 150ms ease, color 150ms ease;
-  letter-spacing: 0.01em;
+/* ── Infinite scroll feed ────────────────────────────────── */
+@keyframes feed-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.load-more-btn:hover {
-  border-color: #333;
-  color: var(--color-primary);
+.feed-item-enter {
+  animation: feed-in 220ms ease both;
+}
+
+.feed-sentinel {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.feed-loader span {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #333;
+  animation: feed-dot 0.9s ease-in-out infinite;
+}
+
+.feed-loader span:nth-child(2) { animation-delay: 0.15s; }
+.feed-loader span:nth-child(3) { animation-delay: 0.30s; }
+
+@keyframes feed-dot {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40%           { opacity: 1;   transform: scale(1); }
 }
 
 /* ── Search trigger (in nav) ─────────────────────────────── */
