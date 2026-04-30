@@ -1,12 +1,38 @@
 import type { Metadata } from "next";
 import { Github, Mail, ExternalLink, Linkedin } from "lucide-react";
 import { StackBadge } from "@/components/stack-badge";
+import { JsonLd } from "@/components/json-ld";
+
+const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
   title: "À propos — Aboudou Zinsou",
   description:
     "Dev full-stack SaaS, marché africain francophone. Je construis des produits numériques pour l'Afrique.",
+  alternates: { canonical: `${BASE}/about` },
+  openGraph: {
+    type: "profile",
+    url: `${BASE}/about`,
+    title: "Aboudou Zinsou — Dev full-stack SaaS",
+    description: "Dev full-stack SaaS, marché africain francophone. Je construis des produits numériques pour l'Afrique.",
+  },
 };
+
+function IconFacebook() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+}
+
+function IconWhatsApp() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+    </svg>
+  );
+}
 
 type ProjectProps = {
   name: string;
@@ -70,7 +96,27 @@ function Project({ name, description, stack, github, npm, live }: ProjectProps) 
 }
 
 export default function AboutPage() {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Aboudou Zinsou",
+    alternateName: "François Mawutô Aboudou ZINSOU",
+    url: BASE,
+    sameAs: [
+      "https://github.com/aboudou-cto-bloko",
+      "https://www.linkedin.com/in/fran%C3%A7oisab8099316/",
+      "https://npmjs.com/package/moneroo",
+      "https://www.facebook.com/francois.zinsou",
+    ],
+    jobTitle: "Développeur Full-Stack SaaS",
+    description: "Développeur full-stack SaaS, marché africain francophone. Fondateur de Pixel-Mart et BLOKO.",
+    email: "aboudouzinsou@yahoo.com",
+    address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
+  };
+
   return (
+    <>
+      <JsonLd data={personJsonLd} />
     <main className="site-container">
       {/* Bio */}
       <section style={{ paddingBlock: "3rem 2.5rem" }}>
@@ -83,9 +129,12 @@ export default function AboutPage() {
             marginBottom: "1.5rem",
           }}
         >
-          François Mawutô<br />Aboudou Zinsou
+          Aboudou Zinsou
         </h1>
-        <p style={{ fontSize: "var(--text-sm)", color: "#aaa", maxWidth: "42ch", lineHeight: 1.9 }}>
+        <p style={{ fontSize: "var(--text-sm)", color: "#888", marginBottom: "0.25rem" }}>
+          François Mawutô Aboudou ZINSOU
+        </p>
+        <p style={{ fontSize: "var(--text-sm)", color: "#aaa", maxWidth: "42ch", lineHeight: 1.9, marginTop: "1rem" }}>
           Dev full-stack SaaS. Je construis des produits numériques pour le
           marché africain francophone — paiements, marketplaces, SaaS
           d&apos;abonnement, outils métier.
@@ -205,6 +254,24 @@ export default function AboutPage() {
             <Github size={14} strokeWidth={1.5} />
             <span>github.com/aboudou-cto-bloko</span>
           </a>
+          <a
+            href="https://www.facebook.com/francois.zinsou"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-contact__item"
+          >
+            <IconFacebook />
+            <span>François ZINSOU</span>
+          </a>
+          <a
+            href="https://wa.me/2290147876843"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-contact__item"
+          >
+            <IconWhatsApp />
+            <span>+229 01 47 87 68 43</span>
+          </a>
         </div>
       </section>
 
@@ -214,5 +281,6 @@ export default function AboutPage() {
         </a>
       </footer>
     </main>
+    </>
   );
 }
