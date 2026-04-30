@@ -11,6 +11,7 @@ import { ViewCounter } from "@/components/view-counter";
 import { LikeButton } from "@/components/like-button";
 import { FloatingRelated } from "@/components/floating-related";
 import { ShareButton } from "@/components/share-button";
+import { JsonLd } from "@/components/json-ld";
 import {
   getPostBySlug,
   getPostsForSection,
@@ -22,6 +23,8 @@ import type { Section } from "@/lib/content";
 import { remarkResolveLinks } from "@/lib/cross-links";
 import type { Metadata } from "next";
 
+const BASE = "https://aboudouzinsou.com";
+
 type Props = { params: Promise<{ section: string; slug: string }> };
 
 export async function generateStaticParams() {
@@ -30,11 +33,45 @@ export async function generateStaticParams() {
   );
 }
 
+function buildCoverUrl(title: string, section: string, tags?: string[], readingTime?: string): string {
+  const p = new URLSearchParams({ t: title, s: section });
+  if (tags?.length) p.set("g", tags.slice(0, 3).join(","));
+  if (readingTime) p.set("r", readingTime);
+  return `${BASE}/api/cover?${p.toString()}`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { section, slug } = await params;
   const post = getPostBySlug(section as Section, slug);
   if (!post) return {};
-  return { title: post.frontmatter.title, description: post.frontmatter.description ?? post.excerpt };
+
+  const url = `${BASE}/${section}/${slug}`;
+  const description = post.frontmatter.description ?? post.excerpt;
+  const coverUrl = buildCoverUrl(post.frontmatter.title, section, post.frontmatter.tags, post.readingTime);
+
+  return {
+    title: post.frontmatter.title,
+    description,
+    alternates: { canonical: url },
+    authors: [{ name: "Aboudou Zinsou", url: BASE }],
+    openGraph: {
+      type: "article",
+      url,
+      title: post.frontmatter.title,
+      description,
+      images: [{ url: coverUrl, width: 800, height: 400, alt: post.frontmatter.title }],
+      publishedTime: post.frontmatter.date,
+      modifiedTime: post.frontmatter.updated ?? post.frontmatter.date,
+      authors: [`${BASE}/about`],
+      tags: post.frontmatter.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.frontmatter.title,
+      description,
+      images: [coverUrl],
+    },
+  };
 }
 
 function formatDate(dateStr?: string): string {
@@ -61,9 +98,46 @@ export default async function ArticlePage({ params }: Props) {
   if (!post) notFound();
 
   const related = getRelatedPosts(post);
+  const url = `${BASE}/${section}/${slug}`;
+  const coverUrl = buildCoverUrl(post.frontmatter.title, section, post.frontmatter.tags, post.readingTime);
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description ?? post.excerpt,
+    image: coverUrl,
+    url,
+    datePublished: post.frontmatter.date,
+    dateModified: post.frontmatter.updated ?? post.frontmatter.date,
+    author: {
+      "@type": "Person",
+      name: "Aboudou Zinsou",
+      url: `${BASE}/about`,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Aboudou Zinsou",
+      url: BASE,
+    },
+    inLanguage: "fr-FR",
+    keywords: post.frontmatter.tags?.join(", "),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: BASE },
+      { "@type": "ListItem", position: 2, name: SECTION_LABELS[section as Section], item: `${BASE}/${section}` },
+      { "@type": "ListItem", position: 3, name: post.frontmatter.title, item: url },
+    ],
+  };
 
   return (
     <>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <ReadingProgress />
 
       <main className="site-container">

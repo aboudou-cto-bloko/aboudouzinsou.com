@@ -1,12 +1,27 @@
 import { PostFeed } from "@/components/post-feed";
 import { TypewriterHeadline } from "@/components/typewriter-headline";
+import { JsonLd } from "@/components/json-ld";
 import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
+
+const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
   title: "Aboudou Zinsou",
   description:
     "Dev full-stack SaaS, marché africain francophone. J'écris sur ce que je construis.",
+  alternates: { canonical: BASE },
+  openGraph: {
+    type: "website",
+    url: BASE,
+    title: "Aboudou Zinsou",
+    description: "Dev full-stack SaaS, marché africain francophone. J'écris sur ce que je construis.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aboudou Zinsou",
+    description: "Dev full-stack SaaS, marché africain francophone. J'écris sur ce que je construis.",
+  },
 };
 
 export default function HomePage() {
@@ -26,8 +41,38 @@ export default function HomePage() {
     readingTime: p.readingTime,
   }));
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Aboudou Zinsou",
+    url: BASE,
+    description: "Dev full-stack SaaS, marché africain francophone. J'écris sur ce que je construis.",
+    inLanguage: "fr-FR",
+    author: { "@type": "Person", name: "Aboudou Zinsou" },
+  };
+
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Aboudou Zinsou",
+    alternateName: "François Mawutô Aboudou ZINSOU",
+    url: BASE,
+    sameAs: [
+      "https://github.com/aboudou-cto-bloko",
+      "https://www.linkedin.com/in/fran%C3%A7oisab8099316/",
+      "https://npmjs.com/package/moneroo",
+    ],
+    jobTitle: "Développeur Full-Stack SaaS",
+    description: "Développeur full-stack SaaS, marché africain francophone. Fondateur de Pixel-Mart et BLOKO.",
+    address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
+  };
+
   return (
+    <>
+      <JsonLd data={websiteJsonLd} />
+      <JsonLd data={personJsonLd} />
     <main className="site-container">
+
       {/* Tagline */}
       <section className="tagline-section">
         <TypewriterHeadline />
@@ -68,5 +113,6 @@ export default function HomePage() {
         </p>
       </footer>
     </main>
+    </>
   );
 }

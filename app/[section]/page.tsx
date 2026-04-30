@@ -11,10 +11,29 @@ export async function generateStaticParams() {
   return SECTIONS.map((section) => ({ section }));
 }
 
+const SECTION_DESCRIPTIONS: Record<string, string> = {
+  articles: "Articles techniques sur le développement SaaS, Next.js, TypeScript et le marché africain francophone.",
+  tutoriels: "Tutoriels pratiques : CLI Bash, second cerveau Obsidian, assistant IA RAG, intégrations paiement africain.",
+  insights: "Notes courtes et observations sur le développement, Convex, les paiements en Afrique et les outils dev.",
+  devlog: "Journal de bord des projets en cours — BLOKO, Pixel-Mart, PLR — décisions techniques et retours d'expérience.",
+  ressources: "Ressources sélectionnées : snippets, prompts, outils et références pour développeurs full-stack.",
+};
+
+const BASE = "https://aboudouzinsou.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { section } = await params;
   if (!SECTIONS.includes(section as Section)) return {};
-  return { title: SECTION_LABELS[section as Section] };
+  const label = SECTION_LABELS[section as Section];
+  const description = SECTION_DESCRIPTIONS[section] ?? `${label} — Aboudou Zinsou`;
+  const url = `${BASE}/${section}`;
+  return {
+    title: label,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "website", url, title: `${label} — Aboudou Zinsou`, description },
+    twitter: { card: "summary", title: `${label} — Aboudou Zinsou`, description },
+  };
 }
 
 function formatDate(dateStr?: string): string {
