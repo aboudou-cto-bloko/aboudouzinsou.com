@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -119,6 +120,24 @@ export default async function ArticlePage({ params }: Props) {
         </header>
 
         <hr style={{ border: "none", borderTop: "1px solid #1e1e1e", marginBottom: "2.5rem" }} />
+
+        {/* Cover */}
+        <div className="article-cover-wrap">
+          <Image
+            src={`/api/cover?${new URLSearchParams({
+              t: post.frontmatter.title,
+              s: section,
+              ...(post.frontmatter.tags?.length ? { g: post.frontmatter.tags.slice(0, 3).join(",") } : {}),
+              r: post.readingTime,
+            }).toString()}`}
+            alt=""
+            width={800}
+            height={400}
+            className="article-cover"
+            priority
+            unoptimized
+          />
+        </div>
 
         {/* Body */}
         <article className="prose" aria-label="Contenu">

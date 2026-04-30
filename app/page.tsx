@@ -21,7 +21,7 @@ export default function HomePage() {
     slug: p.slug,
     section: p.section,
     url: p.url,
-    frontmatter: { title: p.frontmatter.title, date: p.frontmatter.date },
+    frontmatter: { title: p.frontmatter.title, date: p.frontmatter.date, tags: p.frontmatter.tags },
     excerpt: p.excerpt,
     readingTime: p.readingTime,
   }));
