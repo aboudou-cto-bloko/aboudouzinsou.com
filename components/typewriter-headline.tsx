@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
+import { useScramble } from "@/hooks/use-scramble";
 
 const LINE1 = "Je construis.";
 
@@ -23,6 +24,14 @@ export function TypewriterHeadline() {
   const [idx, setIdx]         = useState(0);
   const [deleting, setDeleting] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const [scrambleTrigger, setScrambleTrigger] = useState(false);
+  const line1 = useScramble(LINE1, scrambleTrigger, { speed: 38, stagger: 3, cycles: 7 });
+
+  useEffect(() => {
+    const t = setTimeout(() => setScrambleTrigger(true), 120);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     if (reduced) { setText(PHRASES[0]); return; }
@@ -48,7 +57,7 @@ export function TypewriterHeadline() {
       className="tagline-headline"
       aria-label={`${LINE1} ${reduced ? PHRASES[0] : (PHRASES[idx] || text)}`}
     >
-      <span className="tagline-shimmer">{LINE1}</span>
+      <span className="tagline-shimmer" aria-hidden="true">{reduced ? LINE1 : line1}</span>
       <br />
       <span className="tagline-shimmer">{reduced ? PHRASES[0] : text}</span>
       {!reduced && <span className="tagline-cursor" aria-hidden="true" />}

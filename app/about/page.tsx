@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Github, Mail, ExternalLink, Linkedin } from "lucide-react";
 import { StackBadge } from "@/components/stack-badge";
+import { ScrambleText } from "@/components/scramble-text";
 import { JsonLd } from "@/components/json-ld";
 
 const BASE = "https://aboudouzinsou.com";
@@ -129,7 +130,12 @@ export default function AboutPage() {
             marginBottom: "1.5rem",
           }}
         >
-          Aboudou Zinsou
+          <ScrambleText
+            text="Aboudou Zinsou"
+            speed={38}
+            stagger={3}
+            cycles={7}
+          />
         </h1>
         <p style={{ fontSize: "var(--text-sm)", color: "#888", marginBottom: "0.25rem" }}>
           François Mawutô Aboudou ZINSOU

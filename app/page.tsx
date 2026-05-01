@@ -1,5 +1,6 @@
 import { PostFeed } from "@/components/post-feed";
 import { TypewriterHeadline } from "@/components/typewriter-headline";
+import { ScrambleText } from "@/components/scramble-text";
 import { JsonLd } from "@/components/json-ld";
 import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
@@ -76,9 +77,15 @@ export default function HomePage() {
       {/* Tagline */}
       <section className="tagline-section">
         <TypewriterHeadline />
-        <p className="tagline-sub">
-          Builder SaaS · Cotonou, Bénin · Marché africain francophone
-        </p>
+        <ScrambleText
+          text="Builder SaaS · Cotonou, Bénin · Marché africain francophone"
+          className="tagline-sub"
+          triggerOnMount
+          delay={700}
+          speed={22}
+          stagger={1}
+          cycles={4}
+        />
 
         <div className="content-badges">
           {counts.articles > 0 && (
