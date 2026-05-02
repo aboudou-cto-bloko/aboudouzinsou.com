@@ -109,7 +109,7 @@ export function PostFeed({ posts }: { posts: FeedPost[] }) {
                     <PostStats slug={statsSlug} />
                     <span className="badge badge--meta">{post.readingTime}</span>
                     <span className="badge">{SECTION_LABELS[post.section] ?? post.section}</span>
-                    <span style={{ fontSize: "var(--text-xs)", color: "#444" }}>
+                    <span style={{ fontSize: "var(--text-xs)", color: "#666" }}>
                       {formatDate(post.frontmatter.date)}
                     </span>
                   </div>
