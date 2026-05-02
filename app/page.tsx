@@ -1,5 +1,5 @@
-import { PostFeed } from "@/components/post-feed";
 import { ProfileHero } from "@/components/profile-hero";
+import { FeedFilter } from "@/components/feed-filter";
 import { JsonLd } from "@/components/json-ld";
 import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
@@ -73,12 +73,9 @@ export default function HomePage() {
       <JsonLd data={personJsonLd} />
     <main className="site-container">
 
-      <ProfileHero counts={counts} />
+      <ProfileHero total={feedPosts.length} />
 
-      {/* Feed */}
-      <section aria-label="Publications">
-        <PostFeed posts={feedPosts} />
-      </section>
+      <FeedFilter posts={feedPosts} counts={counts} />
 
       <footer style={{ paddingBlock: "5rem 3rem" }}>
         <p style={{ fontSize: "var(--text-xs)", color: "#555" }}>

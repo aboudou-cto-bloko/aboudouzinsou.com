@@ -478,6 +478,16 @@
   opacity: 1;
 }
 
+.profile-tab--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 500;
+}
+
+.profile-tab--active .profile-tab-count {
+  color: #555;
+}
+
 .profile-tab-count {
   font-size: 11px;
   color: #3a3a3a;
