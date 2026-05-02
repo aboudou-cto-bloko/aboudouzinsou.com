@@ -203,6 +203,12 @@ export async function GET(req: NextRequest) {
         </div>
       </div>
     ),
-    { width: 800, height: 400 }
+    {
+      width: 800,
+      height: 400,
+      headers: {
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    }
   );
 }

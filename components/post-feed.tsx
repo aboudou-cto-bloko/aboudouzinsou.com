@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { PostStats } from "./post-stats";
+import { PostCoverCSS } from "./post-cover-css";
 
 const PAGE_SIZE = 12;
 
@@ -21,16 +21,6 @@ function formatDate(dateStr?: string): string {
     month: "short",
     day: "numeric",
   });
-}
-
-function coverUrl(title: string, section: string, tags?: string[], readingTime?: string): string {
-  const p = new URLSearchParams({
-    t: title,
-    s: section,
-    ...(tags?.length ? { g: tags.slice(0, 3).join(",") } : {}),
-    ...(readingTime ? { r: readingTime } : {}),
-  });
-  return `/api/cover?${p.toString()}`;
 }
 
 type FeedPost = {
@@ -74,12 +64,6 @@ export function PostFeed({ posts }: { posts: FeedPost[] }) {
       <ul role="list" style={{ listStyle: "none" }}>
         {shown.map((post, i) => {
           const statsSlug = `${post.section}/${post.slug}`;
-          const src = coverUrl(
-            post.frontmatter.title,
-            post.section,
-            post.frontmatter.tags,
-            post.readingTime,
-          );
           return (
             <li
               key={`${post.section}-${post.slug}`}
@@ -88,16 +72,13 @@ export function PostFeed({ posts }: { posts: FeedPost[] }) {
             >
               <Link href={post.url} className="post-item post-item--feed">
                 <div className="post-item__body">
-                  {/* Cover */}
+                  {/* Cover CSS — pas de requête réseau */}
                   <div className="post-cover-wrap">
-                    <Image
-                      src={src}
-                      alt=""
-                      width={800}
-                      height={400}
-                      className="post-cover"
-                      loading="lazy"
-                      unoptimized
+                    <PostCoverCSS
+                      title={post.frontmatter.title}
+                      section={post.section}
+                      tags={post.frontmatter.tags}
+                      readingTime={post.readingTime}
                     />
                   </div>
 
