@@ -107,7 +107,7 @@ export default function AboutPage() {
       "https://github.com/aboudou-cto-bloko",
       "https://www.linkedin.com/in/fran%C3%A7oisab8099316/",
       "https://npmjs.com/package/moneroo",
-      "https://www.facebook.com/francois.zinsou",
+      "https://www.facebook.com/francois.SaasXpert",
     ],
     jobTitle: "Développeur Full-Stack SaaS",
     description: "Développeur full-stack SaaS, marché africain francophone. Fondateur de Pixel-Mart et BLOKO.",
@@ -261,13 +261,13 @@ export default function AboutPage() {
             <span>github.com/aboudou-cto-bloko</span>
           </a>
           <a
-            href="https://www.facebook.com/francois.zinsou"
+            href="https://www.facebook.com/francois.SaasXpert"
             target="_blank"
             rel="noopener noreferrer"
             className="about-contact__item"
           >
             <IconFacebook />
-            <span>François ZINSOU</span>
+            <span>SaasXpert</span>
           </a>
           <a
             href="https://wa.me/2290147876843"

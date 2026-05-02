@@ -64,6 +64,7 @@ export default function HomePage() {
       "https://github.com/aboudou-cto-bloko",
       "https://www.linkedin.com/in/fran%C3%A7oisab8099316/",
       "https://x.com/aboudouzinsou",
+      "https://www.facebook.com/francois.SaasXpert",
       "https://npmjs.com/package/moneroo",
     ],
     jobTitle: "Développeur Full-Stack SaaS",
@@ -90,13 +91,13 @@ export default function HomePage() {
         <p style={{ fontSize: "var(--text-xs)", color: "#555" }}>
           <a href="https://github.com/aboudou-cto-bloko" target="_blank" rel="noopener noreferrer">GitHub</a>
           {" · "}
+          <a href="https://www.facebook.com/francois.SaasXpert" target="_blank" rel="noopener noreferrer">Facebook</a>
+          {" · "}
           <a href="https://x.com/aboudouzinsou" target="_blank" rel="noopener noreferrer">X</a>
           {" · "}
           <a href="https://www.linkedin.com/in/fran%C3%A7oisab8099316/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {" · "}
-          <a href="https://pixel-mart-bj.com" target="_blank" rel="noopener noreferrer">Pixel-Mart</a>
-          {" · "}
-          <a href="https://npmjs.com/package/moneroo" target="_blank" rel="noopener noreferrer">moneroo</a>
+          <a href="/services">Services</a>
           {" · "}
           <a href="mailto:pro@aboudouzinsou.com">Contact</a>
         </p>

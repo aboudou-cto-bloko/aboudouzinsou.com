@@ -42,13 +42,26 @@ export function ProfileHero({ total }: Props) {
 
       {/* ── Bio ── */}
       <p className="profile-bio">
-        Dev full-stack TypeScript. Je construis des SaaS pour le marché africain.
-        {" "}VitrinAI · BLOKO · Pixel-Mart.
+        Je conçois des SaaS pour startups et PME africaines — paiements mobile money,
+        IA locale, architecture qui tient en production.
       </p>
+
+      {/* ── Actions ── */}
+      <div className="profile-actions">
+        <a href="/services" className="profile-cta profile-cta--primary">
+          Travailler avec moi
+        </a>
+        <a href="/about" className="profile-cta">
+          Projets
+        </a>
+      </div>
 
       {/* ── Meta ── */}
       <div className="profile-meta">
         <span>Cotonou, Bénin</span>
+        <a href="https://www.facebook.com/francois.SaasXpert" target="_blank" rel="noopener noreferrer">
+          Facebook
+        </a>
         <a href="https://aboudouzinsou.com" target="_blank" rel="noopener noreferrer">
           aboudouzinsou.com
         </a>
