@@ -42,8 +42,8 @@ export function ProfileHero({ total }: Props) {
 
       {/* ── Bio ── */}
       <p className="profile-bio">
-        Je conçois des SaaS pour startups et PME africaines — paiements mobile money,
-        IA locale, architecture qui tient en production.
+        Développeur freelance à Cotonou. J&apos;intègre FedaPay, Mobile Money, Moneroo —
+        et je construis des SaaS qui fonctionnent vraiment sur le marché africain.
       </p>
 
       {/* ── Actions ── */}

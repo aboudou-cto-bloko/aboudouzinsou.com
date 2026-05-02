@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 
 const BASE = "https://aboudouzinsou.com";
 
-const TITLE = "Aboudou Zinsou — Développeur SaaS Afrique · Next.js · TypeScript";
-const DESC = "Dev full-stack SaaS, marché africain francophone. Je construis BLOKO, Pixel-Mart, PLR. J'écris sur Next.js, Convex et l'IA.";
+const TITLE = "Aboudou Zinsou — Développeur Freelance SaaS · Intégration Mobile Money · Cotonou";
+const DESC = "Développeur freelance à Cotonou, Bénin. Intégration FedaPay, MTN Mobile Money, Moneroo. Développement SaaS Next.js pour le marché africain francophone.";
 
 export const metadata: Metadata = {
   title: TITLE,

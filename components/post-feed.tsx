@@ -70,6 +70,38 @@ export function PostFeed({ posts }: { posts: FeedPost[] }) {
               className="feed-item-enter"
               style={{ animationDelay: `${(i % PAGE_SIZE) * 28}ms` }}
             >
+              {/* Nudge CTA après le 4e article du premier batch */}
+              {i === 4 && (
+                <a
+                  href="/services"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1rem 1.1rem",
+                    marginBottom: "0",
+                    border: "1px solid #1c1c1c",
+                    borderRadius: "3px",
+                    background: "#0c0c0c",
+                    marginBlockEnd: "0",
+                    textDecoration: "none",
+                  }}
+                >
+                  <div>
+                    <span style={{ fontSize: "0.7rem", color: "#555", letterSpacing: "0.06em", textTransform: "uppercase", display: "block", marginBottom: "4px" }}>
+                      Freelance disponible
+                    </span>
+                    <span style={{ fontSize: "var(--text-sm)", color: "#888" }}>
+                      Intégration Mobile Money, SaaS, IA locale — Cotonou
+                    </span>
+                  </div>
+                  <span style={{ fontSize: "var(--text-xs)", color: "#444", flexShrink: 0 }}>
+                    Services →
+                  </span>
+                </a>
+              )}
+
               <Link href={post.url} className="post-item post-item--feed">
                 <div className="post-item__body">
                   {/* Cover CSS — pas de requête réseau */}
