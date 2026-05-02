@@ -1,6 +1,5 @@
 import { PostFeed } from "@/components/post-feed";
-import { TypewriterHeadline } from "@/components/typewriter-headline";
-import { ScrambleText } from "@/components/scramble-text";
+import { ProfileHero } from "@/components/profile-hero";
 import { JsonLd } from "@/components/json-ld";
 import { getRecentPosts, getPostsForSection, SECTIONS } from "@/lib/content";
 import type { Metadata } from "next";
@@ -74,34 +73,7 @@ export default function HomePage() {
       <JsonLd data={personJsonLd} />
     <main className="site-container">
 
-      {/* Tagline */}
-      <section className="tagline-section">
-        <TypewriterHeadline />
-        <ScrambleText
-          text="Builder SaaS · Cotonou, Bénin · Marché africain francophone"
-          className="tagline-sub"
-          triggerOnMount
-          delay={700}
-          speed={22}
-          stagger={1}
-          cycles={4}
-        />
-
-        <div className="content-badges">
-          {counts.articles > 0 && (
-            <span className="badge">{counts.articles} article{counts.articles > 1 ? "s" : ""}</span>
-          )}
-          {counts.insights > 0 && (
-            <span className="badge">{counts.insights} insight{counts.insights > 1 ? "s" : ""}</span>
-          )}
-          {counts.tutoriels > 0 && (
-            <span className="badge">{counts.tutoriels} tutoriel{counts.tutoriels > 1 ? "s" : ""}</span>
-          )}
-          {counts.devlog > 0 && (
-            <span className="badge">{counts.devlog} devlog{counts.devlog > 1 ? "s" : ""}</span>
-          )}
-        </div>
-      </section>
+      <ProfileHero counts={counts} />
 
       {/* Feed */}
       <section aria-label="Publications">
