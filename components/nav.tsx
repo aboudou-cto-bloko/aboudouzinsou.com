@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { SECTION_LABELS, SECTIONS } from "@/lib/content";
 import { NavSearchTrigger } from "./nav-search-trigger";
 
 export function Nav() {
   return (
     <header className="site-container">
       <nav aria-label="Navigation principale" className="site-nav">
-        {/* Brand — grid area 1/1 on mobile */}
         <Link
           href="/"
           className="site-nav__brand-link"
@@ -16,22 +14,11 @@ export function Nav() {
           <span className="shimmer shimmer--slow">{"{AZ}"}</span>
         </Link>
 
-        {/* Links — row 2 on mobile (full width, scrollable) */}
         <ul role="list" className="site-nav__links">
-          {SECTIONS.filter((s) => s !== "ressources").map((section) => (
-            <li key={section}>
-              <Link
-                href={`/${section}`}
-                style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300, whiteSpace: "nowrap" }}
-              >
-                {SECTION_LABELS[section]}
-              </Link>
-            </li>
-          ))}
           <li>
             <Link
               href="/about"
-              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300, whiteSpace: "nowrap" }}
+              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
             >
               À propos
             </Link>
@@ -39,14 +26,13 @@ export function Nav() {
           <li>
             <Link
               href="/links"
-              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300, whiteSpace: "nowrap" }}
+              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
             >
               Links
             </Link>
           </li>
         </ul>
 
-        {/* Search — grid area 1/2 on mobile (same line as brand) */}
         <div className="site-nav__search">
           <NavSearchTrigger />
         </div>

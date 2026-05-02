@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getPostsForSection, SECTION_LABELS, SECTIONS } from "@/lib/content";
 import type { Section, Post } from "@/lib/content";
 import { PostStats } from "@/components/post-stats";
+import { ProfileHero } from "@/components/profile-hero";
+import { ProfileTabsNav } from "@/components/profile-tabs-nav";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ section: string }> };
@@ -84,6 +86,12 @@ export default async function SectionPage({ params }: Props) {
   const posts = getPostsForSection(section as Section);
   const label = SECTION_LABELS[section as Section];
 
+  const counts = SECTIONS.reduce(
+    (acc, s) => ({ ...acc, [s]: getPostsForSection(s).length }),
+    {} as Record<string, number>
+  );
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+
   // Group by topic if posts have it (insights)
   const hasTopics = posts.some((p) => (p.frontmatter as { topic?: string }).topic);
 
@@ -123,20 +131,10 @@ export default async function SectionPage({ params }: Props) {
     <>
       <main className="site-container">
         <div>
-          <section style={{ paddingBlock: "3rem 4rem" }}>
-            <h1
-              style={{
-                fontSize: "var(--text-xl)",
-                fontWeight: 500,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.2,
-              }}
-            >
-              {label}
-            </h1>
-          </section>
+          <ProfileHero total={total} />
+          <ProfileTabsNav active={section} counts={counts} />
 
-          <section aria-label={`Liste ${label.toLowerCase()}`}>
+          <section aria-label={`Liste ${label.toLowerCase()}`} style={{ paddingTop: "1.75rem" }}>
             {posts.length === 0 && (
               <p style={{ color: "#888888", fontSize: "var(--text-sm)" }}>
                 Aucun contenu pour l&apos;instant.
@@ -165,7 +163,7 @@ export default async function SectionPage({ params }: Props) {
             )}
           </section>
 
-          <footer style={{ paddingBlock: "5rem 3rem" }}>
+          <footer style={{ paddingBlock: "4rem 3rem" }}>
             <Link href="/" style={{ fontSize: "var(--text-xs)", color: "#555" }}>
               ← Accueil
             </Link>
