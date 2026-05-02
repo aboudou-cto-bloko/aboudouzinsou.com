@@ -19,7 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE}${p.url}`,
       lastModified: p.frontmatter.updated ?? p.frontmatter.date,
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      // Tutoriels = fort potentiel SEO longue traîne → priorité max
+      // Devlog/insights = contenu court → priorité réduite
+      priority: p.section === "tutoriels" ? 0.9 : p.section === "articles" ? 0.85 : 0.7,
     })),
   ];
 }

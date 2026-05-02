@@ -5,6 +5,7 @@ import type { Section, Post } from "@/lib/content";
 import { PostStats } from "@/components/post-stats";
 import { ProfileHero } from "@/components/profile-hero";
 import { ProfileTabsNav } from "@/components/profile-tabs-nav";
+import { JsonLd } from "@/components/json-ld";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ section: string }> };
@@ -127,8 +128,36 @@ export default async function SectionPage({ params }: Props) {
     ungrouped = posts;
   }
 
+  const url = `${BASE}/${section}`;
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${label} — Aboudou Zinsou`,
+    description: SECTION_DESCRIPTIONS[section],
+    url,
+    author: { "@type": "Person", name: "Aboudou Zinsou", url: BASE },
+    inLanguage: "fr-FR",
+    hasPart: posts.slice(0, 10).map((p) => ({
+      "@type": "Article",
+      name: p.frontmatter.title,
+      url: `${BASE}${p.url}`,
+      datePublished: p.frontmatter.date,
+      description: p.excerpt,
+    })),
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: BASE },
+      { "@type": "ListItem", position: 2, name: label, item: url },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={collectionJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <main className="site-container">
         <div>
           <ProfileHero total={total} />

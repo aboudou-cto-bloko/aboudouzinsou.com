@@ -101,9 +101,14 @@ export default async function ArticlePage({ params }: Props) {
   const url = `${BASE}/${section}/${slug}`;
   const coverUrl = buildCoverUrl(post.frontmatter.title, section, post.frontmatter.tags, post.readingTime);
 
+  // TechArticle pour les tutoriels, Article pour le reste
+  const schemaType = section === "tutoriels" ? "TechArticle" : "Article";
+  const wordCount = post.content.split(/\s+/).length;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": schemaType,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     headline: post.frontmatter.title,
     description: post.frontmatter.description ?? post.excerpt,
     image: coverUrl,
@@ -114,6 +119,10 @@ export default async function ArticlePage({ params }: Props) {
       "@type": "Person",
       name: "Aboudou Zinsou",
       url: `${BASE}/about`,
+      sameAs: [
+        "https://github.com/aboudou-cto-bloko",
+        "https://x.com/aboudouzinsou",
+      ],
     },
     publisher: {
       "@type": "Person",
@@ -122,6 +131,9 @@ export default async function ArticlePage({ params }: Props) {
     },
     inLanguage: "fr-FR",
     keywords: post.frontmatter.tags?.join(", "),
+    wordCount,
+    articleSection: SECTION_LABELS[section as Section],
+    isAccessibleForFree: true,
   };
 
   const breadcrumbJsonLd = {

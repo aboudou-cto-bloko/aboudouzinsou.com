@@ -36,7 +36,7 @@ export function ProfileHero({ total }: Props) {
 
       {/* ── Identity ── */}
       <div className="profile-identity">
-        <p className="profile-name">Aboudou Zinsou</p>
+        <h1 className="profile-name">Aboudou Zinsou</h1>
         <p className="profile-handle">@aboudouzinsou</p>
       </div>
 

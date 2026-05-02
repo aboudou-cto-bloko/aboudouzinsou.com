@@ -13,7 +13,7 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: {
-    default: "Aboudou Zinsou",
+    default: "Aboudou Zinsou — Développeur SaaS Afrique · Next.js · TypeScript",
     template: "%s — Aboudou Zinsou",
   },
   description:
