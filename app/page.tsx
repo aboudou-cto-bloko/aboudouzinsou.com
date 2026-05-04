@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 
 const BASE = "https://aboudouzinsou.com";
 
-const TITLE = "Aboudou Zinsou — Développeur Freelance SaaS · Intégration Mobile Money · Cotonou";
-const DESC = "Développeur freelance à Cotonou, Bénin. Intégration FedaPay, MTN Mobile Money, Moneroo. Développement SaaS Next.js pour le marché africain francophone.";
+const TITLE = "Aboudou Zinsou — Intelligence d'entreprise · SaaS · Paiements Africains · Cotonou";
+const DESC = "Je construis la mémoire et l'intelligence opérationnelle des PME africaines — base de connaissances vivante, agents IA, tableau de bord. Aussi : intégration Mobile Money, SaaS sur mesure.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -67,13 +67,14 @@ export default function HomePage() {
       "https://www.facebook.com/francois.SaasXpert",
       "https://npmjs.com/package/moneroo",
     ],
-    jobTitle: "Développeur Full-Stack SaaS",
-    knowsAbout: ["Next.js", "TypeScript", "Convex", "RAG", "IA", "SaaS Afrique", "Moneroo"],
-    description: "Développeur full-stack SaaS basé à Cotonou, Bénin. Fondateur de Pixel-Mart, BLOKO, PLR et VitrinAI.",
+    jobTitle: "Développeur Full-Stack SaaS — Intelligence d'entreprise & Paiements Africains",
+    knowsAbout: ["Intelligence d'entreprise", "Base de connaissances PME", "Agents IA", "Next.js", "TypeScript", "Convex", "RAG", "Mobile Money", "Moneroo", "SaaS Afrique"],
+    description: "Je construis la mémoire et l'intelligence opérationnelle des PME africaines. Basé à Cotonou, Bénin. Fondateur de BLOKO et VitrinAI.",
     address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
     worksFor: [
-      { "@type": "Organization", name: "Pixel-Mart", url: "https://pixel-mart-bj.com" },
       { "@type": "Organization", name: "BLOKO" },
+      { "@type": "Organization", name: "Pixel-Mart", url: "https://pixel-mart-bj.com" },
+      { "@type": "Organization", name: "VitrinAI", url: "https://vitrinai-eta.vercel.app" },
     ],
   };
 

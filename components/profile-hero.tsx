@@ -42,8 +42,8 @@ export function ProfileHero({ total }: Props) {
 
       {/* ── Bio ── */}
       <p className="profile-bio">
-        Développeur freelance à Cotonou. J&apos;intègre FedaPay, Mobile Money, Moneroo —
-        et je construis des SaaS qui fonctionnent vraiment sur le marché africain.
+        Développeur freelance à Cotonou. Je construis la mémoire opérationnelle des PME
+        africaines — base de connaissances vivante, agents IA, intégration Mobile Money.
       </p>
 
       {/* ── Actions ── */}

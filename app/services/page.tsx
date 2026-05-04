@@ -5,28 +5,28 @@ import { JsonLd } from "@/components/json-ld";
 const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
-  title: "Intégration Mobile Money · SaaS Afrique · Freelance Cotonou | Aboudou Zinsou",
+  title: "Intelligence d'entreprise · Base de connaissances · Agents IA · Cotonou | Aboudou Zinsou",
   description:
-    "Développeur freelance à Cotonou, Bénin. Intégration FedaPay, MTN Mobile Money, Moneroo, Orange Money. Développement SaaS sur mesure pour le marché africain francophone. Audit VitrinAI gratuit.",
+    "Je construis la mémoire et l'intelligence opérationnelle des PME africaines : base de connaissances vivante, agents IA sur vos workflows, tableau de bord de pilotage. Aussi : intégration Mobile Money, SaaS sur mesure.",
   alternates: { canonical: `${BASE}/services` },
   keywords: [
+    "base de connaissances entreprise Afrique",
+    "intelligence entreprise PME Bénin",
+    "agents IA automatisation entreprise",
+    "second cerveau entreprise",
+    "système gestion connaissance Cotonou",
     "développeur freelance Bénin",
-    "développeur freelance Cotonou",
-    "intégration FedaPay",
     "intégration Mobile Money",
     "Moneroo développeur",
     "SaaS Afrique de l'Ouest",
-    "développement application web Bénin",
-    "développeur TypeScript Afrique",
-    "intégration paiements africains",
-    "MTN Mobile Money intégration",
+    "automatisation workflow PME africaine",
   ],
   openGraph: {
     type: "website",
     url: `${BASE}/services`,
-    title: "Intégration Mobile Money & SaaS Afrique — Développeur Freelance Cotonou",
+    title: "Intelligence d'entreprise & SaaS Afrique — Aboudou Zinsou, Cotonou",
     description:
-      "Développeur freelance à Cotonou. FedaPay, MTN Mobile Money, Moneroo. SaaS sur mesure pour le marché africain.",
+      "Base de connaissances vivante, agents IA métiers, tableau de bord de pilotage — pour les PME qui veulent arrêter d'oublier.",
   },
 };
 
@@ -34,11 +34,11 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${BASE}/services`,
-  name: "Aboudou Zinsou — Développeur Freelance SaaS & Paiements Africains",
+  name: "Aboudou Zinsou — Intelligence d'entreprise · SaaS · Paiements Africains",
   url: `${BASE}/services`,
   email: "pro@aboudouzinsou.com",
   description:
-    "Développeur freelance basé à Cotonou, Bénin. Spécialisé intégration FedaPay, Moneroo, MTN Mobile Money, Orange Money. Développement SaaS Next.js pour le marché africain francophone.",
+    "Je construis la mémoire et l'intelligence opérationnelle des PME africaines : base de connaissances vivante, agents IA sur les workflows, tableau de bord de pilotage. Aussi : intégration Mobile Money, SaaS sur mesure.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Cotonou",
@@ -48,15 +48,24 @@ const jsonLd = {
   areaServed: ["BJ", "CI", "SN", "TG", "BF", "GN", "ML"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Services de développement",
+    name: "Services",
     itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Intelligence d'entreprise — Mémoire, Agents, Pilotage",
+          description:
+            "Construction de la mémoire opérationnelle d'une PME : base de connaissances structurée alimentée automatiquement depuis WhatsApp, agents IA sur les workflows clés, tableau de bord temps réel. Données hébergées localement.",
+        },
+      },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "Intégration Paiements Africains",
           description:
-            "Intégration FedaPay, Moneroo, MTN Mobile Money, Orange Money pour applications web et SaaS. Webhooks sécurisés, remboursements, conformité XOF.",
+            "Intégration FedaPay, Moneroo, MTN Mobile Money, Orange Money. Webhooks sécurisés, remboursements, conformité XOF.",
         },
       },
       {
@@ -65,16 +74,7 @@ const jsonLd = {
           "@type": "Service",
           name: "Développement SaaS sur mesure",
           description:
-            "Conception et développement d'applications SaaS pour le marché africain francophone. Next.js, Convex, TypeScript.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Agents IA & Automatisation Locale",
-          description:
-            "Agents IA locaux, RAG sur données internes, LLM local sans dépendance OpenAI.",
+            "Applications SaaS pour le marché africain francophone. Next.js, Convex, TypeScript, mobile-first.",
         },
       },
     ],
@@ -106,14 +106,6 @@ const SERVICES: Service[] = [
     desc: "Authentification, paiements Mobile Money intégrés dès le départ, interface mobile-first, analytics. Stack éprouvée sur le marché africain : Next.js, Convex, TypeScript. Votre SaaS fonctionne sur une connexion 3G africaine — pas seulement sur la fibre parisienne.",
     deliver: "Livré en 4 à 8 semaines · Déploiement Vercel · Source code inclus",
     note: "Sur devis selon les fonctionnalités",
-  },
-  {
-    label: "Agents IA & Automatisation Locale",
-    tagline:
-      "Un système qui travaille pour vous — sans envoyer vos données à San Francisco.",
-    desc: "Prospection automatisée, assistant sur vos documents internes, analyse de données clients. LLM local sur votre infrastructure : zéro coût API mensuel, zéro dépendance OpenAI. L'agent génère, vous validez, il exécute — supervisé à chaque étape critique.",
-    deliver: "Livré en 3 à 6 semaines · LLM local · Données hébergées chez vous",
-    note: "Sur devis selon le périmètre",
   },
 ];
 
@@ -154,8 +146,62 @@ export default function ServicesPage() {
 
         <hr style={{ border: "none", borderTop: "1px solid #1e1e1e", marginBottom: "3rem" }} />
 
-        {/* ── Services ── */}
+        {/* ── Service phare ── */}
         <section style={{ marginBottom: "3.5rem" }}>
+          <div
+            style={{
+              border: "1px solid #2a2a2a",
+              borderRadius: "4px",
+              padding: "2rem",
+              background: "#0a0a0a",
+              position: "relative",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "var(--text-sm)", fontWeight: 500, color: "var(--color-primary)", letterSpacing: "-0.01em" }}>
+                Intelligence d&apos;entreprise
+              </span>
+              <span style={{ fontSize: "0.6875rem", color: "#c8a86b", background: "#c8a86b18", border: "1px solid #c8a86b22", padding: "2px 8px", borderRadius: "2px", letterSpacing: "0.04em" }}>
+                Service phare
+              </span>
+            </div>
+
+            <p style={{ fontSize: "var(--text-sm)", color: "#aaa", fontStyle: "italic", lineHeight: 1.55, marginBottom: "1rem" }}>
+              Votre entreprise oublie tout. Chaque soir.
+            </p>
+
+            <p style={{ fontSize: "var(--text-xs)", color: "#666", lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: "56ch" }}>
+              Les décisions prises en réunion disparaissent. Les numéros de clients se perdent entre deux téléphones. L&apos;employé qui part emporte trois ans de connaissance avec lui. WhatsApp est le système nerveux de votre entreprise — mais WhatsApp n&apos;a pas de mémoire.
+            </p>
+
+            <p style={{ fontSize: "var(--text-xs)", color: "#666", lineHeight: 1.9, marginBottom: "1.5rem", maxWidth: "56ch" }}>
+              Je construis la mémoire qui manque. Une base de connaissances vivante, alimentée automatiquement depuis vos sources existantes. Des agents qui lisent cette base, exécutent vos workflows, et écrivent ce qu&apos;ils ont fait. Un tableau de bord pour piloter le tout en temps réel.
+            </p>
+
+            <p style={{ fontSize: "var(--text-xs)", color: "#555", lineHeight: 1.9, marginBottom: "1.75rem", maxWidth: "56ch" }}>
+              Données hébergées chez vous. Aucune dépendance cloud obligatoire. Conçu pour fonctionner sur une connexion 3G et avec une équipe qui travaille sur WhatsApp — pas sur Notion.
+            </p>
+
+            <div style={{ display: "flex", gap: "1.5rem", alignItems: "center", flexWrap: "wrap" }}>
+              <a
+                href={`mailto:pro@aboudouzinsou.com?subject=Diagnostic gratuit — intelligence d'entreprise&body=${encodeURIComponent("Bonjour,\n\nJe souhaite un diagnostic gratuit de la mémoire de mon entreprise.\n\nNom de l'entreprise : \nSecteur : \nNombre d'employés : \nPrincipal problème d'information : ")}`}
+                className="profile-cta profile-cta--primary"
+                style={{ display: "inline-flex" }}
+              >
+                Demander un diagnostic gratuit
+              </a>
+              <span style={{ fontSize: "0.75rem", color: "#444", fontFamily: "var(--font-mono)" }}>
+                6 à 14 semaines · Sur devis
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <hr style={{ border: "none", borderTop: "1px solid #1e1e1e", marginBottom: "3rem" }} />
+
+        {/* ── Autres services ── */}
+        <section style={{ marginBottom: "3.5rem" }}>
+          <p className="about-section-label" style={{ marginBottom: "1.75rem" }}>Également</p>
           <div className="about-projects">
             {SERVICES.map((s) => (
               <div key={s.label} className="about-project">
