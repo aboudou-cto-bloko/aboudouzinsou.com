@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Onboarding Kit — Aboudou Zinsou</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens (portfolio-exact) ─────────────── */
+    :root {
+      --canvas:  #090909;
+      --surface: #111111;
+      --primary: #f0f0f0;
+      --muted:   #888888;
+      --ash:     #333333;
+      --font-sans: 'Jost', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Reset ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ────────────────────────────────────────── */
+    html {
+      background: var(--canvas);
+      color: var(--primary);
+      font-family: var(--font-sans);
+      font-size: 11pt;
+      font-weight: 300;
+      line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body { background: var(--canvas); }
+
+    /* ── Layout ──────────────────────────────────────── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 16mm 18mm 14mm;
+      position: relative;
+    }
+
+    /* ── Cover ───────────────────────────────────────── */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 297mm;
+      padding: 20mm 18mm;
+      border-bottom: 1px solid var(--ash);
+      page-break-after: always;
+    }
+
+    .cover__top { display: flex; flex-direction: column; gap: 0; }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 64mm;
+    }
+
+    .logo svg { width: 44px; height: 26px; }
+
+    .logo__name {
+      font-size: 13pt;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--primary);
+    }
+
+    .cover__label {
+      font-size: 9pt;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10mm;
+      font-family: var(--font-mono);
+    }
+
+    .cover__title {
+      font-size: 38pt;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 8mm;
+    }
+
+    .cover__subtitle {
+      font-size: 14pt;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 420px;
+    }
+
+    .cover__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--ash);
+      padding-top: 8mm;
+    }
+
+    .cover__meta {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.8;
+      font-family: var(--font-mono);
+    }
+
+    .cover__meta strong {
+      color: var(--primary);
+      font-weight: 400;
+    }
+
+    .cover__version {
+      font-size: 9pt;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      text-align: right;
+    }
+
+    /* ── Table des matières ──────────────────────────── */
+    .toc {
+      page-break-after: always;
+      padding-top: 8mm;
+    }
+
+    .toc__title {
+      font-size: 9pt;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      margin-bottom: 10mm;
+      padding-bottom: 4mm;
+      border-bottom: 1px solid var(--ash);
+    }
+
+    .toc__list { list-style: none; }
+
+    .toc__item {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      padding: 3.5mm 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .toc__phase {
+      font-size: 8pt;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      width: 20mm;
+      flex-shrink: 0;
+    }
+
+    .toc__label {
+      font-size: 11pt;
+      font-weight: 400;
+      color: var(--primary);
+      flex: 1;
+    }
+
+    .toc__sub {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-top: 1mm;
+      padding-left: 20mm;
+      display: block;
+    }
+
+    .toc__item--group { padding-top: 6mm; border-bottom: none; }
+    .toc__group-label {
+      font-size: 8pt;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    /* ── Intro ───────────────────────────────────────── */
+    .intro {
+      page-break-after: always;
+      padding-top: 8mm;
+    }
+
+    /* ── Section (phase) ─────────────────────────────── */
+    .section {
+      page-break-before: always;
+      padding-top: 8mm;
+    }
+
+    .section__header {
+      display: flex;
+      align-items: baseline;
+      gap: 10mm;
+      margin-bottom: 8mm;
+      padding-bottom: 4mm;
+      border-bottom: 1px solid var(--ash);
+    }
+
+    .section__num {
+      font-size: 9pt;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    .section__title {
+      font-size: 20pt;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--primary);
+    }
+
+    /* ── Template block ──────────────────────────────── */
+    .template-block {
+      margin-top: 6mm;
+      border: 1px solid var(--ash);
+      background: var(--surface);
+    }
+
+    .template-block__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3mm 5mm;
+      border-bottom: 1px solid var(--ash);
+      background: #0d0d0d;
+    }
+
+    .template-block__label {
+      font-size: 8pt;
+      font-family: var(--font-mono);
+      color: var(--muted);
+    }
+
+    .template-block__tag {
+      font-size: 7.5pt;
+      font-family: var(--font-mono);
+      color: var(--ash);
+      border: 1px solid var(--ash);
+      padding: 1px 6px;
+    }
+
+    .template-block__content {
+      padding: 5mm;
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      line-height: 1.75;
+      color: #d0d0d0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── Prose ───────────────────────────────────────── */
+    .prose {
+      color: var(--primary);
+      font-size: 10.5pt;
+      line-height: 1.85;
+    }
+
+    .prose h2 {
+      font-size: 14pt;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-top: 8mm;
+      margin-bottom: 3mm;
+      color: var(--primary);
+    }
+
+    .prose h3 {
+      font-size: 10.5pt;
+      font-weight: 500;
+      margin-top: 6mm;
+      margin-bottom: 2mm;
+    }
+
+    .prose p { margin-bottom: 4mm; }
+
+    .prose strong { font-weight: 500; }
+
+    .prose em { color: var(--muted); font-style: italic; }
+
+    .prose ul, .prose ol {
+      padding-left: 5mm;
+      margin-bottom: 4mm;
+    }
+
+    .prose li { margin-bottom: 1.5mm; }
+
+    .prose blockquote {
+      border-left: 2px solid var(--ash);
+      padding-left: 4mm;
+      color: var(--muted);
+      margin: 4mm 0;
+      font-size: 10pt;
+    }
+
+    /* ── Alert box ───────────────────────────────────── */
+    .alert {
+      border: 1px solid var(--ash);
+      padding: 4mm 5mm;
+      margin: 4mm 0;
+      font-size: 9.5pt;
+      color: var(--muted);
+      display: flex;
+      gap: 3mm;
+    }
+
+    .alert__icon { flex-shrink: 0; font-size: 10pt; }
+
+    /* ── Table ───────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin: 4mm 0;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 400;
+      color: var(--muted);
+      border-bottom: 1px solid var(--ash);
+      padding: 2mm 3mm;
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    td {
+      padding: 2.5mm 3mm;
+      border-bottom: 1px solid #1a1a1a;
+      vertical-align: top;
+      color: var(--primary);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ── Rules d'or ──────────────────────────────────── */
+    .rules {
+      margin: 6mm 0;
+    }
+
+    .rule {
+      display: flex;
+      align-items: baseline;
+      gap: 4mm;
+      padding: 3mm 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .rule__num {
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      color: var(--muted);
+      width: 12mm;
+      flex-shrink: 0;
+    }
+
+    .rule__text {
+      font-size: 10.5pt;
+      font-weight: 400;
+      color: var(--primary);
+    }
+
+    /* ── Divider ─────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--ash);
+      margin: 6mm 0;
+    }
+
+    /* ── Header courant ──────────────────────────────── */
+    .running-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 3mm;
+      margin-bottom: 6mm;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .running-header__kit {
+      font-size: 8pt;
+      font-family: var(--font-mono);
+      color: var(--muted);
+    }
+
+    .running-header__section {
+      font-size: 8pt;
+      font-family: var(--font-mono);
+      color: #444;
+    }
+
+    /* ── Gotchas ─────────────────────────────────────── */
+    .gotchas {
+      margin-top: 6mm;
+      border-top: 1px solid var(--ash);
+      padding-top: 4mm;
+    }
+
+    .gotchas__title {
+      font-size: 8pt;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 3mm;
+    }
+
+    .gotcha {
+      display: flex;
+      gap: 3mm;
+      margin-bottom: 2.5mm;
+      font-size: 9.5pt;
+      color: var(--muted);
+    }
+
+    .gotcha::before {
+      content: '→';
+      flex-shrink: 0;
+      color: var(--ash);
+    }
+
+    /* ── Colophon / dernière page ────────────────────── */
+    .colophon {
+      page-break-before: always;
+      min-height: 200mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 6mm;
+    }
+
+    .colophon svg { width: 48px; height: 28px; opacity: 0.5; }
+
+    .colophon__text {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 2;
+      font-family: var(--font-mono);
+    }
+
+    /* ── Print ───────────────────────────────────────── */
+    @media print {
+      html { font-size: 10pt; }
+      body { background: var(--canvas) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page { width: 100%; margin: 0; padding: 14mm 16mm 12mm; }
+      .cover { min-height: 0; height: 100vh; }
+      .section, .toc, .intro { page-break-before: always; }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     COUVERTURE
+════════════════════════════════════════════════════════ -->
+<div class="cover page">
+  <div class="cover__top">
+    <div class="logo">
+      <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(10, 5)">
+          <path d="M 0 45 L 18 0 L 30 0 L 30 12 L 16 45 Z" fill="#FFFFFF"/>
+          <path d="M 35 0 L 80 0 L 80 8 L 50 22 L 80 37 L 80 45 L 35 45 L 35 37 L 65 23 L 35 8 Z" fill="#FFFFFF"/>
+        </g>
+      </svg>
+      <span class="logo__name">aboudouzinsou.com</span>
+    </div>
+
+    <div class="cover__label">Kit Freelance · v1.0</div>
+
+    <h1 class="cover__title">Dev<br>Onboarding<br>Kit</h1>
+
+    <p class="cover__subtitle">
+      Le processus client complet pour développeurs freelance.<br>
+      Du premier contact à la clôture — 9 phases, 10 templates.
+    </p>
+  </div>
+
+  <div class="cover__bottom">
+    <div class="cover__meta">
+      <strong>Aboudou Zinsou</strong><br>
+      Développeur SaaS · Marché africain francophone<br>
+      aboudouzinsou.com
+    </div>
+    <div class="cover__version">
+      v1.0 — Mai 2026<br>
+      Usage personnel &amp; professionnel
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TABLE DES MATIÈRES
+════════════════════════════════════════════════════════ -->
+<div class="toc page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Sommaire</span>
+  </div>
+
+  <div class="toc__title">Sommaire</div>
+
+  <ul class="toc__list">
+    <li class="toc__item toc__item--group">
+      <span class="toc__group-label">Introduction</span>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">—</span>
+      <span class="toc__label">Pourquoi ce kit</span>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">—</span>
+      <span class="toc__label">Les 6 règles d'or</span>
+    </li>
+
+    <li class="toc__item toc__item--group" style="padding-top: 8mm;">
+      <span class="toc__group-label">Les 9 phases</span>
+    </li>
+
+    <li class="toc__item">
+      <span class="toc__phase">Phase 01</span>
+      <div>
+        <span class="toc__label">Premier contact</span>
+        <span class="toc__sub">Template : Email de reformulation</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 02</span>
+      <div>
+        <span class="toc__label">Découverte</span>
+        <span class="toc__sub">Template : Brief de découverte validé</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 03</span>
+      <div>
+        <span class="toc__label">Proposition commerciale</span>
+        <span class="toc__sub">Templates : Devis · Spécifications fonctionnelles</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 04</span>
+      <div>
+        <span class="toc__label">Contractualisation</span>
+        <span class="toc__sub">Templates : Contrat · Bon de commande</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 05</span>
+      <div>
+        <span class="toc__label">Kickoff</span>
+        <span class="toc__sub">Template : Note de lancement</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 06</span>
+      <div>
+        <span class="toc__label">Développement itératif</span>
+        <span class="toc__sub">Template : Rapport de sprint</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 07</span>
+      <div>
+        <span class="toc__label">Recette</span>
+        <span class="toc__sub">Templates : Grille de tests · PV de réception</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 08</span>
+      <div>
+        <span class="toc__label">Livraison</span>
+        <span class="toc__sub">Template : Checklist de transfert</span>
+      </div>
+    </li>
+    <li class="toc__item">
+      <span class="toc__phase">Phase 09</span>
+      <div>
+        <span class="toc__label">Clôture</span>
+        <span class="toc__sub">Templates : Email de suivi · Bilan interne</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     INTRODUCTION
+════════════════════════════════════════════════════════ -->
+<div class="intro page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Introduction</span>
+  </div>
+
+  <div class="prose">
+    <h2>Pourquoi ce kit existe</h2>
+
+    <p>
+      La plupart des développeurs freelance maîtrisent leur code.
+      Peu maîtrisent leur processus client.
+    </p>
+
+    <p>
+      Résultat : des projets qui dérapent, des clients qui rajoutent des features "gratuitement",
+      des paiements en retard, des livraisons sans documentation, et des relations qui se terminent
+      mal — même quand le code était bon.
+    </p>
+
+    <p>
+      Ce kit couvre tout le processus : du premier message d'un prospect jusqu'au bilan de clôture,
+      4 semaines après la livraison. Chaque phase vient avec un template prêt à utiliser,
+      rédigé pour le contexte africain francophone — XOF, Wave, Mobile Money, droit béninois.
+    </p>
+
+    <p>
+      Utilisez-le tel quel, ou adaptez-le à votre style. Ce qui importe : avoir un processus.
+    </p>
+
+    <hr class="divider" />
+
+    <h2>Les 6 règles d'or</h2>
+
+    <div class="rules">
+      <div class="rule">
+        <span class="rule__num">01</span>
+        <span class="rule__text">Jamais de code sans acompte reçu</span>
+      </div>
+      <div class="rule">
+        <span class="rule__num">02</span>
+        <span class="rule__text">Jamais de démarrage sans document signé (contrat ou bon de commande)</span>
+      </div>
+      <div class="rule">
+        <span class="rule__num">03</span>
+        <span class="rule__text">Brief validé par écrit avant de rédiger le devis</span>
+      </div>
+      <div class="rule">
+        <span class="rule__num">04</span>
+        <span class="rule__text">PV de recette signé avant déploiement en production</span>
+      </div>
+      <div class="rule">
+        <span class="rule__num">05</span>
+        <span class="rule__text">Solde reçu avant transfert des accès</span>
+      </div>
+      <div class="rule">
+        <span class="rule__num">06</span>
+        <span class="rule__text">Toute évolution de périmètre = avenant écrit avant mise en œuvre</span>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <h2>Comment utiliser ce kit</h2>
+
+    <p>
+      <strong>Projet standard</strong> (client nouveau, > 200K XOF) : suivez les 9 phases dans l'ordre.
+    </p>
+
+    <p>
+      <strong>Mission courte</strong> (client de confiance, &lt; 200K XOF) : Phase 1 → Bon de commande → Phase 8.
+    </p>
+
+    <p>
+      Chaque template est conçu pour être copié-collé et adapté. Les zones entre
+      <em>[crochets]</em> sont à remplacer. Les zones entre <em>← commentaires</em> sont des notes d'aide à la rédaction.
+    </p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 01 — Premier contact
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 01 — Premier contact</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 01</span>
+    <h2 class="section__title">Premier contact</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      Le prospect vient de vous envoyer un message. Votre premier réflexe : <strong>reformuler</strong>.
+      Pas promettre, pas chiffrer, pas enthousiasmer — reformuler.
+    </p>
+    <p>
+      Un email de reformulation bien rédigé montre que vous avez compris, filtre les prospects pas sérieux,
+      et pose les bases d'un échange professionnel dès le départ.
+    </p>
+
+    <h3>Livrable</h3>
+    <p>Email de reformulation envoyé dans les <strong>24h</strong> après le premier contact.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · email-reformulation.txt</span>
+      <span class="template-block__tag">Phase 01</span>
+    </div>
+    <div class="template-block__content">Objet : Suite à notre échange — [Nom du projet / besoin]
+
+Bonjour [Prénom],
+
+Merci pour votre message. Voici ce que j'ai retenu de notre échange :
+
+---
+
+Votre projet
+[1–2 phrases résumant le projet tel que vous l'avez compris]
+
+Ce que vous souhaitez
+- [Besoin 1]
+- [Besoin 2]
+- [Besoin 3]
+
+Contraintes mentionnées
+- Délai : [délai évoqué ou "à définir"]
+- Budget : [fourchette évoquée ou "à discuter"]
+- Autres : [ex. intégration avec un outil existant]
+
+---
+
+Si cette lecture correspond bien à votre besoin, je vous propose
+qu'on organise un appel de 30–45 minutes pour creuser les détails.
+
+Mes disponibilités cette semaine :
+- [Jour] à [heure]
+- [Jour] à [heure]
+
+Dites-moi ce qui vous convient, ou proposez un autre créneau.
+
+Cordialement,
+[Votre prénom]
+[Lien Calendly ou numéro WhatsApp]</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Ne promettre ni délai ni tarif dans cet email — ce n'est pas encore le moment.</div>
+    <div class="gotcha">Reformuler avec vos propres mots, pas copier-coller — ça montre que vous avez vraiment compris.</div>
+    <div class="gotcha">Si le budget évoqué est très bas, ne pas corriger maintenant — le faire en appel découverte.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 02 — Découverte
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 02 — Découverte</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 02</span>
+    <h2 class="section__title">Découverte</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      Réunion de 30 à 60 minutes pour creuser le besoin. Posez des questions, écoutez plus que vous ne parlez,
+      et prenez des notes. Juste après, rédigez le brief et envoyez-le pour <strong>validation écrite</strong>.
+    </p>
+    <p>
+      C'est la base de tout ce qui suit. Si le brief est flou, le projet sera flou.
+    </p>
+
+    <h3>Livrables</h3>
+    <p>Compte-rendu de réunion + brief validé par le client par écrit avant de passer à la proposition commerciale.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · brief-decouverte.md</span>
+      <span class="template-block__tag">Phase 02</span>
+    </div>
+    <div class="template-block__content"># Brief projet — [Nom du projet]
+
+Client : [Nom / entreprise]
+Date   : [JJ/MM/AAAA]
+Statut : En attente de validation client
+
+---
+
+## 1. Contexte
+[Qui est le client, quel business, quel problème à résoudre ?]
+
+## 2. Objectif du projet
+En une phrase : [ce que ce projet doit permettre d'accomplir]
+
+## 3. Utilisateurs cibles
+[Profil 1] — [besoins clés]
+[Profil 2] — [besoins clés]
+
+## 4. Fonctionnalités
+
+Incluses (périmètre confirmé)
+- [ ] [Fonctionnalité 1]
+- [ ] [Fonctionnalité 2]
+
+Hors périmètre (évolutions futures)
+- [Feature X — phase 2]
+
+## 5. Contraintes
+Technique  : [intégrations existantes, hébergement, données sensibles]
+Design     : [charte fournie ? maquettes ? références visuelles ?]
+Business   : Délai [x] · Budget [x] · Langue [x]
+
+## 6. Critères de succès
+- [Comment le client saura que c'est réussi]
+
+## 7. Questions ouvertes
+- [ ] [Question à clarifier avant de démarrer]
+
+---
+
+En répondant à ce mail, vous confirmez que ce brief
+reflète fidèlement votre besoin. Toute évolution de
+périmètre après validation fera l'objet d'un avenant.</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">La section "Hors périmètre" est aussi importante qu'Incluses — elle ferme la porte au scope creep.</div>
+    <div class="gotcha">Toujours obtenir une validation écrite (email) — c'est votre protection contractuelle.</div>
+    <div class="gotcha">Ne pas rédiger le devis tant que des questions restent ouvertes.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 03 — Proposition commerciale
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 03 — Proposition commerciale</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 03</span>
+    <h2 class="section__title">Proposition commerciale</h2>
+  </div>
+
+  <div class="prose">
+    <p>Le devis traduit le brief en engagement commercial : périmètre, tarif, planning, conditions.</p>
+    <p>
+      Pour les projets &gt; 500K XOF ou avec plusieurs rôles utilisateurs, ajoutez les
+      spécifications fonctionnelles (user stories) en annexe.
+    </p>
+
+    <h3>Livrables</h3>
+    <p>Devis signé + éventuelles spécifications fonctionnelles validées.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · devis.md</span>
+      <span class="template-block__tag">Phase 03 · Devis</span>
+    </div>
+    <div class="template-block__content"># Proposition commerciale
+
+Prestataire : [Votre nom]
+Client      : [Nom / Entreprise]
+Date        : [JJ/MM/AAAA]
+Référence   : DEV-[AAAA]-[XXX]   ← ex : DEV-2026-007
+Validité    : 30 jours
+
+---
+
+## 1. Objet
+[Description courte du projet — 2–3 lignes reprenant l'objectif du brief]
+
+## 2. Périmètre inclus
+| # | Livrable              | Description           |
+|---|----------------------|-----------------------|
+| 1 | [Livrable]           | [Description courte]  |
+| 2 | [Livrable]           | [Description courte]  |
+
+Périmètre exclu : [ex. rédaction contenus, SEO, maintenance]
+→ Toute demande hors périmètre = avenant tarifé séparément.
+
+## 3. Planning
+J+0  : Démarrage (acompte reçu)
+J+[X]: [Livrable intermédiaire]
+J+[X]: Recette et corrections
+J+[X]: Livraison finale
+
+## 4. Tarification
+| Poste                  | Jours | Tarif/j    | Total      |
+|-----------------------|-------|------------|------------|
+| [Développement front]  | [X]j  | [Y] XOF    | [Z] XOF    |
+| [Développement back]   | [X]j  | [Y] XOF    | [Z] XOF    |
+| [Tests / intégration]  | [X]j  | [Y] XOF    | [Z] XOF    |
+                                      Total : [X] XOF
+
+## 5. Paiement
+Acompte  : 40% — [X] XOF → à la signature
+Jalon 1  : 30% — [X] XOF → livraison [livrable intermédiaire]
+Solde    : 30% — [X] XOF → livraison finale validée
+
+Modes acceptés : Wave · MTN Mobile Money · Orange Money · Virement
+
+→ Le démarrage effectif intervient à réception de l'acompte.
+
+## 6. Révisions
+[X] aller-retours inclus par livrable.
+Au-delà : [tarif/h] XOF/heure.
+
+---
+Signature client : _________________ Date : _________
+Signature prestataire : [Votre nom]  Date : _________</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Numéroter tous les devis séquentiellement (DEV-2026-007) — facilite le suivi comptable.</div>
+    <div class="gotcha">Ne jamais démarrer sans l'acompte sur le compte, même si le client est pressé.</div>
+    <div class="gotcha">Mentionner Wave/Mobile Money dès le devis — ça évite les frictions au moment de payer.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 04 — Contractualisation
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 04 — Contractualisation</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 04</span>
+    <h2 class="section__title">Contractualisation</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      Deux formats selon la taille de la mission :
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Format</th>
+          <th>Quand</th>
+          <th>Longueur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Contrat complet</strong></td>
+          <td>Mission &gt; 200K XOF · client nouveau</td>
+          <td>2–3 pages</td>
+        </tr>
+        <tr>
+          <td><strong>Bon de commande</strong></td>
+          <td>Mission &lt; 200K XOF · client de confiance</td>
+          <td>1 page</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Dans tous les cas, le document signé + l'acompte reçu déclenchent le démarrage.
+      Jamais l'un sans l'autre.
+    </p>
+
+    <h3>Clauses essentielles à ne pas omettre</h3>
+
+    <table>
+      <thead>
+        <tr><th>Clause</th><th>Pourquoi</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Délais conditionnés aux fournitures client</td>
+          <td>Protège contre les retards imputés au dev quand c'est le client qui traîne</td>
+        </tr>
+        <tr>
+          <td>Nombre de révisions incluses</td>
+          <td>Ferme la porte aux corrections infinies</td>
+        </tr>
+        <tr>
+          <td>Propriété à réception du solde</td>
+          <td>Levier de paiement si le client tarde</td>
+        </tr>
+        <tr>
+          <td>Résiliation avec préavis + prorata</td>
+          <td>Permet de sortir proprement si ça tourne mal</td>
+        </tr>
+        <tr>
+          <td>Paiement en retard → suspension</td>
+          <td>Règle claire, connue à l'avance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · bon-de-commande.md</span>
+      <span class="template-block__tag">Phase 04 · Format court</span>
+    </div>
+    <div class="template-block__content"># Bon de commande — [Nom de la mission]
+
+Référence : BC-[AAAA]-[XXX]
+Date      : [JJ/MM/AAAA]
+
+Prestataire : [Votre nom] · [email] · [tél]
+Client      : [Nom / Entreprise] · [email] · [tél]
+
+---
+
+## Prestation commandée
+[Description précise — 3–5 lignes]
+
+Livrable attendu  : [Ce qui sera remis concrètement]
+Délai             : [X jours] à compter de la réception de l'acompte
+Révisions incluses: [X] aller-retour(s)
+
+## Tarif et paiement
+Montant total : [X] XOF
+
+Acompte : 50% — [X] XOF → à la signature
+Solde   : 50% — [X] XOF → livraison validée
+
+Modes : Wave · MTN MoMo · Orange Money · Virement
+
+## Conditions
+- Retard fournitures client → délai décalé d'autant
+- Demande hors périmètre → devis complémentaire
+- Code propriété client après solde intégral
+- Garantie corrections : 15 jours après livraison
+
+---
+Client :      ___________________ Date : _______ Signature : _______
+Prestataire : [Votre nom]         Date : _______ Signature : _______</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Même pour un petit projet : toujours un document signé — une capture WhatsApp ne suffit pas.</div>
+    <div class="gotcha">Pour les clients entreprise : demander le cachet commercial sur la signature.</div>
+    <div class="gotcha">Ne pas descendre sous 40% d'acompte — en dessous, vous travaillez à découvert.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 05 — Kickoff
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 05 — Kickoff</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 05</span>
+    <h2 class="section__title">Kickoff</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      5 minutes à remplir, des semaines de frictions évitées. La note de kickoff aligne tout le monde
+      sur le planning, les outils, et les règles de collaboration — avant que les malentendus ne commencent.
+    </p>
+    <p>Envoyez-la avant ou pendant la réunion de lancement.</p>
+
+    <h3>Livrable</h3>
+    <p>Note de kickoff partagée avec le client dès réception de l'acompte.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · kickoff.md</span>
+      <span class="template-block__tag">Phase 05</span>
+    </div>
+    <div class="template-block__content"># Kickoff — [Nom du projet]
+
+Démarrage    : [JJ/MM/AAAA]
+Livraison    : [JJ/MM/AAAA]
+Contrat      : [DEV-AAAA-XXX]
+Acompte reçu : ✅ [X] XOF le [date]
+
+---
+
+## Planning
+Semaine 1 (du [date] au [date]) : [Module / tâche]
+Semaine 2 (du [date] au [date]) : [Module / tâche]
+Semaine 3 (du [date] au [date]) : Démo intermédiaire + corrections
+Semaine 4 (du [date] au [date]) : Recette + livraison finale
+
+## Outils
+Communication  : [WhatsApp / Slack] — [lien ou numéro]
+Suivi tâches   : [Notion / Linear] — [lien]
+Code source    : [GitHub / GitLab] — [lien]
+Staging        : [URL] — disponible à partir du [date]
+
+## Convention de travail
+- Canal principal : [WhatsApp / Slack]
+- Réponse max : 24h en jours ouvrables
+- Point hebdo : [jour] à [heure] (15 min)
+- Validation livrables : 5 jours ouvrables après démo
+  → Passé ce délai sans retour : livrable considéré validé
+- Évolutions de périmètre : avenant écrit avant mise en œuvre
+
+## Éléments attendus du client
+- [ ] [Contenus page d'accueil] → avant le [date]
+- [ ] [Accès hébergement]        → avant le [date]
+- [ ] [Logo en SVG/PNG HD]       → avant le [date]
+- [ ] [Clés API [service]]       → avant le [date]
+
+↑ Tout retard décale la livraison d'autant.</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Les dates des éléments attendus du client sont la section la plus importante — sans elles, le client fournit à J+30.</div>
+    <div class="gotcha">Le délai de validation (5 jours) doit être écrit — sans deadline, le client répond quand il peut.</div>
+    <div class="gotcha">Toujours un seul interlocuteur côté client — les projets avec 3 donneurs d'ordres échouent presque toujours.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 06 — Développement
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 06 — Développement</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 06</span>
+    <h2 class="section__title">Développement itératif</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      À chaque fin de sprint ou de semaine, envoyez un point de suivi. Court, factuel, avec un lien
+      vers l'environnement staging. Ça maintient la confiance, anticipe les blocages, et crée
+      un historique de décisions.
+    </p>
+
+    <h3>Livrable</h3>
+    <p>Un rapport par sprint (hebdo ou bi-hebdo selon la taille du projet).</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · rapport-sprint.txt</span>
+      <span class="template-block__tag">Phase 06 · Format WhatsApp/Slack</span>
+    </div>
+    <div class="template-block__content">*Point semaine [N] — [Nom du projet]*
+
+✅ *Fait cette semaine*
+- [Fonctionnalité ou module livré]
+- [Autre élément réalisé]
+
+🔗 *À tester*
+Staging : [URL]
+Login test : [email] / [mot de passe]
+
+📋 *En cours*
+- [Ce qui est encore en développement]
+
+⚠️ *Points d'attention*
+- [Blocage ou question nécessitant une réponse]
+
+📅 *Semaine prochaine*
+- [Ce qui est prévu]
+
+Vos retours sont attendus avant le [date].</div>
+  </div>
+
+  <div class="template-block" style="margin-top: 4mm;">
+    <div class="template-block__header">
+      <span class="template-block__label">template · rapport-sprint-formel.md</span>
+      <span class="template-block__tag">Phase 06 · Format document</span>
+    </div>
+    <div class="template-block__content"># Rapport sprint [N] — [Nom du projet]
+
+Période : du [JJ/MM] au [JJ/MM/AAAA]
+Statut  : 🟢 Dans les temps | 🟡 Léger retard | 🔴 Attention
+
+## Réalisations
+| # | Tâche              | Statut       |
+|---|--------------------|--------------|
+| 1 | [Tâche]            | ✅ Terminé    |
+| 2 | [Tâche]            | 🔄 En cours  |
+
+## Décisions prises
+[Décision] → Raison : [x] → Impact : [x]
+
+## Action requise du client
+- [ ] [Validation ou fourniture nécessaire] → avant le [date]</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Toujours donner une date limite de retours — sans deadline, le client répond quand il peut.</div>
+    <div class="gotcha">Documenter les décisions techniques, même mineures — ça évite les "vous m'aviez pas dit" trois semaines plus tard.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 07 — Recette
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 07 — Recette</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 07</span>
+    <h2 class="section__title">Recette</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      La recette est le moment de vérité : le client teste sur staging, remonte les bugs,
+      et signe le PV de réception. Le PV signé clôt officiellement les développements
+      inclus dans le périmètre. Sans lui, rien n'est officiellement terminé.
+    </p>
+
+    <h3>Livrables</h3>
+    <p>Grille de recette remplie + PV de réception signé par le client.</p>
+
+    <h3>Classification des bugs</h3>
+    <table>
+      <thead>
+        <tr><th>Priorité</th><th>Définition</th><th>Traitement</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>P0 🔴</td><td>Bloquant — fonctionnalité inutilisable</td><td>Correction immédiate, dans périmètre</td></tr>
+        <tr><td>P1 🟡</td><td>Majeur — comportement incorrect mais contournable</td><td>Correction, dans périmètre</td></tr>
+        <tr><td>P2 🟢</td><td>Mineur — cosmétique, amélioration</td><td>Hors périmètre = avenant</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · pv-reception.md</span>
+      <span class="template-block__tag">Phase 07 · PV signable</span>
+    </div>
+    <div class="template-block__content"># Procès-verbal de réception — [Nom du projet]
+
+Client       : [Nom / Entreprise]
+Prestataire  : [Votre nom]
+Contrat      : [DEV-AAAA-XXX]
+Date         : [JJ/MM/AAAA]
+
+---
+
+Par le présent procès-verbal, le Client atteste avoir reçu
+et testé les livrables définis dans le contrat référencé.
+
+## Livrables réceptionnés
+- [x] [Livrable 1]
+- [x] [Livrable 2]
+- [x] Code source sur dépôt Git ([lien])
+- [x] Documentation technique
+
+## Résultat
+
+☐ Réception SANS réserve
+  → Le solde est immédiatement exigible.
+
+☐ Réception AVEC réserves
+  → Réserves :
+    | Réserve            | Délai de correction |
+    |--------------------|---------------------|
+    | [BUG-XX] : [desc]  | [X] jours ouvrables |
+  → Le solde sera réglé à la levée des réserves.
+
+---
+Client :      ___________________ Date : _______ Signature : _______
+Prestataire : [Votre nom]         Date : _______ Signature : _______</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Ne jamais déployer en production avant que le PV soit signé.</div>
+    <div class="gotcha">"Réception avec réserves" est sain — il débloque le paiement même si des petits bugs restent.</div>
+    <div class="gotcha">Sans classification P0/P1/P2, le client considère que tout est bloquant.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 08 — Livraison
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 08 — Livraison</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 08</span>
+    <h2 class="section__title">Livraison</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      La livraison n'est pas le déploiement — c'est le transfert complet de tout ce qui appartient au client.
+      Code, accès, documentation, procédures. Le faire proprement évite les appels paniqués à 23h.
+    </p>
+
+    <div class="alert">
+      <span class="alert__icon">!</span>
+      <span>Transférer les accès production seulement après réception du solde. Utiliser un outil sécurisé (Bitwarden Send), pas WhatsApp.</span>
+    </div>
+
+    <h3>Livrable</h3>
+    <p>Document de transfert envoyé au client + accès transférés + documentation remise.</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · livraison.md</span>
+      <span class="template-block__tag">Phase 08</span>
+    </div>
+    <div class="template-block__content"># Livraison finale — [Nom du projet]
+
+Date          : [JJ/MM/AAAA]
+PV signé le   : [date]
+Solde reçu le : [date]
+
+---
+
+## Accès transférés
+| Service            | Remis à      | Méthode            |
+|--------------------|--------------|--------------------|
+| Hébergement        | [Nom client] | Bitwarden Send     |
+| Domaine            | [Nom client] | Bitwarden Send     |
+| Base de données    | [Nom client] | Fichier chiffré    |
+| Dépôt Git          | [Nom client] | Invitation GitHub  |
+| Variables d'env    | [Nom client] | .env.example joint |
+| FedaPay / Moneroo  | [Nom client] | Bitwarden Send     |
+
+## Code source
+Dépôt    : [URL GitHub/GitLab]
+Branche  : main
+Tag livraison : v1.0.0
+
+## Documentation fournie
+- [ ] README.md (architecture, stack, installation)
+- [ ] Guide des variables d'environnement
+- [ ] Guide utilisateur (si applicable)
+
+## Garantie post-livraison
+Durée : 30 jours à compter du [date]
+Périmètre : correction bugs liés aux développements de ce contrat
+Hors garantie : nouvelles features, contenu, infrastructure tierce
+
+---
+Reçu par [Nom client] le [date] : ___________________</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Toujours créer un tag Git à la livraison (v1.0.0) — permet de retrouver l'état exact livré en cas de litige.</div>
+    <div class="gotcha">La garantie de 30 jours doit être bornée — sans délai, elle est perpétuelle implicitement.</div>
+    <div class="gotcha">Ne jamais transférer via WhatsApp — les messages disparaissent, les mots de passe aussi.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 09 — Clôture
+════════════════════════════════════════════════════════ -->
+<div class="section page">
+  <div class="running-header">
+    <span class="running-header__kit">Dev Onboarding Kit</span>
+    <span class="running-header__section">Phase 09 — Clôture</span>
+  </div>
+
+  <div class="section__header">
+    <span class="section__num">Phase 09</span>
+    <h2 class="section__title">Clôture</h2>
+  </div>
+
+  <div class="prose">
+    <p>
+      La clôture se fait en deux temps : un email au client 2–4 semaines après la livraison,
+      et un bilan interne pour vous.
+    </p>
+    <p>
+      L'email entretient la relation et ouvre la porte à de futures collaborations.
+      Le bilan interne améliore vos estimations pour les projets suivants.
+    </p>
+
+    <h3>Livrables</h3>
+    <p>Email de suivi client + bilan interne (pour vous).</p>
+  </div>
+
+  <div class="template-block">
+    <div class="template-block__header">
+      <span class="template-block__label">template · email-cloture.txt</span>
+      <span class="template-block__tag">Phase 09 · Email client</span>
+    </div>
+    <div class="template-block__content">Objet : Bilan [Nom du projet] — et la suite ?
+
+Bonjour [Prénom],
+
+Voilà [X semaines] que [Nom du projet] est en production.
+J'espère que tout se passe bien de votre côté.
+
+---
+
+Ce qu'on a livré ensemble
+- [Livrable 1]
+- [Livrable 2]
+- [Livrable 3]
+
+---
+
+Retour d'expérience
+
+Si vous deviez retenir une chose de cette collaboration,
+ce serait quoi ?
+
+Et s'il y avait une chose à améliorer dans mon process,
+laquelle serait-ce ?
+
+Un retour honnête, même en 2 lignes, m'aide à progresser.
+
+---
+
+La suite
+
+Au fil du projet, j'ai noté quelques pistes qui pourraient
+renforcer [Nom du projet] :
+
+1. [Évolution identifiée]
+2. [Évolution identifiée]
+
+Si l'un de ces points résonne, on peut en discuter.
+
+---
+
+Merci encore pour votre confiance.
+
+[Votre prénom]</div>
+  </div>
+
+  <div class="template-block" style="margin-top: 4mm;">
+    <div class="template-block__header">
+      <span class="template-block__label">template · bilan-interne.md</span>
+      <span class="template-block__tag">Phase 09 · Bilan pour vous</span>
+    </div>
+    <div class="template-block__content"># Bilan — [Nom du projet]
+
+Durée réelle : [X sem] (prévu : [X sem])
+Montant final : [X] XOF (prévu : [X] XOF)
+Avenants : [Oui [X] XOF / Non]
+
+## Ce qui a bien fonctionné
+- [Point positif]
+
+## Ce qui n'a pas bien fonctionné
+- [ex. Client long à valider les maquettes]
+
+## Écarts estimé / réel
+| Poste     | Estimé | Réel  | Delta  |
+|-----------|--------|-------|--------|
+| Frontend  | [X]j   | [X]j  | +[X]j  |
+| Backend   | [X]j   | [X]j  | -[X]j  |
+
+## Pour les prochains projets
+- [Ce que je ferais différemment]
+- [Ce que je réutiliserais]
+
+## Suite possible
+- [ ] Évolution mentionnée : [x] — recontacter en [mois]
+- [ ] Témoignage : ⬜ À demander · ✅ Reçu
+- [ ] Référence portfolio : ⬜ À publier · ✅ Publiée
+
+Note client (usage interne) :
+⭐⭐⭐⭐⭐  Retravaillerais-je avec lui ? Oui / Non / Conditions</div>
+  </div>
+
+  <div class="gotchas">
+    <div class="gotchas__title">Points d'attention</div>
+    <div class="gotcha">Ne pas attendre que le client revienne — c'est au dev de maintenir la relation.</div>
+    <div class="gotcha">Le bilan interne est pour vous, pas pour le client — être honnête sur les écarts améliore les estimations futures.</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     COLOPHON
+════════════════════════════════════════════════════════ -->
+<div class="colophon page">
+  <svg viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(10, 5)">
+      <path d="M 0 45 L 18 0 L 30 0 L 30 12 L 16 45 Z" fill="#FFFFFF"/>
+      <path d="M 35 0 L 80 0 L 80 8 L 50 22 L 80 37 L 80 45 L 35 45 L 35 37 L 65 23 L 35 8 Z" fill="#FFFFFF"/>
+    </g>
+  </svg>
+
+  <div class="prose" style="text-align: center; color: var(--muted); max-width: 320px;">
+    <p style="font-family: var(--font-mono); font-size: 9pt; line-height: 2;">
+      Dev Onboarding Kit — v1.0<br>
+      © 2026 Aboudou Zinsou<br>
+      aboudouzinsou.com
+    </p>
+    <p style="font-size: 9pt; margin-top: 6mm; color: #555;">
+      Usage personnel et professionnel autorisé.<br>
+      Redistribution ou revente interdite.
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
