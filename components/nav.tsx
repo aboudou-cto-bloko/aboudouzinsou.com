@@ -25,6 +25,14 @@ export function Nav() {
           </li>
           <li>
             <Link
+              href="/tarifs"
+              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
+            >
+              Tarifs
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/about"
               style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
             >

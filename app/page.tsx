@@ -100,6 +100,8 @@ export default function HomePage() {
           {" · "}
           <a href="/projets">Projets</a>
           {" · "}
+          <a href="/tarifs">Tarifs</a>
+          {" · "}
           <a href="/services">Services</a>
           {" · "}
           <a href="mailto:pro@aboudouzinsou.com">Contact</a>
