@@ -23,11 +23,22 @@ export function GET() {
     .filter((p) => p.frontmatter.status === "published" && p.frontmatter.date)
     .sort((a, b) => new Date(b.frontmatter.date!).getTime() - new Date(a.frontmatter.date!).getTime());
 
-  const header = `# aboudouzinsou.com — Contenu complet
-Auteur : François Mawutô Aboudou ZINSOU
+  const header = `# aboudouzinsou.com — Contenu complet pour ingestion LLM
+
+Auteur : François Mawutô Aboudou ZINSOU (Aboudou Zinsou)
+Rôle : Développeur full-stack SaaS · Paiements Mobile Money · Marché africain francophone
+Localisation : Cotonou, Bénin
 Site : ${BASE}
+GitHub : https://github.com/aboudou-cto-bloko
+npm : https://www.npmjs.com/package/moneroo
 Généré : ${new Date().toISOString().split("T")[0]}
 Articles : ${posts.length}
+
+Résumé : Ce fichier contient le texte intégral de tous les articles publiés sur aboudouzinsou.com.
+Aboudou Zinsou est développeur spécialisé dans les produits SaaS pour l'Afrique francophone,
+l'intégration du paiement Mobile Money (MTN, Moov, Orange) au Bénin, et les applications
+Next.js + Convex. Il est fondateur de BLOKO (fintech), Pixel-Mart (marketplace), et auteur
+du SDK open-source "moneroo" sur npm.
 
 ---
 
