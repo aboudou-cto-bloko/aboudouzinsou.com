@@ -4,7 +4,8 @@ export type ProjectCategory =
   | "saas"
   | "outil"
   | "civic"
-  | "media";
+  | "media"
+  | "agence";
 
 export type ProjectStatus = "production" | "beta" | "open-source" | "livré";
 
@@ -33,6 +34,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   outil: "Outil",
   civic: "Service public",
   media: "Média",
+  agence: "Agence",
 };
 
 export const CATEGORY_COLORS: Record<ProjectCategory, string> = {
@@ -42,6 +44,7 @@ export const CATEGORY_COLORS: Record<ProjectCategory, string> = {
   outil: "#a86bc8",
   civic: "#c86b6b",
   media: "#c8a86b",
+  agence: "#6b8ec8",
 };
 
 export const STATUS_LABELS: Record<ProjectStatus, string> = {
@@ -92,20 +95,42 @@ export const PROJECTS: Project[] = [
     screenshot: "/projets/vitrinai.webp",
   },
   {
+    slug: "rendezapp",
+    name: "RendezApp",
+    tagline: "Fini les réservations perdues dans WhatsApp",
+    description:
+      "RendezApp centralise toutes les réservations en un tableau de bord. Les clients réservent en ligne, le professionnel gère en temps réel. Déjà utilisé dans +15 établissements à Cotonou.",
+    problem:
+      "Les professionnels béninois (cliniques, salons, cabinets) géraient leurs réservations sur WhatsApp — sans visibilité, sans historique, sans confirmation automatique. Un rendez-vous sur trois se perdait.",
+    solution:
+      "Une plateforme SaaS avec page de réservation publique par établissement, tableau de bord de gestion en temps réel et notifications automatiques. Les clients réservent depuis le lien ou le QR code, sans télécharger d'application.",
+    impact:
+      "Déjà adopté dans plus de 15 établissements à Cotonou au lancement. Gratuit sans limite de durée, sans carte bancaire requise.",
+    category: "saas",
+    status: "production",
+    featured: true,
+    stack: ["Next.js 14", "Convex", "WhatsApp API", "TypeScript"],
+    github: "https://github.com/aboudou-cto-bloko/rendez-app",
+    live: "https://rendez-app-kappa.vercel.app/",
+    screenshot: "/projets/rendezapp.webp",
+  },
+  {
     slug: "momo-gate",
     name: "MomoGate",
-    tagline: "Les marchands Shopify acceptent MTN, Orange et Wave en quelques minutes",
+    tagline: "Votre boutique Shopify accepte les 16 Mobile Money d'Afrique de l'Ouest",
     description:
-      "App Shopify qui ajoute les paiements mobile money ouest-africains à n'importe quelle boutique en ligne. Installation sans code, configuration en 5 minutes.",
+      "App Shopify qui connecte n'importe quelle boutique aux 16 méthodes Mobile Money d'Afrique de l'Ouest. Paiement initié en 0 clic, reversement automatique, zéro intégration technique.",
     problem:
-      "Les marchands qui vendent via Shopify ne pouvaient pas proposer le paiement mobile money à leurs clients africains. Stripe ne couvre pas MTN, Orange Money ni Wave — les trois méthodes de paiement dominantes en Afrique de l'Ouest.",
+      "Les marchands Shopify d'Afrique de l'Ouest perdaient des ventes faute d'options de paiement locales. Stripe ne couvre pas MTN, Orange Money ni Wave — les méthodes de paiement que leurs clients utilisent au quotidien.",
     solution:
-      "Une app Shopify native qui s'intègre au checkout et propose MTN Mobile Money, Orange Money et Wave comme options de paiement. Webhooks sécurisés, gestion automatique des confirmations et remboursements. Aucune modification de code côté marchand.",
+      "Une app disponible sur le Shopify App Store qui s'intègre au checkout en quelques minutes. Le client voit ses méthodes mobile money habituelles, initie le paiement depuis son téléphone. Reversement automatique côté marchand, webhooks sécurisés, gestion des remboursements.",
     category: "fintech",
     status: "beta",
     featured: true,
     stack: ["Node.js", "TypeScript", "Shopify API"],
     github: "https://github.com/aboudou-cto-bloko/momo-gate",
+    live: "https://momo-gate-one.vercel.app/",
+    screenshot: "/projets/momo-gate.webp",
   },
   {
     slug: "moneroo-sdk",
@@ -125,6 +150,57 @@ export const PROJECTS: Project[] = [
     stack: ["TypeScript", "Node.js", "MCP"],
     github: "https://github.com/aboudou-cto-bloko/moneroo-tools",
     npm: ["moneroo", "moneroo-mcp"],
+  },
+  {
+    slug: "vaultpay",
+    name: "VaultPay",
+    tagline: "Envoyez de l'argent en Afrique. Économisez 1 000 $/an.",
+    description:
+      "Plateforme de transfert d'argent FINTRAC-licenciée pour la diaspora africaine. Virement en Afrique en moins de 60 secondes — 7,50 $ la transaction, pas 45 $.",
+    problem:
+      "Les membres de la diaspora africaine payaient entre 35 $ et 45 $ de frais par transfert via Western Union ou MoneyGram. Pour quelqu'un qui envoie 200 $/mois à sa famille, ça représente plus de 1 000 $ de frais perdus par an.",
+    solution:
+      "Une plateforme de transfert sous licence FINTRAC (réglementation canadienne des services financiers), sécurité niveau bancaire, virements en moins de 60 secondes au tarif fixe de 7,50 $ quelle que soit la somme. Landing page avec liste d'attente de 8 200+ membres.",
+    impact:
+      "8 200+ inscrits sur la liste d'attente avant le lancement. Licencié FINTRAC pour opérer légalement en Amérique du Nord.",
+    category: "fintech",
+    status: "beta",
+    stack: ["Next.js", "TypeScript", "Tailwind"],
+    live: "https://vaultpay-landing.vercel.app/",
+    screenshot: "/projets/vaultpay.webp",
+  },
+  {
+    slug: "agence-na",
+    name: "Nasr & Aboudou",
+    tagline: "Des sites qui génèrent des clients, pas des compliments",
+    description:
+      "Agence web spécialisée dans les sites à forte conversion pour les PME écossaises. Web design, identité de marque, stratégie SEO — livré en 2 semaines.",
+    problem:
+      "Les PME écossaises avaient des sites vitrines qui n'amenaient aucun client. Beau design, zéro résultat commercial. Leurs concurrents prenaient des parts de marché pendant ce temps.",
+    solution:
+      "Des sites web orientés conversion, construits vite et livrés avec une stratégie SEO locale intégrée. Chaque page est pensée pour transformer un visiteur en prospect — pas pour impressionner un jury de design.",
+    category: "agence",
+    status: "production",
+    stack: ["Next.js", "TypeScript", "Tailwind"],
+    live: "https://agence-na-v1.vercel.app/",
+    screenshot: "/projets/agence-na.webp",
+  },
+  {
+    slug: "plr-library",
+    name: "PLR Library",
+    tagline: "Vendez des produits digitaux. Sans en créer un seul.",
+    description:
+      "Bibliothèque de ressources numériques à droits de marque privée en abonnement. Les membres téléchargent, personnalisent et revendent légalement 300+ produits digitaux.",
+    problem:
+      "Les entrepreneurs francophones voulaient vendre des formations, ebooks et templates en ligne — sans passer 6 mois à les créer. Les plateformes PLR anglophones existantes ne proposaient rien en français.",
+    solution:
+      "Un SaaS d'abonnement avec catalogue de 300+ ressources PLR en français (ebooks, formations, templates), accès par plan d'abonnement et paiements récurrents via Moneroo. Tableau de bord membre, droits de revente inclus, téléchargement illimité.",
+    category: "saas",
+    status: "production",
+    stack: ["Next.js 14", "Convex", "Moneroo", "TypeScript"],
+    github: "https://github.com/aboudou-cto-bloko/plr-platform",
+    live: "https://plr-platform-xvsgd.vercel.app/",
+    screenshot: "/projets/plr-library.webp",
   },
   {
     slug: "bloko",
@@ -147,7 +223,7 @@ export const PROJECTS: Project[] = [
     description:
       "ZEAT permet à un restaurant de passer au menu numérique en quelques minutes — QR code, catalogue de plats, mise à jour instantanée. Sans abonnement mensuel.",
     problem:
-      "Les cartes papier coûtent cher à imprimer à chaque changement de menu. Les solutions SaaS de menu digital coûtent entre 30 et 80€/mois — inabordables pour un restaurateur indépendant à Cotonou.",
+      "Les cartes papier coûtent cher à imprimer à chaque changement de menu. Les solutions SaaS de menu digital coûtent entre 30 et 80 €/mois — inabordables pour un restaurateur indépendant à Cotonou.",
     solution:
       "Une application légère où le restaurateur crée son catalogue et génère un QR code. Les clients scannent depuis leur navigateur — sans télécharger d'application. Modifications en temps réel via Convex.",
     category: "saas",
@@ -184,36 +260,6 @@ export const PROJECTS: Project[] = [
     status: "livré",
     stack: ["PHP 8.2", "MySQL 8"],
     github: "https://github.com/aboudou-cto-bloko/etat-civil-cotonou",
-  },
-  {
-    slug: "plr-library",
-    name: "PLR Library",
-    tagline: "Bibliothèque de ressources numériques PLR en abonnement",
-    description:
-      "SaaS d'abonnement donnant accès à des ressources numériques à droits de marque privée. Les membres téléchargent, personnalisent et revendent légalement les contenus.",
-    problem:
-      "Les entrepreneurs francophones cherchaient des contenus PLR (livres blancs, formations, templates) en français avec des droits de revente clairs — un marché non servi par les plateformes anglophones existantes.",
-    solution:
-      "Un SaaS d'abonnement avec authentification, gestion des accès par plan, catalogue de ressources téléchargeables et paiements récurrents via Moneroo. Tableau de bord membre et interface d'administration des contenus.",
-    category: "saas",
-    status: "production",
-    stack: ["Next.js 14", "Convex", "Moneroo", "TypeScript"],
-    github: "https://github.com/aboudou-cto-bloko/plr-platform",
-  },
-  {
-    slug: "rendezapp",
-    name: "RendezApp",
-    tagline: "Prise de rendez-vous via WhatsApp — sans app à installer",
-    description:
-      "Vos clients réservent un créneau depuis WhatsApp. Le professionnel configure ses disponibilités une fois — les confirmations arrivent automatiquement.",
-    problem:
-      "Les systèmes de prise de rendez-vous en ligne ont un taux d'adoption faible en Afrique : les clients n'installent pas d'application supplémentaire. WhatsApp est l'interface universelle que tout le monde utilise déjà.",
-    solution:
-      "Une intégration WhatsApp Business API qui guide le client dans un tunnel conversationnel — choix du service, choix du créneau, confirmation. Synchronisation en temps réel avec le calendrier du professionnel via Convex.",
-    category: "saas",
-    status: "beta",
-    stack: ["Next.js 14", "Convex", "WhatsApp API", "TypeScript"],
-    github: "https://github.com/aboudou-cto-bloko/rendez-app",
   },
 ];
 
