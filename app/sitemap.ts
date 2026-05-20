@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts, SECTIONS } from "@/lib/content";
+import { PROJECTS } from "@/lib/projects";
 
 const BASE = "https://aboudouzinsou.com";
 
@@ -9,7 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/about`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/projets`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${BASE}/links`, changeFrequency: "monthly", priority: 0.6 },
+    ...PROJECTS.map((p) => ({
+      url: `${BASE}/projets/${p.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: p.featured ? 0.85 : 0.75,
+    })),
     ...SECTIONS.map((s) => ({
       url: `${BASE}/${s}`,
       changeFrequency: "weekly" as const,

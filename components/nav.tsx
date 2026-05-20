@@ -17,6 +17,14 @@ export function Nav() {
         <ul role="list" className="site-nav__links">
           <li>
             <Link
+              href="/projets"
+              style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
+            >
+              Projets
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/about"
               style={{ fontSize: "var(--text-sm)", color: "#888888", fontWeight: 300 }}
             >

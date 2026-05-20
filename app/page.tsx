@@ -98,6 +98,8 @@ export default function HomePage() {
           {" · "}
           <a href="https://www.linkedin.com/in/fran%C3%A7oisab8099316/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {" · "}
+          <a href="/projets">Projets</a>
+          {" · "}
           <a href="/services">Services</a>
           {" · "}
           <a href="mailto:pro@aboudouzinsou.com">Contact</a>
