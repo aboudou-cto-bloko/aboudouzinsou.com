@@ -5,7 +5,8 @@ export type ProjectCategory =
   | "outil"
   | "civic"
   | "media"
-  | "agence";
+  | "agence"
+  | "événement";
 
 export type ProjectStatus = "production" | "beta" | "open-source" | "livré";
 
@@ -35,6 +36,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   civic: "Service public",
   media: "Média",
   agence: "Agence",
+  "événement": "Événement",
 };
 
 export const CATEGORY_COLORS: Record<ProjectCategory, string> = {
@@ -45,6 +47,7 @@ export const CATEGORY_COLORS: Record<ProjectCategory, string> = {
   civic: "#c86b6b",
   media: "#c8a86b",
   agence: "#6b8ec8",
+  "événement": "#c86b8e",
 };
 
 export const STATUS_LABELS: Record<ProjectStatus, string> = {
@@ -215,6 +218,8 @@ export const PROJECTS: Project[] = [
     category: "fintech",
     status: "production",
     stack: ["Nx", "Next.js 14", "Supabase", "Prisma", "FedaPay", "TypeScript"],
+    live: "https://www.bloko.me/",
+    screenshot: "/projets/bloko.webp",
   },
   {
     slug: "zeat",
@@ -245,6 +250,23 @@ export const PROJECTS: Project[] = [
     status: "beta",
     stack: ["Next.js", "Convex", "TypeScript", "Tailwind"],
     screenshot: "/projets/campus-plus.webp",
+  },
+  {
+    slug: "attieke-party",
+    name: "Attiéké Party ENEAM",
+    tagline: "Billetterie en ligne pour le rendez-vous étudiant de l'année — BUE-ENEAM",
+    description:
+      "Site de billetterie pour l'Attiéké Party organisé par le BUE-ENEAM le 25 mai 2026. Jeux, bouffe, musique — entrée 3 000 FCFA. Réservation en ligne avec confirmation instantanée.",
+    problem:
+      "Les événements étudiants au Bénin gèrent encore les entrées sur papier ou par transfert mobile money sans traçabilité. Pas de liste centralisée, pas de confirmation, des files d'attente à l'entrée.",
+    solution:
+      "Un site de billetterie dédié à l'événement avec affiche dynamique, compte à rebours, réservation en ligne et gestion des places en temps réel via Convex. Les participants reçoivent une confirmation numérique — pas de papier.",
+    category: "événement",
+    status: "production",
+    stack: ["Next.js", "Convex", "TypeScript", "Tailwind"],
+    github: "https://github.com/aboudou-cto-bloko/attieke-party-eneam",
+    live: "https://attieke-party-eneam.vercel.app",
+    screenshot: "/projets/attieke-party.webp",
   },
   {
     slug: "kamgoko",
