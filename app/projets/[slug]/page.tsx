@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ExternalLink, Github, Mail } from "lucide-react";
 import { StackBadge } from "@/components/stack-badge";
@@ -216,6 +217,30 @@ export default async function ProjectPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {project.screenshot && (
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "16/7",
+              borderRadius: "3px",
+              overflow: "hidden",
+              border: "1px solid #1e1e1e",
+              marginBottom: "2.5rem",
+              background: "#0c0c0c",
+            }}
+          >
+            <Image
+              src={project.screenshot}
+              alt={`Aperçu de ${project.name}`}
+              fill
+              style={{ objectFit: "cover", objectPosition: "top" }}
+              sizes="(max-width: 640px) 100vw, 680px"
+              priority
+            />
+          </div>
+        )}
 
         <hr style={{ border: "none", borderTop: "1px solid #1e1e1e", marginBottom: "3rem" }} />
 

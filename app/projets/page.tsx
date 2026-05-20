@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 import { StackBadge } from "@/components/stack-badge";
 import { JsonLd } from "@/components/json-ld";
@@ -80,6 +81,30 @@ function StatusBadge({ status }: { status: Project["status"] }) {
 function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="about-project" style={{ paddingBlock: "1.5rem" }}>
+      {project.screenshot && (
+        <Link href={`/projets/${project.slug}`} tabIndex={-1} aria-hidden="true">
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "16/7",
+              borderRadius: "3px",
+              overflow: "hidden",
+              border: "1px solid #1a1a1a",
+              marginBottom: "1rem",
+              background: "#0c0c0c",
+            }}
+          >
+            <Image
+              src={project.screenshot}
+              alt={`Aperçu de ${project.name}`}
+              fill
+              style={{ objectFit: "cover", objectPosition: "top", opacity: 0.88 }}
+              sizes="(max-width: 640px) 100vw, 680px"
+            />
+          </div>
+        </Link>
+      )}
       <div className="about-project__header" style={{ marginBottom: "0.625rem", flexWrap: "wrap" }}>
         <Link
           href={`/projets/${project.slug}`}

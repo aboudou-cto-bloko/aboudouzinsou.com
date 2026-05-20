@@ -22,6 +22,7 @@ export type Project = {
   live?: string;
   github?: string;
   npm?: string[];
+  screenshot?: string; // path relative to /public
   featured?: boolean;
 };
 
@@ -68,6 +69,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     stack: ["Next.js 15", "Convex", "TypeScript", "Moneroo", "Tailwind"],
     live: "https://pixel-mart-bj.com",
+    screenshot: "/projets/pixel-mart.webp",
   },
   {
     slug: "vitrinai",
@@ -87,6 +89,7 @@ export const PROJECTS: Project[] = [
     stack: ["Next.js", "Convex", "TypeScript", "Tailwind"],
     github: "https://github.com/aboudou-cto-bloko/vitrinai",
     live: "https://vitrinai-eta.vercel.app",
+    screenshot: "/projets/vitrinai.webp",
   },
   {
     slug: "momo-gate",
@@ -165,6 +168,7 @@ export const PROJECTS: Project[] = [
     category: "media",
     status: "beta",
     stack: ["Next.js", "Convex", "TypeScript", "Tailwind"],
+    screenshot: "/projets/campus-plus.webp",
   },
   {
     slug: "kamgoko",
