@@ -7,15 +7,15 @@ import { JsonLd } from "@/components/json-ld";
 const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
-  title: "À propos — Aboudou Zinsou",
+  title: "À propos — Aboudou Zinsou · Développeur Full-Stack SaaS · Cotonou, Bénin",
   description:
-    "Dev full-stack SaaS, marché africain francophone. Je construis des produits numériques pour l'Afrique.",
+    "Développeur full-stack basé à Cotonou (Bénin), spécialisé en intégration Mobile Money (MTN, Moov), SaaS sur mesure et marketplaces pour le marché africain francophone. Fondateur de BLOKO et Pixel-Mart.",
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
     type: "profile",
     url: `${BASE}/about`,
-    title: "Aboudou Zinsou — Dev full-stack SaaS",
-    description: "Dev full-stack SaaS, marché africain francophone. Je construis des produits numériques pour l'Afrique.",
+    title: "Aboudou Zinsou — Développeur Full-Stack SaaS · Cotonou, Bénin",
+    description: "Développeur full-stack basé à Cotonou (Bénin), spécialisé en intégration Mobile Money (MTN, Moov), SaaS et marketplaces pour le marché africain francophone.",
   },
 };
 
@@ -109,9 +109,9 @@ export default function AboutPage() {
       "https://npmjs.com/package/moneroo",
       "https://www.facebook.com/francois.SaasXpert",
     ],
-    jobTitle: "Développeur Full-Stack SaaS",
-    description: "Développeur full-stack SaaS, marché africain francophone. Fondateur de Pixel-Mart et BLOKO.",
-    email: "aboudouzinsou@yahoo.com",
+    jobTitle: "Développeur Full-Stack SaaS · Mobile Money · Cotonou, Bénin",
+    description: "Développeur full-stack spécialisé en intégration Mobile Money (MTN, Moov, Orange) et SaaS pour le marché africain francophone. Fondateur de BLOKO (fintech) et Pixel-Mart (marketplace). Auteur du package npm moneroo.",
+    email: "pro@aboudouzinsou.com",
     address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
   };
 
@@ -236,11 +236,11 @@ export default function AboutPage() {
 
         <div className="about-contact">
           <a
-            href="mailto:aboudouzinsou@yahoo.com"
+            href="mailto:pro@aboudouzinsou.com"
             className="about-contact__item"
           >
             <Mail size={14} strokeWidth={1.5} />
-            <span>aboudouzinsou@yahoo.com</span>
+            <span>pro@aboudouzinsou.com</span>
           </a>
           <a
             href="https://www.linkedin.com/in/fran%C3%A7oisab8099316/"
