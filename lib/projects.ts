@@ -269,6 +269,23 @@ export const PROJECTS: Project[] = [
     screenshot: "/projets/attieke-party.webp",
   },
   {
+    slug: "textdiff",
+    name: "TextDiff",
+    tagline: "Comparez deux textes et détectez les erreurs en temps réel",
+    description:
+      "Outil web minimaliste qui compare deux textes côte à côte — diff mot par mot instantané et vérification grammaticale française en temps réel via LanguageTool. Aucun bouton à presser : l'analyse se déclenche automatiquement à chaque frappe.",
+    problem:
+      "Comparer deux versions d'un texte et repérer les fautes simultanément nécessitait de jongler entre plusieurs outils — un diff, un correcteur grammatical, et les copier-coller entre les deux.",
+    solution:
+      "Une interface à deux colonnes avec diff client-side instantané (rouge = supprimé, vert = ajouté) et vérification LanguageTool debounced à 800ms par textarea. Les erreurs sont soulignées avec tooltip suggestion. Presse-papier intégré (coller/copier), compteur live mots/caractères, swap des textes.",
+    category: "outil",
+    status: "open-source",
+    stack: ["Next.js 15", "TypeScript", "LanguageTool API", "Tailwind", "shadcn/ui"],
+    github: "https://github.com/aboudou-cto-bloko/textdiff",
+    live: "https://textdiff-pi.vercel.app",
+    screenshot: "/projets/textdiff.webp",
+  },
+  {
     slug: "kamgoko",
     name: "Kamgoko",
     tagline: "Dématérialisation des actes d'état civil — Mairie de Cotonou",
