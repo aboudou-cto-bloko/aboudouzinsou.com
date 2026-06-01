@@ -1,5 +1,5 @@
 ---
-title: "Construire en Afrique, pas pour l'Afrique"
+title: "Développer des produits SaaS pour le marché africain : contraintes et architecture"
 format: article
 status: published
 tags: [afrique, marché, ia, whatsapp, llm, architecture, uemoa, benin]

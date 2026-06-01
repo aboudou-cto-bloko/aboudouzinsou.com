@@ -1,5 +1,5 @@
 ---
-title: "Intégrer le paiement Mobile Money sur son site au Bénin — ce que le bouton cache"
+title: "Comment intégrer le paiement Mobile Money MTN et Moov sur son site web au Bénin"
 format: article
 status: published
 description: "Ajouter le Mobile Money sur un site web béninois n'est pas une configuration. C'est un circuit asynchrone avec des dizaines de cas d'erreur. Ce que ça implique vraiment."

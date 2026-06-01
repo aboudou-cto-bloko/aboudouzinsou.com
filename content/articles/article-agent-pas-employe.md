@@ -1,5 +1,5 @@
 ---
-title: "L'agent, pas l'employé"
+title: "Agents IA autonomes : architecture et différence avec un assistant classique"
 format: article
 status: published
 tags: [ia, agent, architecture, autonomie, whatsapp, llm, afrique]

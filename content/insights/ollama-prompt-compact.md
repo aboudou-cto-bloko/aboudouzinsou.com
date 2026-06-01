@@ -1,5 +1,5 @@
 ---
-title: "Ollama : 300 tokens au lieu de 4180 — comment le prompt compact a résolu un timeout 5 minutes"
+title: "Ollama timeout 5 minutes : résoudre le problème avec un prompt compact de 300 tokens"
 date: 2026-05-02
 topic: llm
 tags: [ollama, llm, performance, tokens, prompt]

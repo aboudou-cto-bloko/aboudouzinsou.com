@@ -1,5 +1,5 @@
 ---
-title: "Construire un assistant IA personnel avec RAG — connecter son vault Obsidian à un LLM"
+title: "RAG sur Obsidian avec LLM local : construire son assistant IA personnel étape par étape"
 format: tutoriel
 status: published
 tags: [ia, rag, llm, chromadb, python, fastapi, obsidian, groq, ollama, embeddings]

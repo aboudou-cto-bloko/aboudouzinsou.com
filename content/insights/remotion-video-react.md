@@ -1,5 +1,5 @@
 ---
-title: "Remotion — faire des vidéos avec React"
+title: "Remotion : créer des vidéos programmatiques avec React et TypeScript"
 date: 2026-04-29
 topic: outils
 order: 1

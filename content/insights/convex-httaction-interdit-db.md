@@ -1,5 +1,5 @@
 ---
-title: "httpAction et ctx.db : pourquoi ça ne marche pas"
+title: "Convex httpAction : pourquoi ctx.db est inaccessible et comment contourner"
 date: 2026-04-29
 topic: convex
 order: 2

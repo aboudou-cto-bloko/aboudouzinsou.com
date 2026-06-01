@@ -1,5 +1,5 @@
 ---
-title: "Ollama : pourquoi passer en streaming supprime le timeout 5 minutes"
+title: "Ollama streaming : supprimer le timeout 5 minutes avec fetch en mode stream"
 date: 2026-05-02
 topic: llm
 tags: [ollama, streaming, timeout, nodejs, typescript]

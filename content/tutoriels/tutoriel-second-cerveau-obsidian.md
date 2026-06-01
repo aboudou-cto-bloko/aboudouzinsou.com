@@ -1,5 +1,5 @@
 ---
-title: "Construire un second cerveau avec Obsidian — du chaos des notes à une base de connaissance vivante"
+title: "Second cerveau avec Obsidian : organiser ses notes en base de connaissance vivante"
 format: tutoriel
 status: published
 tags: [obsidian, pkm, notes, brain, zettelkasten, para, knowledge-management, bash]

@@ -1,5 +1,5 @@
 ---
-title: "Comment ce site a été conçu — UX, animations, et chaque décision de design"
+title: "Conception UX d'un portfolio développeur : animations, typographie et décisions de design"
 date: 2026-04-29
 tags: [design, ux, next.js, framer-motion, tailwind, turso, sqlite, site-perso]
 status: published

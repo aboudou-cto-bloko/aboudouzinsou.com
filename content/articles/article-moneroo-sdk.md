@@ -1,5 +1,5 @@
 ---
-title: "Il n'existait pas de SDK TypeScript pour Moneroo. Alors je l'ai construit."
+title: "SDK TypeScript Moneroo : intégrer les paiements Mobile Money en JavaScript"
 format: article
 status: published
 tags: [moneroo, sdk, typescript, npm, afrique, paiement, open-source]

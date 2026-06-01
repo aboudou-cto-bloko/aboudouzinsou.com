@@ -1,5 +1,5 @@
 ---
-title: "La règle F-01 — toute modification de solde = une transaction d'abord"
+title: "Règle F-01 fintech : enregistrer une transaction avant toute modification de solde"
 date: 2026-04-29
 topic: paiements
 order: 2

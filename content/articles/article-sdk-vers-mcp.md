@@ -1,5 +1,5 @@
 ---
-title: "Du SDK au serveur MCP — deux couches d'abstraction pour Moneroo"
+title: "Serveur MCP Moneroo : connecter les paiements Mobile Money aux agents IA Claude"
 format: article
 status: draft
 tags: [moneroo, mcp, sdk, ia, claude, typescript, npm]

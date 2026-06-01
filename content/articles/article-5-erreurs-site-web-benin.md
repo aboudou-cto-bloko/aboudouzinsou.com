@@ -1,5 +1,5 @@
 ---
-title: "Les 5 erreurs qui coûtent des clients à ton site web béninois"
+title: "5 erreurs qui font fuir les clients sur les sites web béninois"
 format: article
 status: published
 description: "J'ai audité des dizaines de sites béninois avec VitrinAI. Les mêmes erreurs reviennent, dans le même ordre. Aucune n'est technique. Toutes se corrigent."

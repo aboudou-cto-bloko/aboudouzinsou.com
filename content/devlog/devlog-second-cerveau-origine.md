@@ -1,5 +1,5 @@
 ---
-title: "Tout ce que je sais, au même endroit"
+title: "Second cerveau numérique avec Obsidian : pourquoi et comment j'ai tout centralisé"
 date: 2026-04-30
 tags: [second-brain, brain, obsidian, portfolio, système, connaissance, ia]
 status: published

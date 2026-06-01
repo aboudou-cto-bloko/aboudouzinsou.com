@@ -1,5 +1,5 @@
 ---
-title: "Logout Convex : pourquoi il faut un full reload"
+title: "Déconnexion Convex Auth : pourquoi le full reload est nécessaire pour vider le cache"
 date: 2026-04-29
 topic: convex
 order: 4

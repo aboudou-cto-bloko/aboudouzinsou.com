@@ -1,5 +1,5 @@
 ---
-title: "Le workflow comme contrat exécutable — n'importe quel agent IA peut lire et exécuter"
+title: "Workflows IA comme contrats exécutables : structurer des agents autonomes en TypeScript"
 date: 2026-05-02
 topic: architecture
 tags: [workflow, agent, ia, architecture, mcp, typescript, json]

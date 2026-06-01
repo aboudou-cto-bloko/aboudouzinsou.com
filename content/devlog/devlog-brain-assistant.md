@@ -1,5 +1,5 @@
 ---
-title: "J'ai construit un assistant IA qui connaît déjà tout ce que je sais"
+title: "Construire un assistant IA personnel avec RAG sur Obsidian et LLM local"
 date: 2026-04-30
 tags: [ai, llm, rag, chromadb, groq, ollama, open-webui, infrastructure, brain]
 status: published

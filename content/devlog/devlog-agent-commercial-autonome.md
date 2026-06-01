@@ -1,5 +1,5 @@
 ---
-title: "J'ai construit un agent commercial qui prospecte, relance et apprend seul"
+title: "Agent IA commercial autonome : prospection WhatsApp, relances automatiques et apprentissage"
 date: 2026-05-02
 tags: [ia, agent, whatsapp, ollama, rag, discord, nodejs, typescript, build-in-public]
 status: published

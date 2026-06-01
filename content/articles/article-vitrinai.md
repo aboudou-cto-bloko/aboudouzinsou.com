@@ -1,5 +1,5 @@
 ---
-title: "VitrinAI — diagnostiquer la présence digitale d'une PME ouest-africaine"
+title: "Audit SEO et performance pour sites web de PME africaines avec VitrinAI"
 format: article
 status: published
 tags: [vitrinai, saas, afrique, pme, seo, performance, diagnostic, nextjs, convex]

@@ -1,5 +1,5 @@
 ---
-title: "Votre entreprise oublie tout. Chaque soir."
+title: "Mémoire d'entreprise : comment les PME africaines perdent leur savoir chaque jour"
 format: article
 status: published
 tags: [intelligence-entreprise, base-de-connaissances, pme-afrique, whatsapp, agents-ia, memoire]

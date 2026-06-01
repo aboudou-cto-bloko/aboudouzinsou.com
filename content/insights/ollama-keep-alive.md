@@ -1,5 +1,5 @@
 ---
-title: "keep_alive: -1 — garder un modèle Ollama en RAM entre les appels"
+title: "Ollama keep_alive -1 : garder un modèle LLM en mémoire vive entre les requêtes"
 date: 2026-05-02
 topic: llm
 tags: [ollama, performance, keep-alive, llm, nodejs]

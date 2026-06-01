@@ -1,5 +1,5 @@
 ---
-title: "Convex : internal vs public — ne pas exposer ce qu'on n'a pas à exposer"
+title: "Convex internal vs public : sécuriser ses fonctions et ne pas tout exposer"
 date: 2026-04-29
 topic: convex
 order: 3

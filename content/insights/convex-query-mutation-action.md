@@ -1,5 +1,5 @@
 ---
-title: "Convex : query, mutation, action — la vraie différence"
+title: "Convex query vs mutation vs action : différences, usages et quand utiliser chaque type"
 date: 2026-04-29
 topic: convex
 order: 1

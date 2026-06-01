@@ -1,5 +1,5 @@
 ---
-title: "Comment j'ai construit ce site — pipeline Brain → site"
+title: "Pipeline Obsidian vers Next.js : comment ce site se construit depuis un second cerveau"
 date: 2026-04-29
 tags: [next.js, cms, markdown, brain, pipeline, remark]
 status: published

@@ -1,5 +1,5 @@
 ---
-title: "Construire un CLI personnel en Bash — gérer son workstation depuis le terminal"
+title: "CLI personnel en Bash : gérer son workstation Linux depuis le terminal (guide complet)"
 format: tutoriel
 status: published
 tags: [bash, cli, terminal, zsh, fzf, docker, workstation, linux, outils]

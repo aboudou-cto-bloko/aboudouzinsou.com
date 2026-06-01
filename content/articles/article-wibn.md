@@ -1,5 +1,5 @@
 ---
-title: "WIBN — trouver des idées SaaS en analysant la douleur sur Reddit"
+title: "Trouver des idées de SaaS sur Reddit avec l'IA : méthode et outil open source"
 format: article
 status: published
 tags: [wibn, saas, idées, reddit, groq, inngest, ia, validation]

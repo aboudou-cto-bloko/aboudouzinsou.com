@@ -1,5 +1,5 @@
 ---
-title: "La confiance est un produit — ce que ça veut dire pour Pixel-Mart"
+title: "Construire la confiance utilisateur dans une marketplace e-commerce africaine"
 format: article
 status: draft
 tags: [saas, afrique, marketplace, confiance, product, pixel-mart]

@@ -1,5 +1,5 @@
 ---
-title: "RAG individuel : prioriser la mémoire d'un prospect sur la base de connaissance globale"
+title: "RAG individuel : prioriser la mémoire prospect dans un agent commercial IA"
 date: 2026-05-02
 topic: rag
 tags: [rag, llm, mémoire, agent, typescript, embeddings]
