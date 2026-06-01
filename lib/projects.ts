@@ -94,6 +94,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     stack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "Docker", "Baileys", "Moneroo"],
     live: "https://prospecto.aboudouzinsou.site",
+    screenshot: "/projets/prospecto.webp",
   },
   {
     slug: "vitrinai",
