@@ -78,6 +78,25 @@ export const PROJECTS: Project[] = [
     screenshot: "/projets/pixel-mart.webp",
   },
   {
+    slug: "prospecto",
+    name: "Prospecto",
+    tagline: "CRM WhatsApp self-hosted pour prospecter sur le marché africain",
+    description:
+      "Prospecto collecte des leads sur GoAfricaOnline, les organise dans un CRM kanban et envoie des campagnes WhatsApp personnalisées. Self-hosted sur Docker, license mensuelle à 5 000 FCFA.",
+    problem:
+      "Les freelances et PME béninois prospectent à la main : copier des numéros sur GoAfricaOnline, envoyer des messages un par un sur WhatsApp, perdre le fil dans Excel. Aucun outil CRM n'est conçu pour ce marché ni accessible à ce prix.",
+    solution:
+      "Un mini CRM complet packagé en Docker : scraper GoAfricaOnline en un clic, kanban de prospects avec tags/clusters colorés, campagnes WhatsApp avec variables personnalisées par prospect. Une seule commande pour installer, 5 000 FCFA par mois.",
+    impact:
+      "Distribué sous licence mensuelle via Moneroo (MTN MoMo, Wave, Orange Money). Installe en 2 minutes sur n'importe quelle machine avec Docker. Script d'installation autonome avec génération automatique de tous les secrets.",
+    category: "saas",
+    status: "production",
+    featured: true,
+    stack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "Docker", "Baileys", "Moneroo"],
+    live: "https://prospecto.aboudouzinsou.site",
+    github: "https://github.com/aboudou-cto-bloko/prospecto",
+  },
+  {
     slug: "vitrinai",
     name: "VitrinAI",
     tagline: "L'audit de présence digitale conçu pour les PME africaines",
