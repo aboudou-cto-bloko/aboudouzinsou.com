@@ -6,22 +6,10 @@ import type { Metadata } from "next";
 const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
-  title: "Tarifs développeur web au Bénin — Prix site web, e-commerce, application | Aboudou Zinsou",
+  title: "Prix site web au Bénin — Tarifs clairs, Mobile Money | Aboudou Zinsou",
   description:
     "Prix d'un site web au Bénin en 2026 : landing page à partir de 150 000 XOF, site vitrine 300 000–600 000 XOF, e-commerce 500 000–1 500 000 XOF. Développeur freelance basé à Cotonou.",
   alternates: { canonical: `${BASE}/tarifs` },
-  keywords: [
-    "prix site web bénin",
-    "combien coûte un site web au bénin",
-    "tarif développeur bénin",
-    "tarif développeur web bénin",
-    "prix application web bénin",
-    "coût création site internet bénin",
-    "développeur freelance bénin tarif",
-    "prix e-commerce bénin",
-    "tarif landing page bénin",
-    "développeur cotonou prix",
-  ],
   openGraph: {
     type: "website",
     url: `${BASE}/tarifs`,

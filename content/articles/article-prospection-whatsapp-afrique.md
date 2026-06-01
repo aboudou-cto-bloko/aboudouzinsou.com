@@ -1,8 +1,8 @@
 ---
-title: "WhatsApp n'est pas un canal de prospection alternatif. C'est le canal principal."
+title: "Prospection WhatsApp en Afrique de l'Ouest : méthode et outils pour PME"
 format: article
 status: published
-description: "En Afrique de l'Ouest, le cold email ne fonctionne pas. LinkedIn est anecdotique. WhatsApp, c'est là où les PME vivent. Voici comment prospecter sur WhatsApp sans passer pour du spam."
+description: "En Afrique de l'Ouest, WhatsApp est le canal professionnel principal — pas l'email. Comment prospecter sur WhatsApp de manière systématique, personnalisée et sans passer pour du spam."
 tags: [whatsapp, prospection, bénin, afrique, crm, lead-generation, pme, campagnes, messaging]
 date: 2026-06-01
 created: 2026-06-01

@@ -1,8 +1,8 @@
 ---
-title: "Pourquoi les CRM traditionnels ne marchent pas pour les PME béninoises"
+title: "CRM pour PME africaines : pourquoi Salesforce ne convient pas et quoi utiliser"
 format: article
 status: published
-description: "Salesforce, HubSpot, Pipedrive — conçus pour des marchés où l'email est la norme, les équipes commerciales sont structurées, et les budgets logiciels sont prévus. Ce n'est pas le marché béninois."
+description: "Salesforce, HubSpot et Pipedrive sont conçus pour l'email et les marchés occidentaux. Pourquoi ces CRM ne fonctionnent pas pour les PME béninoises, et ce qu'un CRM adapté au marché africain doit être."
 tags: [crm, pme, bénin, afrique, prospection, whatsapp, salesforce, hubspot, outils, saas]
 date: 2026-06-01
 created: 2026-06-01

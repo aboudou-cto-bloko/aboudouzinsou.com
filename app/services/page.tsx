@@ -5,22 +5,10 @@ import { JsonLd } from "@/components/json-ld";
 const BASE = "https://aboudouzinsou.com";
 
 export const metadata: Metadata = {
-  title: "Intelligence d'entreprise · Base de connaissances · Agents IA · Cotonou | Aboudou Zinsou",
+  title: "Services — Développement SaaS & Paiements Africains | Aboudou Zinsou",
   description:
     "Je construis la mémoire et l'intelligence opérationnelle des PME africaines : base de connaissances vivante, agents IA sur vos workflows, tableau de bord de pilotage. Aussi : intégration Mobile Money, SaaS sur mesure.",
   alternates: { canonical: `${BASE}/services` },
-  keywords: [
-    "base de connaissances entreprise Afrique",
-    "intelligence entreprise PME Bénin",
-    "agents IA automatisation entreprise",
-    "second cerveau entreprise",
-    "système gestion connaissance Cotonou",
-    "développeur freelance Bénin",
-    "intégration Mobile Money",
-    "Moneroo développeur",
-    "SaaS Afrique de l'Ouest",
-    "automatisation workflow PME africaine",
-  ],
   openGraph: {
     type: "website",
     url: `${BASE}/services`,
