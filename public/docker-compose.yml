@@ -1,0 +1,59 @@
+services:
+  app:
+    image: ghcr.io/aboudou-cto-bloko/prospecto:${PROSPECTO_VERSION:-latest}
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - DATABASE_URL=postgresql://prospecto:${POSTGRES_PASSWORD:-prospecto}@db:5432/prospecto
+      - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
+      - BETTER_AUTH_URL=${BETTER_AUTH_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      - PROSPECTO_LICENSE=${PROSPECTO_LICENSE:-}
+      - LICENSE_SERVER_URL=${LICENSE_SERVER_URL:-https://prospecto-license.vercel.app}
+      - SMTP_HOST=${SMTP_HOST:-}
+      - SMTP_PORT=${SMTP_PORT:-465}
+      - SMTP_SECURE=${SMTP_SECURE:-true}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - SMTP_FROM=${SMTP_FROM:-}
+      - VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY:-}
+      - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY:-}
+      - NEXT_PUBLIC_VAPID_PUBLIC_KEY=${NEXT_PUBLIC_VAPID_PUBLIC_KEY:-}
+    volumes:
+      - wa_sessions:/app/.wa-sessions
+      - app_env:/app/.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=prospecto
+      - POSTGRES_USER=prospecto
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-prospecto}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prospecto"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    image: ghcr.io/aboudou-cto-bloko/prospecto:${PROSPECTO_VERSION:-latest}
+    command: >
+      sh -c "npx prisma migrate deploy"
+    environment:
+      - DATABASE_URL=postgresql://prospecto:${POSTGRES_PASSWORD:-prospecto}@db:5432/prospecto
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+volumes:
+  postgres_data:
+  wa_sessions:
+  app_env:
