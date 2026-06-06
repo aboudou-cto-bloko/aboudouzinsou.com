@@ -97,11 +97,10 @@ Write-Host "  -----------------------------------------"
 # ── Version ───────────────────────────────────────────────────────────────────
 Start-Spin "Recuperation de la derniere version..."
 try {
-  $rel = Invoke-RestMethod "https://api.github.com/repos/$REPO/releases/latest"
-  $VERSION = $rel.tag_name
+  $VERSION = (Invoke-WebRequest "$SITE/prospecto-version.txt" -UseBasicParsing).Content.Trim()
 } catch {
   Stop-Spin
-  fail "Impossible de contacter GitHub. Verifie ta connexion."
+  fail "Impossible de recuperer la version. Verifie ta connexion."
 }
 Stop-Spin
 $DOCKER_VERSION = $VERSION -replace '^v', ''

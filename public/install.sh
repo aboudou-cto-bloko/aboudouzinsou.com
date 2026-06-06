@@ -84,10 +84,9 @@ echo -e "  ───────────────────────
 
 # ── Version ───────────────────────────────────────────────────────────────────
 spin_start "Récupération de la dernière version…"
-VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" \
-  | grep '"tag_name"' | head -1 | cut -d'"' -f4 || true)
+VERSION=$(curl -fsSL "${SITE}/prospecto-version.txt" | tr -d '[:space:]' || true)
 spin_stop
-[ -z "$VERSION" ] && err "Impossible de contacter GitHub. Vérifie ta connexion."
+[ -z "$VERSION" ] && err "Impossible de récupérer la version. Vérifie ta connexion."
 DOCKER_VERSION="${VERSION#v}"
 
 UPDATE_MODE=false
