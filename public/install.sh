@@ -1,9 +1,21 @@
 #!/bin/bash
 set -e
 
-VERSION="v1.0.6"
+REPO="aboudou-cto-bloko/prospecto"
 PURCHASE_URL="https://prospecto.aboudouzinsou.site/#acheter"
 SITE="https://aboudouzinsou.com"
+
+VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases/latest" \
+  | grep '"tag_name"' | head -1 | cut -d'"' -f4)
+
+if [ -z "$VERSION" ]; then
+  echo "  ✗ Impossible de récupérer la dernière version depuis GitHub."
+  echo "    Vérifie ta connexion ou réessaie plus tard."
+  exit 1
+fi
+
+# Les tags Docker sont sans préfixe "v" (ex: 1.2.2 et non v1.2.2)
+DOCKER_VERSION="${VERSION#v}"
 
 echo ""
 echo "  ◆ Prospecto ${VERSION} — Installation"
@@ -136,7 +148,7 @@ echo ""
 echo "  ─────────────────────────────────────────"
 echo ""
 echo "  Téléchargement de l'image Docker (${VERSION})…"
-PROSPECTO_VERSION="${VERSION}" docker compose pull
+PROSPECTO_VERSION="${DOCKER_VERSION}" docker compose pull
 
 # ── Clés VAPID (générées via Node.js de l'image) ─────────────────────────────
 
@@ -144,7 +156,7 @@ if ! grep -q "^VAPID_PUBLIC_KEY=.\+" .env 2>/dev/null; then
   echo ""
   echo "  Génération des clés VAPID (notifications push)…"
   VAPID_JSON=$(docker run --rm \
-    "ghcr.io/aboudou-cto-bloko/prospecto:${VERSION}" \
+    "ghcr.io/aboudou-cto-bloko/prospecto:${DOCKER_VERSION}" \
     node -e "const wp=require('web-push');const k=wp.generateVAPIDKeys();process.stdout.write(JSON.stringify(k));" \
     2>/dev/null || echo "")
 
@@ -169,13 +181,13 @@ fi
 
 echo ""
 echo "  Démarrage de la base de données…"
-PROSPECTO_VERSION="${VERSION}" docker compose up -d db
+PROSPECTO_VERSION="${DOCKER_VERSION}" docker compose up -d db
 
 echo "  Migration de la base de données…"
-PROSPECTO_VERSION="${VERSION}" docker compose run --rm migrate
+PROSPECTO_VERSION="${DOCKER_VERSION}" docker compose run --rm migrate
 
 echo "  Démarrage de l'application…"
-PROSPECTO_VERSION="${VERSION}" docker compose up -d app
+PROSPECTO_VERSION="${DOCKER_VERSION}" docker compose up -d app
 
 # ── Terminé ───────────────────────────────────────────────────────────────────
 
