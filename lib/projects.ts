@@ -6,6 +6,7 @@ export type ProjectCategory =
   | "civic"
   | "media"
   | "agence"
+  | "concept"
   | "événement";
 
 export type ProjectStatus = "production" | "beta" | "open-source" | "livré";
@@ -36,6 +37,7 @@ export const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   civic: "Service public",
   media: "Média",
   agence: "Agence",
+  concept: "Concept / Pitch",
   "événement": "Événement",
 };
 
@@ -47,6 +49,7 @@ export const CATEGORY_COLORS: Record<ProjectCategory, string> = {
   civic: "#c86b6b",
   media: "#c8a86b",
   agence: "#6b8ec8",
+  concept: "#d97706",
   "événement": "#c86b8e",
 };
 
@@ -58,6 +61,26 @@ export const STATUS_LABELS: Record<ProjectStatus, string> = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "lionelhortis-demo",
+    name: "Refonte — Lionel Hortis",
+    tagline: "Site vitrine pitch pour un consultant Facebook Ads à Cotonou",
+    description:
+      "Démo de refonte pour Lionel Hortis, expert Facebook Ads certifié Meta à Cotonou. Site one-page construit en une session : dark amber, section hero lumineuse, animations animejs v4 (card deal, spotlight scroll, logos flottants), OG image dynamique.",
+    problem:
+      "Le site existant de Lionel Hortis ne reflétait pas la qualité de son expertise. La palette générique, l'absence d'animations et la structure statique n'inspiraient pas confiance au niveau premium que ses certifications Meta justifiaient.",
+    solution:
+      "Une refonte one-page pensée comme un pitch visuel : hero en pleine lumière (contraste fort avec le reste sombre), photo circulaire avec anneau amber, animations au scroll inspirées des présentations Apple, badges Meta certifications, section guide ebook. Déployé sur Vercel pour être présenté directement au client.",
+    impact:
+      "Conçu comme démo de pitch non sollicitée — exemple concret de ce qu'une refonte web apporte à un consultant indépendant africain.",
+    category: "concept",
+    status: "livré",
+    featured: false,
+    stack: ["Next.js 16", "animejs v4", "Tailwind v4", "TypeScript", "Vercel"],
+    live: "https://lionelhortis-demo.vercel.app",
+    github: "https://github.com/aboudou-cto-bloko/lionelhortis-demo",
+    screenshot: "/projets/lionelhortis-demo.webp",
+  },
   {
     slug: "pixel-mart",
     name: "Pixel-Mart",
