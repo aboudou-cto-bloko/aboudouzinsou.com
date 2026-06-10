@@ -62,6 +62,26 @@ export const STATUS_LABELS: Record<ProjectStatus, string> = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "claudelnoubissie-hub",
+    name: "Hub — Dr Claudel Noubissie",
+    tagline: "Personal brand hub pour le médecin-entrepreneur camerounais à 2M+ abonnés",
+    description:
+      "Page hub one-scroll pour Dr Claudel Noubissie — médecin, fondateur de la StartUp Academy, auteur de 4 livres. Regroupe son écosystème (3 entreprises), ses livres Amazon, ses vidéos YouTube et ses réseaux sociaux en une seule destination.",
+    problem:
+      "Avec 2M+ abonnés répartis sur Facebook, YouTube, Instagram et LinkedIn, Dr Noubissie n'avait pas de point d'entrée unique pour son personal brand. Chaque plateforme était un silo : impossible d'orienter un contact vers l'ensemble de son univers en un seul lien.",
+    solution:
+      "Un hub one-page inspiré de l'UX Dan Koe / Acquisition.com : hero typographique pleine force, stats chiffrées (2M+ abonnés, 80K+ formés), 3 cartes entreprises, galerie des 4 livres avec couvertures Amazon réelles, 3 vidéos YouTube avec thumbnails natifs, liste des réseaux sociaux et CTA booking. Palette éditoriale sombre (#0a0907) + accent gold (#c9802a), zéro gradient décoratif, typographie Bricolage Grotesque + DM Sans.",
+    impact:
+      "Déployé en production sur Vercel en une session. Conçu comme démonstration de l'approche hub personal brand pour un leader d'opinion africain.",
+    category: "concept",
+    status: "livré",
+    featured: false,
+    stack: ["Next.js 15", "Tailwind v4", "TypeScript", "Vercel"],
+    live: "https://claudelnoubissie-hub.vercel.app",
+    github: "https://github.com/aboudou-cto-bloko/claudelnoubissie-hub",
+    screenshot: "/projets/claudelnoubissie-hub.webp",
+  },
+  {
     slug: "lionelhortis-demo",
     name: "Refonte — Lionel Hortis",
     tagline: "Site vitrine pitch pour un consultant Facebook Ads à Cotonou",
