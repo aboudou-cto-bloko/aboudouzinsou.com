@@ -66,15 +66,26 @@ export default function HomePage() {
       "https://x.com/aboudouzinsou",
       "https://www.facebook.com/francois.SaasXpert",
       "https://npmjs.com/package/moneroo",
+      "https://eazysell-bj.online",
     ],
     jobTitle: "Développeur Full-Stack SaaS — Intelligence d'entreprise & Paiements Africains",
-    knowsAbout: ["Intelligence d'entreprise", "Base de connaissances PME", "Agents IA", "Next.js", "TypeScript", "Convex", "RAG", "Mobile Money", "Moneroo", "SaaS Afrique"],
-    description: "Je construis la mémoire et l'intelligence opérationnelle des PME africaines. Basé à Cotonou, Bénin. Fondateur de BLOKO et VitrinAI.",
+    knowsAbout: ["Intelligence d'entreprise", "Base de connaissances PME", "Agents IA", "Next.js", "TypeScript", "Convex", "RAG", "Mobile Money", "Moneroo", "SaaS Afrique", "IA pour PME béninoises", "Google Business"],
+    description: "Je construis la mémoire et l'intelligence opérationnelle des PME africaines. Basé à Cotonou, Bénin. Fondateur de BLOKO, VitrinAI et EazySell.",
     address: { "@type": "PostalAddress", addressLocality: "Cotonou", addressCountry: "BJ" },
     worksFor: [
       { "@type": "Organization", name: "BLOKO" },
       { "@type": "Organization", name: "Pixel-Mart", url: "https://pixel-mart-bj.com" },
       { "@type": "Organization", name: "VitrinAI", url: "https://vitrinai-eta.vercel.app" },
+      { "@type": "Organization", name: "EazySell", url: "https://eazysell-bj.online" },
+    ],
+    owns: [
+      {
+        "@type": "Organization",
+        name: "EazySell",
+        url: "https://eazysell-bj.online",
+        description: "L'IA qui fait grandir les entreprises béninoises — Google Business, chatbots IA, CRM, agents métiers.",
+        areaServed: { "@type": "City", name: "Cotonou" },
+      },
     ],
   };
 

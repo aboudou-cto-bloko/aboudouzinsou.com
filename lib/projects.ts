@@ -62,6 +62,26 @@ export const STATUS_LABELS: Record<ProjectStatus, string> = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "eazysell",
+    name: "EazySell",
+    tagline: "L'IA qui fait grandir les entreprises béninoises",
+    description:
+      "EazySell est ma marque commerciale terrain : j'équipe les PME de Cotonou et du Bénin avec l'intelligence artificielle. Cinq niveaux, de Google Business optimisé aux agents métiers et ERP sur mesure.",
+    problem:
+      "Les PME béninoises sont invisibles en ligne et noyées dans les tâches manuelles. Leurs clients les cherchent sur Google et vont chez le concurrent qui, lui, y est. L'IA reste perçue comme inaccessible.",
+    solution:
+      "Une échelle de services claire et chiffrée : Google Business, site + WhatsApp Business, chatbots IA, CRM avec mémoire IA, puis agents métiers et ERP. Chaque niveau est une porte d'entrée vers le suivant, avec diagnostic gratuit sur le terrain.",
+    impact:
+      "Marque commerciale dédiée à la prospection terrain à Cotonou, pensée comme tunnel : présence Google → automatisation → intelligence d'entreprise.",
+    category: "agence",
+    status: "production",
+    featured: true,
+    stack: ["Next.js 16", "TypeScript", "Tailwind", "Framer Motion"],
+    github: "https://github.com/aboudou-cto-bloko/eazysell",
+    live: "https://eazysell-bj.online",
+    screenshot: "/projets/eazysell.webp",
+  },
+  {
     slug: "claudelnoubissie-hub",
     name: "Hub — Dr Claudel Noubissie",
     tagline: "Personal brand hub pour le médecin-entrepreneur camerounais à 2M+ abonnés",
