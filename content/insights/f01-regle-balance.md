@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: paiements
 order: 2
 tags: [fintech, convex, audit, escrow, patterns]
+tldr: "Règle F-01 : insérer la transaction avant de patcher le solde dans la même mutation Convex. En cas d'échec partiel, les deux opérations sont rollbackées ensemble — le solde ne change jamais sans trace comptable."
+takeaways:
+  - "Transaction d'abord, patch du solde après — l'inverse laisse des soldes sans trace en cas d'échec"
+  - "La formule d'audit `balance = sum(credits) - sum(debits)` n'est calculable que si F-01 est respectée partout"
 related:
   - convex-query-mutation-action
   - convex-httaction-interdit-db

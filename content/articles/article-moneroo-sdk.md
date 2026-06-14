@@ -2,6 +2,13 @@
 title: "SDK TypeScript Moneroo : intégrer les paiements Mobile Money en JavaScript"
 format: article
 status: published
+description: "Il n'existait pas de SDK TypeScript pour Moneroo. J'ai construit le package npm officieux — zéro dépendance, dual ESM/CJS, TypeScript strict, vérification HMAC des webhooks incluse."
+tldr: "Le SDK TypeScript Moneroo comble un manque réel : plus besoin de gérer les headers, les erreurs et la vérification HMAC à la main. Zéro dépendance, Node 18+, dual ESM/CJS, tout typé. Une intégration qui se réduit à la logique métier."
+takeaways:
+  - "Installer avec npm install moneroo — zéro dépendance, Node 18+ suffit"
+  - "XOF n'a pas de centimes : passer 5000 et non 500000 pour 5 000 FCFA"
+  - "webhooks.constructEvent() vérifie la signature HMAC et lance une erreur si invalide"
+  - "Ne jamais créditer sur le seul webhook — toujours appeler payments.verify() en plus"
 tags: [moneroo, sdk, typescript, npm, afrique, paiement, open-source]
 github: https://github.com/aboudou-cto-bloko/moneroo-tools
 npm: https://www.npmjs.com/package/moneroo

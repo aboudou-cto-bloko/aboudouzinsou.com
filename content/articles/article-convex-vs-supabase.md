@@ -3,6 +3,12 @@ title: "Convex vs Supabase : lequel choisir pour votre SaaS en 2026 ?"
 format: article
 status: published
 description: "J'ai construit 3 SaaS avec Convex et un avec Supabase. Ce ne sont pas des concurrents directs — ils résolvent des architectures différentes."
+tldr: "Convex et Supabase ne sont pas des concurrents directs. Convex est TypeScript-first avec réactivité native — idéal pour le temps réel. Supabase est PostgreSQL managé — idéal pour les données relationnelles complexes et les transactions financières critiques. La réponse vient du domaine, pas de la tendance."
+takeaways:
+  - "L'UI doit se mettre à jour en temps réel sans polling ? Convex — la réactivité est native"
+  - "Requêtes relationnelles complexes, gros volumes, audit trail financier ? Supabase — PostgreSQL sans compromis"
+  - "La distinction query/mutation/action de Convex force une architecture correcte par construction"
+  - "Ne pas choisir un outil par sa popularité — laisser le domaine métier choisir la technologie"
 tags: [convex, supabase, saas, backend, nextjs, typescript, base-de-données, architecture, choix-technique]
 date: 2026-06-11
 created: 2026-06-11

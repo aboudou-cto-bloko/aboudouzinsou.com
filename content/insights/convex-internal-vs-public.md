@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: convex
 order: 3
 tags: [convex, sécurité, backend, typescript]
+tldr: "Toute fonction Convex exportée avec `export const` est accessible depuis le navigateur via api.. Les mutations financières et les changements de statut critiques doivent être internalMutation ou internalAction."
+takeaways:
+  - "Test : accepterais-tu qu'un utilisateur l'appelle depuis la console ? Non → `internal`"
+  - "`api.` = frontend peut appeler. `internal.` = backend uniquement, jamais depuis le client"
 related:
   - convex-query-mutation-action
   - convex-httaction-interdit-db

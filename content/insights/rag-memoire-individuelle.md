@@ -3,6 +3,10 @@ title: "RAG individuel : prioriser la mémoire prospect dans un agent commercial
 date: 2026-05-02
 topic: rag
 tags: [rag, llm, mémoire, agent, typescript, embeddings]
+tldr: "Un agent commercial RAG doit prioriser la mémoire individuelle du prospect sur la base globale. Si le prospect a mentionné un budget il y a 3 jours, le modèle doit le savoir avant de parler de prix — sinon il répond depuis le générique."
+takeaways:
+  - "Filtrer ChromaDB par `phone` du prospect en premier, compléter avec le global si < 3 résultats"
+  - "Un fichier .md par prospect mis à jour après chaque échange est la base de la mémoire individuelle"
 related:
   - ollama-prompt-compact
   - devlog-brain-assistant

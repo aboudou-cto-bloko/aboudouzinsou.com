@@ -3,6 +3,12 @@ title: "Devis et factures MECeF au Bénin : arrêter de les taper à la main"
 format: article
 status: published
 description: "La facturation MECeF est obligatoire depuis 2020. La majorité des PME béninoises la font encore manuellement — et accumulent des erreurs TVA qui les exposent au fisc."
+tldr: "La facturation MECeF est obligatoire au Bénin et la plupart des PME la font à la main avec des erreurs TVA qui peuvent déclencher un redressement fiscal. Un générateur automatique passe de 20 min à 3 min par devis avec zéro erreur de calcul."
+takeaways:
+  - "La TVA béninoise est à 18% — pas 20% comme le réflexe importé d'autres marchés"
+  - "La numérotation non séquentielle après un devis annulé est une erreur fréquente qui expose au fisc"
+  - "5 devis/semaine à 20 min chacun = plus d'une journée de travail récupérée par mois avec l'automatisation"
+  - "Le BTP est le secteur le plus exposé avec ses séquences devis/acompte/facture partielle/solde"
 tags: [facturation, devis, mecef, pme, bénin, cotonou, automatisation, tva, btp, artisans, gestion]
 date: 2026-06-11
 created: 2026-06-11

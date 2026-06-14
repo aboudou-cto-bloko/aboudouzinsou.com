@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: convex
 order: 1
 tags: [convex, backend, typescript]
+tldr: "Query = fenêtre réactive (pas d'écriture). Mutation = transaction tout-ou-rien (pas d'appel réseau). Action = appels externes (pas de ctx.db). Le pattern correct pour un paiement : mutation crée → scheduler → action appelle → mutation confirme."
+takeaways:
+  - "Ne jamais appeler une API externe dans une mutation — si ça plante, commande créée sans paiement initié"
+  - "mutation → ctx.scheduler.runAfter(0, internal.X) → action → ctx.runMutation : chaque étape fait une seule chose"
 related:
   - convex-httaction-interdit-db
   - convex-internal-vs-public

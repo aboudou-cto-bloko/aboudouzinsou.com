@@ -4,6 +4,11 @@ date: 2026-04-29
 topic: outils
 order: 1
 tags: [remotion, react, video, typescript]
+tldr: "Remotion compose des vidéos MP4 avec des composants React : chaque frame est un render, useCurrentFrame() donne la frame courante, interpolate() mappe des frames sur des valeurs CSS, spring() gère les animations physiques."
+takeaways:
+  - "`interpolate(frame, [0,20], [0,1])` remplace les keyframes — la frame est la seule variable de temps"
+  - "`spring({ frame, fps, config })` pour les rebonds naturels (badges, notifications qui 'arrivent')"
+  - "Sur Linux, la génération passe par Puppeteer/Chromium — vérifier la dépendance avant de builder"
 related:
   - convex-query-mutation-action
 status: published

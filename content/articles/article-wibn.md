@@ -2,6 +2,12 @@
 title: "Trouver des idées de SaaS sur Reddit avec l'IA : méthode et outil open source"
 format: article
 status: published
+description: "WIBN (What Is Broken Now) analyse Reddit et HackerNews pour extraire des pain points documentés en temps réel et générer des pistes de SaaS validées par le marché. Stack : Next.js 15 + Groq + Inngest."
+tldr: "WIBN automatise la chasse aux pain points sur Reddit : scraping, scoring de la douleur réelle (différent des upvotes), analyse IA des meilleures pistes. L'hypothèse : trouver une idée SaaS validée en 10 minutes plutôt qu'en plusieurs semaines."
+takeaways:
+  - "Le painScore mesure l'acuité du problème — distinct du score Reddit qui mesure la popularité"
+  - "Groq remplace OpenAI pour la classification en masse : latence plus faible sur des inférences courtes"
+  - "Inngest isole chaque étape du pipeline — si le scoring échoue, le retry repart depuis là, pas depuis le début"
 tags: [wibn, saas, idées, reddit, groq, inngest, ia, validation]
 github: https://github.com/aboudou-cto-bloko/wibn
 date: 2026-04-29

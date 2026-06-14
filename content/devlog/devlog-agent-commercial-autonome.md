@@ -4,6 +4,12 @@ date: 2026-05-02
 tags: [ia, agent, whatsapp, ollama, rag, discord, nodejs, typescript, build-in-public]
 status: published
 description: "4 mois de construction d'un agent commercial IA local : scraping Google Maps, messages WhatsApp personnalisés, relances automatiques, mémoire par prospect, apprentissage continu — zéro API cloud."
+tldr: "4 mois pour construire un agent commercial entièrement local : scraping Google Maps, WhatsApp via Baileys, relances J+3/J+7/J+14, mémoire RAG par prospect, apprentissage continu des patterns — zéro API cloud pour les inférences IA."
+takeaways:
+  - "Ollama tronque silencieusement les prompts > 4096 tokens — surveiller les logs `truncating input prompt`"
+  - "Les requêtes non-streamées sur CPU créent un timeout 5 min côté serveur Ollama, pas côté client"
+  - "Le format téléphonique béninois (8→10 chiffres avec préfixe 01) n'existe dans aucune librairie npm"
+  - "LLM local à coût marginal zéro autorise des patterns impossibles avec une API cloud facturée"
 related:
   - devlog-brain-assistant
   - article-vitrinai

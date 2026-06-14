@@ -3,6 +3,12 @@ title: "Comment apparaître sur Google Maps à Cotonou — le guide complet"
 format: article
 status: published
 description: "Des milliers de PME béninoises ne sont pas sur Google Maps. Leurs clients les cherchent, ne les trouvent pas, et vont chez le concurrent qui, lui, y est. C'est gratuit à corriger."
+tldr: "Une fiche Google Business Profile complète permet d'apparaître dans les recherches locales avant même d'avoir un site web. C'est gratuit, ça prend 20 minutes depuis un téléphone, et l'impact sur la visibilité locale est visible en quelques semaines."
+takeaways:
+  - "Google My Business ne nécessite pas de site web — la fiche est indépendante et configurable depuis le téléphone"
+  - "Créer la fiche en 6 étapes : compte Google, nom exact, catégorie précise, adresse, vérification, profil complet"
+  - "Les fiches avec photos reçoivent plus d'appels et d'itinéraires que celles sans"
+  - "Horaires non mis à jour et absence de réponse aux avis pénalisent le classement local"
 tags: [google-maps, seo-local, cotonou, bénin, google-my-business, pme, présence-digitale, référencement]
 date: 2026-06-11
 created: 2026-06-11

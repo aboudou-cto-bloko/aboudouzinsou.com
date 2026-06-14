@@ -4,6 +4,12 @@ date: 2026-04-29
 tags: [design, ux, next.js, framer-motion, tailwind, turso, sqlite, site-perso]
 status: published
 description: "Architecture UX et décisions de design du site : de l'inspiration Naval à la recherche modale, en passant par les animations Framer Motion et la base de données SQLite pour les vues."
+tldr: "Décisions de design du portfolio : fond #090909, Jost 300/400/500, feed paginé côté client, recherche découplée par CustomEvent, animations Framer Motion, compteurs via Turso SQLite. Le site complet construit en une session Claude Code."
+takeaways:
+  - "Ne jamais mélanger CSS transform et Framer Motion sur le même élément — Framer écrase le transform inline"
+  - "N instances de PostStats = 1 requête via cache module-level et une route `/api/stats/all`"
+  - "Turso est la seule option SQLite viable sur Vercel — node:sqlite exige Node 22, better-sqlite3 bloque pnpm v10"
+  - "Nav (Server Component) et SearchModal (Client) découplés via `window.dispatchEvent(new CustomEvent('open-search'))`"
 related:
   - devlog-pipeline-site-perso
 ---

@@ -2,6 +2,13 @@
 title: "Agents IA autonomes : architecture et différence avec un assistant classique"
 format: article
 status: published
+description: "Un chatbot répond quand on lui parle. Un agent agit sans qu'on lui demande. La différence n'est pas sémantique — c'est une architecture en 7 composants."
+tldr: "Un agent IA commercial autonome n'est pas un chatbot amélioré. Il prospecte, relance, apprend et se souvient — sans intervention humaine sauf aux points critiques. L'IA est le cerveau, l'architecture est la mémoire."
+takeaways:
+  - "Un agent sans mémoire persistante reste un chatbot qui oublie tout chaque matin"
+  - "Les 7 composants clés : prospection, contact, relances, mémoire, RAG, apprentissage, workflows"
+  - "La supervision humaine n'est pas supprimée — elle est repositionnée aux points à valeur réelle"
+  - "Les agents qui durent sont ceux qui apprennent, pas seulement ceux qui répondent"
 tags: [ia, agent, architecture, autonomie, whatsapp, llm, afrique]
 date: 2026-05-02
 created: 2026-05-02

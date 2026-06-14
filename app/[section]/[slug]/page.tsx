@@ -12,6 +12,7 @@ import { LikeButton } from "@/components/like-button";
 import { FloatingRelated } from "@/components/floating-related";
 import { ShareButton } from "@/components/share-button";
 import { JsonLd } from "@/components/json-ld";
+import { ArticleTldr, ArticleTakeaways } from "@/components/article-tldr";
 import {
   getPostBySlug,
   getPostsForSection,
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: post.frontmatter.title,
       description,
-      images: [{ url: coverUrl, width: 800, height: 400, alt: post.frontmatter.title }],
+      images: [{ url: coverUrl, width: 1200, height: 630, alt: post.frontmatter.title }],
       publishedTime: post.frontmatter.date,
       modifiedTime: post.frontmatter.updated ?? post.frontmatter.date,
       authors: [`${BASE}/about`],
@@ -105,13 +106,25 @@ export default async function ArticlePage({ params }: Props) {
   const schemaType = section === "tutoriels" ? "TechArticle" : "Article";
   const wordCount = post.content.split(/\s+/).length;
 
+  const abstract =
+    post.frontmatter.tldr ??
+    post.frontmatter.description ??
+    post.excerpt;
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": schemaType,
+    "@id": `${url}#article`,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     headline: post.frontmatter.title,
     description: post.frontmatter.description ?? post.excerpt,
-    image: coverUrl,
+    abstract,
+    image: {
+      "@type": "ImageObject",
+      url: coverUrl,
+      width: 1200,
+      height: 630,
+    },
     url,
     datePublished: post.frontmatter.date,
     dateModified: post.frontmatter.updated ?? post.frontmatter.date,
@@ -134,6 +147,10 @@ export default async function ArticlePage({ params }: Props) {
     wordCount,
     articleSection: SECTION_LABELS[section as Section],
     isAccessibleForFree: true,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".article-tldr", ".prose"],
+    },
   };
 
   const breadcrumbJsonLd = {
@@ -217,10 +234,17 @@ export default async function ArticlePage({ params }: Props) {
           />
         </div>
 
+        <ArticleTldr tldr={post.frontmatter.tldr} />
+
         {/* Body */}
         <article className="prose" aria-label="Contenu">
           <MDXRemote source={post.content} options={mdxOptions} />
         </article>
+
+        <ArticleTakeaways
+          takeaways={post.frontmatter.takeaways}
+          tldr={post.frontmatter.tldr}
+        />
 
         <CopyCodeButtons />
 

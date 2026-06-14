@@ -3,6 +3,10 @@ title: "Ollama streaming : supprimer le timeout 5 minutes avec fetch en mode str
 date: 2026-05-02
 topic: llm
 tags: [ollama, streaming, timeout, nodejs, typescript]
+tldr: "Le timeout 5 minutes d'Ollama vient du serveur Go/GIN qui coupe les connexions silencieuses — pas du client. Passer en `stream: true` maintient la connexion active pendant toute la génération."
+takeaways:
+  - "Un timeout côté client plus long ne change rien — c'est le serveur Ollama qui coupe, pas le client"
+  - "Résultat identique : accumuler les chunks `for await (const chunk of stream)` dans une string"
 related:
   - ollama-prompt-compact
   - ollama-keep-alive

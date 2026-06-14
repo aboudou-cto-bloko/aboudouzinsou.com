@@ -3,6 +3,12 @@ title: "CRM pour PME africaines : pourquoi Salesforce ne convient pas et quoi ut
 format: article
 status: published
 description: "Salesforce, HubSpot et Pipedrive sont conçus pour l'email et les marchés occidentaux. Pourquoi ces CRM ne fonctionnent pas pour les PME béninoises, et ce qu'un CRM adapté au marché africain doit être."
+tldr: "Les CRM occidentaux ont été conçus pour l'email, des équipes structurées et des connexions stables. Une PME béninoise fonctionne sur WhatsApp, une seule personne, et une connexion intermittente. Un CRM adapté part de ces contraintes, pas des features d'un outil conçu pour un autre marché."
+takeaways:
+  - "Un CRM pour PME béninoise doit avoir WhatsApp comme canal natif, pas comme intégration optionnelle"
+  - "Le tarif psychologique qui ne crée pas de friction : 5 000–10 000 FCFA par mois"
+  - "La source de données doit être GoAfricaOnline, pas Outlook — la base de prospects se construit depuis zéro"
+  - "L'outil doit fonctionner localement sans dépendance cloud critique"
 tags: [crm, pme, bénin, afrique, prospection, whatsapp, salesforce, hubspot, outils, saas]
 date: 2026-06-01
 created: 2026-06-01

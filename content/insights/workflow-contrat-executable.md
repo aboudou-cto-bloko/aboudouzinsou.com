@@ -3,6 +3,10 @@ title: "Workflows IA comme contrats exécutables : structurer des agents autonom
 date: 2026-05-02
 topic: architecture
 tags: [workflow, agent, ia, architecture, mcp, typescript, json]
+tldr: "Un workflow déclaratif JSON est à la fois la documentation et l'instruction d'exécution. N'importe quel agent IA peut le lire et l'exécuter. La documentation qui ne s'exécute pas diverge du code — le workflow qui est l'exécution reste toujours aligné."
+takeaways:
+  - "Chaque tâche : id, prompt naturel, tools[], input avec sources typées, output, dependsOn[]"
+  - "Le tri topologique des dépendances suffit pour l'orchestration — pas de framework externe nécessaire"
 related:
   - article-agent-pas-employe
 status: published

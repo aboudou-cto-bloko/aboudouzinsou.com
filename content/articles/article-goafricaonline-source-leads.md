@@ -3,6 +3,12 @@ title: "Comment générer des leads avec GoAfricaOnline au Bénin"
 format: article
 status: published
 description: "GoAfricaOnline recense des milliers de PME béninoises avec leurs numéros WhatsApp, classées par secteur et par ville. Comment en faire une source de leads systématique — et arrêter de prospecter à la main."
+tldr: "GoAfricaOnline est une mine de leads béninois déjà segmentés par secteur, ville et type d'activité — gratuite et publique. Le problème n'est pas la source, c'est l'absence de système pour l'exploiter. Avec le bon outil, on contacte 10× plus de prospects avec 3× moins de temps."
+takeaways:
+  - "La prospection artisanale sur GoAfricaOnline (copier-coller) est non traçable et impossible à scaler"
+  - "Un système doit couvrir collecte, organisation par statut, envoi personnalisé et suivi des relances"
+  - "Passer 80% du temps à chercher des numéros au lieu de parler aux prospects est un problème de méthode"
+  - "La segmentation (secteur + ville) est déjà faite — il reste à travailler la base avec les bons outils"
 tags: [génération-de-leads, goafricaonline, bénin, prospection, cotonou, whatsapp, pme, scraping]
 date: 2026-06-01
 created: 2026-06-01

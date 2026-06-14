@@ -2,6 +2,13 @@
 title: "Développer des produits SaaS pour le marché africain : contraintes et architecture"
 format: article
 status: published
+description: "Construire pour l'Afrique c'est adapter un produit conçu ailleurs. Construire en Afrique c'est partir des contraintes locales comme fondation de design. Le résultat est architecturalement différent."
+tldr: "Partir des contraintes locales comme fondation produit des solutions impossibles à concevoir à distance. WhatsApp comme canal principal, LLM local pour le coût, gestion des formats béninois — chaque contrainte est une décision d'architecture forcée qui évite de construire quelque chose d'inutile."
+takeaways:
+  - "WhatsApp n'est pas un canal alternatif au Bénin — c'est le canal professionnel principal, inverser la priorité dans le code"
+  - "Le LLM local à coût marginal zéro autorise des patterns impossibles avec une API facturée en USD"
+  - "La connaissance des formats locaux (numéros téléphone, XOF) ne s'acquiert qu'en construisant sur le marché"
+  - "Les contraintes locales ne sont pas des problèmes à contourner — ce sont des décisions d'architecture forcées"
 tags: [afrique, marché, ia, whatsapp, llm, architecture, uemoa, benin]
 date: 2026-05-02
 created: 2026-05-02

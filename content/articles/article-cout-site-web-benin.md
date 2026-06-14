@@ -3,6 +3,12 @@ title: "Combien coûte un site web au Bénin en 2026 ?"
 format: article
 status: published
 description: "La même demande peut déclencher un devis à 30 000 XOF ou à 2 000 000 XOF. Ce que ça révèle sur le marché — et comment lire un devis avant de signer."
+tldr: "Un site web béninois n'a pas de prix standard parce qu'il n'y a pas de définition partagée du produit. Landing page : 150–300K XOF. E-commerce avec Mobile Money : 500K–1,5M XOF. La vraie question n'est pas le coût du site — c'est le coût de l'absence."
+takeaways:
+  - "L'intégration Mobile Money seule coûte 150–400K XOF sur un site existant — c'est du développement, pas de la configuration"
+  - "Demande systématiquement : qui héberge, le code m'appartient-il, qu'est-ce qui est inclus après livraison"
+  - "Un devis à 30K XOF pour un e-commerce complet est un template habillé — pas le même produit"
+  - "Prépare ton contenu (textes, photos, logo) avant de signer — les retards viennent toujours de là"
 tags: [bénin, cotonou, prix, site-web, freelance, e-commerce, mobile-money, seo, tarif]
 date: 2026-05-20
 created: 2026-05-20

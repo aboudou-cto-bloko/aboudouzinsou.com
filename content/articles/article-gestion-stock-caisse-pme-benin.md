@@ -3,6 +3,12 @@ title: "Gestion de stock et caisse pour PME béninoises : savoir enfin ce qu'on 
 format: article
 status: published
 description: "La plupart des commerçants béninois ne savent pas exactement combien ils ont gagné ce mois. Pas par manque de travail — par manque d'outil adapté."
+tldr: "Sans suivi de stock et de caisse, le bénéfice réel est une estimation, les ruptures sont détectées trop tard, et les décisions se prennent à l'instinct. Le minimum viable : saisir les entrées/sorties et avoir un résumé quotidien. Rien de plus, rien de moins."
+takeaways:
+  - "Le mélange caisse professionnelle et portefeuille personnel est le signal d'alerte numéro un des PME béninoises"
+  - "Stock + caisse = deux problèmes distincts qui nécessitent un outil qui couvre les deux"
+  - "Un résumé hebdomadaire WhatsApp automatique est plus utile qu'un tableau de bord qu'on oublie de consulter"
+  - "Les secteurs les plus exposés : restaurants, boutiques alimentaires, quincailleries, pharmacies"
 tags: [gestion-stock, caisse, pme, bénin, cotonou, inventaire, trésorerie, restaurant, boutique, automatisation]
 date: 2026-06-11
 created: 2026-06-11

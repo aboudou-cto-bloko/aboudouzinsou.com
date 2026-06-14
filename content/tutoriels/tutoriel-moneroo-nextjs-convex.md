@@ -3,6 +3,13 @@ title: "Intégrer Moneroo dans Next.js + Convex — du lien de paiement au webho
 format: tutoriel
 status: draft
 tags: [moneroo, convex, nextjs, paiement, xof, webhook, typescript]
+tldr: "Flux Moneroo complet dans Next.js + Convex : mutation crée la commande → action scheduler initialise le paiement → Moneroo → httpAction reçoit le webhook → mutation de confirmation. Chaque étape fait une chose, chaque panne est isolable."
+takeaways:
+  - "XOF sans centimes : `amount: 5000` pour 5 000 FCFA — jamais 500000"
+  - "La mutation ne peut pas appeler HTTP — `ctx.scheduler.runAfter(0, internal.payments.initiate, { orderId })`"
+  - "Vérifier la signature HMAC sur le body brut AVANT de JSON.parse — jamais l'inverse"
+  - "Ne jamais créditer sur le seul webhook — toujours appeler l'API de vérification en plus"
+  - "Vérifier `order.status === 'pending'` avant de traiter — idempotence contre les webhooks rejoués"
 github: https://pixel-mart-bj.com
 npm: https://www.npmjs.com/package/moneroo
 created: 2026-04-29

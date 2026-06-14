@@ -3,6 +3,12 @@ title: "Comment créer un site e-commerce au Bénin en 2026 — ce que les tutor
 format: article
 status: published
 description: "La plupart des e-commerces béninois échouent avant même d'avoir un problème technique. Ce qui manque n'est pas le site — c'est ce que le site doit résoudre en premier."
+tldr: "Un e-commerce béninois meurt souvent à l'étape paiement (pas de Mobile Money) ou à l'étape confiance (aucune preuve sociale). Avant de construire le catalogue, résous ces deux problèmes. WhatsApp est ta vraie concurrente — ton site doit faire mieux."
+takeaways:
+  - "Sans Mobile Money MTN/Moov, tu n'as pas une boutique — tu as une vitrine non accessible à la majorité"
+  - "Lance avec 20 produits bien photographiés plutôt que 200 produits approximatifs"
+  - "Un numéro WhatsApp cliquable est contre-intuitif mais nécessaire — ferme la première vente manuellement"
+  - "La livraison reste le trou noir non résolu de l'e-commerce béninois — sois honnête sur ce que tu livres où"
 tags: [bénin, cotonou, e-commerce, mobile-money, paiement, livraison, whatsapp, boutique-en-ligne, pixel-mart]
 date: 2026-05-20
 created: 2026-05-20

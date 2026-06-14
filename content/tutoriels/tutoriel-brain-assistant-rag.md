@@ -3,6 +3,12 @@ title: "RAG sur Obsidian avec LLM local : construire son assistant IA personnel 
 format: tutoriel
 status: published
 tags: [ia, rag, llm, chromadb, python, fastapi, obsidian, groq, ollama, embeddings]
+tldr: "Tutoriel complet pour connecter un vault Obsidian à un LLM via RAG : indexation ChromaDB avec sentence-transformers, proxy FastAPI qui orchestre le retrieval, personas spécialisés routés vers Groq (cloud rapide) ou Ollama (local, hors-ligne). 2 045 chunks disponibles en langage naturel."
+takeaways:
+  - "400 tokens avec 80 de chevauchement est un bon point de départ pour le chunking Markdown"
+  - "paraphrase-multilingual-MiniLM-L12-v2 permet d'interroger un vault en français en anglais sans traduction"
+  - "Changer de modèle d'embedding nécessite une réindexation complète — les espaces vectoriels ne sont pas compatibles"
+  - "Ne jamais committer chroma_db/ dans Git — binaire lourd qui change à chaque indexation"
 date: 2026-04-30
 created: 2026-04-30
 updated: 2026-04-30

@@ -3,6 +3,13 @@ title: "Freelance ou agence web au Bénin — ce que personne ne dit avant de ch
 format: article
 status: published
 description: "La question n'est pas qui est meilleur. C'est quel risque tu préfères prendre — et lequel tu peux te permettre."
+tldr: "Choisir entre freelance et agence au Bénin, c'est choisir entre deux structures de risque différentes, pas entre deux niveaux de qualité. Freelance : réactivité et prix. Agence : continuité et structure. Le projet choisit."
+takeaways:
+  - "Une agence béninoise facture 30–50% plus cher qu'un freelance pour le même type de projet"
+  - "Freelance < 12 semaines, budget < 800K XOF, interlocuteur unique souhaité : c'est le bon choix"
+  - "Agence si plusieurs équipes, contrat de maintenance institutionnel, ou système intégré à un ERP existant"
+  - "Rencontre toujours la personne qui va coder — pas le commercial, pas le chef de projet"
+  - "Demande des URLs fonctionnelles en production, pas des maquettes Figma ou des captures retouchées"
 tags: [bénin, cotonou, freelance, agence-web, développeur, prix, site-web, conseil]
 date: 2026-05-20
 created: 2026-05-20

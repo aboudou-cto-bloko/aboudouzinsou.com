@@ -3,6 +3,13 @@ title: "Webhooks en production : signature HMAC, idempotence, retry — le guide
 format: article
 status: published
 description: "Un webhook sans vérification de signature est une porte ouverte. Un webhook sans idempotence est une transaction doublée en attente. Ce que ça veut dire en code."
+tldr: "Trois problèmes à résoudre sur chaque webhook de paiement : l'authenticité (vérification HMAC), l'idempotence (ne traiter qu'une fois), et la fiabilité (répondre 200 vite, traiter en background). Le circuit complet avec le code Convex."
+takeaways:
+  - "Vérifier la signature HMAC sur le body brut avant de parser le JSON — jamais l'inverse"
+  - "Utiliser timingSafeEqual pour prévenir les timing attacks sur la comparaison de signatures"
+  - "Vérifier le statut de la commande (pending) avant de traiter — l'idempotence empêche les doubles confirmations"
+  - "Répondre 200 immédiatement et déléguer le traitement au scheduler — les prestataires rejouent si pas de réponse rapide"
+  - "Ne jamais créditer sur le seul webhook — appeler l'API de vérification indépendamment"
 tags: [webhook, hmac, sécurité, paiement, mobile-money, node, typescript, convex, idempotence, production]
 date: 2026-06-11
 created: 2026-06-11

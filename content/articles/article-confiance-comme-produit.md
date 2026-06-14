@@ -2,6 +2,12 @@
 title: "Construire la confiance utilisateur dans une marketplace e-commerce africaine"
 format: article
 status: draft
+description: "Le vrai produit de Pixel-Mart n'est pas le catalogue — c'est la confiance. Sur un marché où le public fait confiance aux gens et non aux plateformes, la confiance se construit autrement."
+tldr: "Sur le marché béninois, la confiance ne se transmet pas par le design — elle se transfère de personne à personne. Pixel-Mart a construit sa stratégie autour de ça : des personnages réels, un mécanisme d'escrow concret, un langage simple."
+takeaways:
+  - "Au Bénin, la confiance se transfère d'une relation à une autre — pas d'une interface vers un inconnu"
+  - "L'escrow rend la promesse vérifiable : l'argent ne touche pas le vendeur avant que l'acheteur reçoive"
+  - "La confiance s'accumule par répétition et émotion, pas par argumentation sur des features"
 tags: [saas, afrique, marketplace, confiance, product, pixel-mart]
 github: https://pixel-mart-bj.com
 created: 2026-04-29

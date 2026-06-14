@@ -4,6 +4,12 @@ date: 2026-04-30
 tags: [second-brain, brain, obsidian, portfolio, système, connaissance, ia]
 status: published
 description: "Pourquoi j'ai construit un second cerveau avant de construire ce site — système de fichiers, connexions neurales simulées, et l'objectif à long terme."
+tldr: "Un vault Obsidian en 4 couches : données (Markdown brut immuable), système (templates + MOC), interface (CLI + éditeur), agents (Claude Code + scripts). La couche 1 est intouchable — les fichiers survivent à n'importe quel changement d'outil."
+takeaways:
+  - "1 note = 1 concept avec identifiant stable YYYYMMDD-HHmm-slug.md — l'adresse permanente d'une idée"
+  - "Les [[wikilinks]] accumulent un graphe de connexions — les idées avec le plus de backlinks sont les plus importantes"
+  - "Le site est une extraction du vault : les articles existent dans Brain avant d'exister en ligne"
+  - "183 fichiers, ~2 000 chunks, requêtables en langage naturel via le Brain Assistant RAG"
 related:
   - devlog-pipeline-site-perso
   - devlog-brain-assistant

@@ -3,6 +3,12 @@ title: "Réservation en ligne pour salons et services à Cotonou : l'alternative
 format: article
 status: published
 description: "Gérer ses rendez-vous sur WhatsApp, c'est gérer une liste qui disparaît dans le scroll. Une réservation en ligne, c'est une liste qui ne se perd pas."
+tldr: "WhatsApp est excellent pour communiquer, mauvais pour gérer des rendez-vous. À partir de 30 clients par semaine, le suivi manuel devient ingérable. La réservation en ligne avec confirmation automatique et rappel J-1 réduit les no-shows et libère du temps commercial."
+takeaways:
+  - "Le rappel automatique J-1 par WhatsApp réduit les no-shows de façon mesurable dans tous les secteurs"
+  - "Le client voit les créneaux disponibles et choisit — zéro négociation, zéro aller-retour"
+  - "Maintenir WhatsApp comme canal de communication mais orienter vers le lien de réservation pour les créneaux"
+  - "Le dépôt Mobile Money à la réservation vient après quelques semaines, une fois la confiance installée"
 tags: [réservation, salon, coiffure, cotonou, bénin, whatsapp, rendez-vous, booking, digital, services]
 date: 2026-06-11
 created: 2026-06-11

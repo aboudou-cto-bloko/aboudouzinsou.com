@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: convex
 order: 2
 tags: [convex, webhook, httpaction, backend]
+tldr: "Un httpAction Convex vit en dehors du système transactionnel — il ne peut pas écrire directement en base. Il reçoit, vérifie la signature, puis délègue à une internalMutation."
+takeaways:
+  - "httpAction → ctx.runMutation uniquement, jamais ctx.db.insert directement"
+  - "Vérifier la signature AVANT ctx.runMutation — ne jamais écrire des données non vérifiées"
 related:
   - convex-query-mutation-action
   - convex-internal-vs-public

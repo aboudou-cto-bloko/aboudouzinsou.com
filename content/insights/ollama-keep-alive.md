@@ -3,6 +3,10 @@ title: "Ollama keep_alive -1 : garder un modèle LLM en mémoire vive entre les 
 date: 2026-05-02
 topic: llm
 tags: [ollama, performance, keep-alive, llm, nodejs]
+tldr: "Sans keep_alive: -1, Ollama décharge le modèle de la RAM après 5 minutes d'inactivité. Le rechargement depuis le disque prend 10–15 secondes par appel sur CPU — visible sur un agent qui génère des messages à intervalles irréguliers."
+takeaways:
+  - "Passer `keep_alive: -1` dans chaque appel `ollama.chat()` pour garder le modèle en RAM indéfiniment"
+  - "Centraliser l'instance Ollama dans un module partagé — tous les modules importent `ollamaClient` plutôt qu'instancier"
 related:
   - ollama-streaming-timeout
   - ollama-prompt-compact

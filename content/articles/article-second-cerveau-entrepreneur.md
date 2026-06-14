@@ -3,6 +3,12 @@ title: "Second cerveau pour entrepreneurs : arrêter de réinventer la roue chaq
 format: article
 status: published
 description: "Tu as déjà résolu ce problème. Tu as déjà eu cette idée. Tu as déjà trouvé ce fournisseur. Mais tu ne te souviens plus où tu avais mis ça — et tu recommences depuis zéro."
+tldr: "Un second cerveau n'est pas un outil de productivité compliqué. C'est un endroit externe où tu mets ce que tu ne veux pas perdre, organisé pour être retrouvé. 4 dossiers suffisent. Le système grossit avec l'usage. Après 3 mois, tu ne réinventes plus la roue."
+takeaways:
+  - "4 catégories suffisent : projets actifs, ressources réutilisables, notes libres, archives"
+  - "Obsidian est recommandé : fichiers texte locaux, cherchables instantanément, connectables à un assistant IA"
+  - "La règle WhatsApp : tout ce qui compte dans une conversation est extrait avant la fin de la journée"
+  - "Après 3 mois, les réponses aux questions récurrentes sont déjà dans le système — tu retrouves, tu ne cherches plus"
 tags: [second-cerveau, entrepreneur, organisation, notes, obsidian, whatsapp, mémoire, pme, productivité]
 date: 2026-06-11
 created: 2026-06-11

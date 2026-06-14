@@ -3,6 +3,12 @@ title: "Recouvrement clients au Bénin : arrêter de courir après l'argent qu'o
 format: article
 status: published
 description: "La vente à crédit est une pratique courante dans les PME béninoises. Le cahier de dettes aussi. Et l'argent perdu par oubli ou par gêne à relancer, également."
+tldr: "La vente à crédit est normale au Bénin. Le problème n'est pas la mauvaise foi des clients — c'est l'absence de rappel structuré. Un système de suivi automatisé qui relance à J-3 et J0 récupère de l'argent déjà gagné sans nouveaux clients ni nouvelles ventes."
+takeaways:
+  - "Un client qui oublie de payer répond à une relance polie dans la grande majorité des cas"
+  - "Le cahier de dettes note mais ne rappelle pas — la relance automatique remplace la mémoire et surmonte la gêne"
+  - "Une PME qui passe de 50% à 70% de recouvrement récupère 100K XOF/mois sans nouveaux clients"
+  - "Les secteurs les plus exposés : boutiques, import-export, BTP, restaurants avec comptes d'entreprise"
 tags: [recouvrement, créances, pme, bénin, cotonou, whatsapp, relance, crédit-clients, gestion, automatisation]
 date: 2026-06-11
 created: 2026-06-11

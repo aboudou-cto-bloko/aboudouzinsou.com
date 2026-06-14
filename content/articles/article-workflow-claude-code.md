@@ -2,6 +2,13 @@
 title: "Comment je travaille avec Claude Code au quotidien"
 format: article
 status: published
+description: "La plupart des développeurs utilisent Claude comme un moteur de recherche glorifié. Ce n'est pas ainsi que ça change vraiment le rythme de travail. La clé : un CLAUDE.md qui dit à Claude ce qu'il doit savoir, et un Brain pour la mémoire persistante."
+tldr: "La qualité des sessions Claude Code dépend de la qualité du CLAUDE.md, pas du modèle. Les conventions, règles critiques et décisions d'architecture dans ce fichier permettent de livrer en une session ce qui prendrait une journée sans. Le Brain génère la mémoire persistante entre les sessions."
+takeaways:
+  - "Le CLAUDE.md à la racine du projet détermine la qualité des sessions — investir dedans est prioritaire"
+  - "Confier à Claude les migrations complexes, les features multi-couches et le debugging en profondeur"
+  - "Les décisions d'architecture restent toujours humaines — Claude exécute, questionne, suggère"
+  - "Chaque session significative génère une note dans Brain — la session suivante commence par la relire"
 tags: [workflow, claude, ia, developpement, second-brain, productivite]
 date: 2026-04-29
 created: 2026-04-29

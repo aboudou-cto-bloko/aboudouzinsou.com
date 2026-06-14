@@ -3,6 +3,13 @@ title: "5 erreurs qui font fuir les clients sur les sites web béninois"
 format: article
 status: published
 description: "J'ai audité des dizaines de sites béninois avec VitrinAI. Les mêmes erreurs reviennent, dans le même ordre. Aucune n'est technique. Toutes se corrigent."
+tldr: "5 erreurs qui font perdre des clients sur les sites béninois — et aucune n'est technique. Hébergement non maîtrisé, absence de Mobile Money, fiche Google manquante, photos mensongères, zéro preuve sociale."
+takeaways:
+  - "Exige l'accès à ton hébergement avant de payer le solde d'un prestataire"
+  - "Sans Mobile Money (MTN/Moov), tu filtres structurellement une partie de ton marché"
+  - "Revendiquer ta fiche Google Business Profile est gratuit et prend 30 minutes"
+  - "Les avis avec prénom et quartier réels convertissent 100× mieux que des étoiles anonymes"
+  - "Ces 5 corrections augmentent la conversion plus qu'un site techniquement parfait qui les ignore"
 tags: [bénin, cotonou, site-web, erreurs, seo, mobile-money, conversion, vitrinai, google, confiance]
 date: 2026-05-20
 created: 2026-05-20

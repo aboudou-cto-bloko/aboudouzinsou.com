@@ -3,6 +3,12 @@ title: "Second cerveau avec Obsidian : organiser ses notes en base de connaissan
 format: tutoriel
 status: published
 tags: [obsidian, pkm, notes, brain, zettelkasten, para, knowledge-management, bash]
+tldr: "Tutoriel pour construire un vault Obsidian en PARA adapté : projets actifs, ressources réutilisables, notes atomiques, système. Les fichiers Markdown locaux sont indexables en RAG, versionnables Git, et pilotables depuis le terminal via hub brain."
+takeaways:
+  - "1 note = 1 idée atomique — avant d'ajouter une section H2 sur un autre sujet, créer une deuxième note"
+  - "Dates YAML entre guillemets : `created: \"2026-04-30\"` — sans guillemets, Python parse en objet Date"
+  - "Ne pas commencer par la structure — noter d'abord, la structure émerge des patterns de tes notes"
+  - "Git + Obsidian = snapshot du cerveau à n'importe quel point dans le temps, avec diff lisible"
 date: 2026-04-30
 created: 2026-04-30
 updated: 2026-04-30

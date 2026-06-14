@@ -3,6 +3,12 @@ title: "Prospection WhatsApp en Afrique de l'Ouest : méthode et outils pour PME
 format: article
 status: published
 description: "En Afrique de l'Ouest, WhatsApp est le canal professionnel principal — pas l'email. Comment prospecter sur WhatsApp de manière systématique, personnalisée et sans passer pour du spam."
+tldr: "WhatsApp a un taux d'ouverture de 85–98%. L'email tourne à 20%. Sur le marché béninois, le choix du canal n'est pas une préférence — c'est une donnée structurelle. La prospection WhatsApp qui fonctionne est ciblée, personnalisée et organisée — pas du spam de masse."
+takeaways:
+  - "Un message personnalisé avec le nom et la ville du prospect a un taux de réponse sans commune mesure avec un message générique"
+  - "Au-delà de 30 conversations actives, sans outil tu ne sais plus qui relancer, qui a refusé, qui attend"
+  - "La plupart des ventes se font à la 2e ou 3e interaction — les relances sans outil ne se font pas"
+  - "La différence entre prospection et spam : la pertinence du message et la connaissance du destinataire"
 tags: [whatsapp, prospection, bénin, afrique, crm, lead-generation, pme, campagnes, messaging]
 date: 2026-06-01
 created: 2026-06-01

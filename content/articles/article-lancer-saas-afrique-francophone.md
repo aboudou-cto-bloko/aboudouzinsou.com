@@ -3,6 +3,13 @@ title: "Lancer un SaaS en Afrique francophone : 7 spécificités qu'on n'enseign
 format: article
 status: published
 description: "Les frameworks sur le lancement de SaaS sont écrits pour des marchés où les cartes bancaires sont universelles, l'email est professionnel, et la confiance est acquise. Ici, aucune de ces hypothèses ne tient."
+tldr: "Lancer un SaaS en UEMOA, c'est invalider 7 hypothèses qui semblent évidentes depuis Paris ou San Francisco : pas de centimes en XOF, WhatsApp est le canal pro, la confiance vient des relations pas du design, le Mobile Money est asynchrone, et la langue française est un avantage compétitif réel."
+takeaways:
+  - "XOF n'a pas de centimes — 5 000 FCFA = 5000, jamais 500000 comme le réflexe Stripe"
+  - "WhatsApp est le canal professionnel par défaut — le message de bienvenue par email ne sera probablement pas lu"
+  - "Le Mobile Money est le marché principal (89% de pénétration) — pas le fallback de la v2"
+  - "La langue française est un avantage différenciant réel sur un marché où presque aucune ressource technique n'existe en français"
+  - "La confiance se transfère de relation en relation — pas du design vers un inconnu"
 tags: [saas, afrique, bénin, francophone, lancement, uemoa, xof, whatsapp, mobile-money, startup, solo-founder]
 date: 2026-06-11
 created: 2026-06-11

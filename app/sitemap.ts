@@ -24,13 +24,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
-    ...posts.map((p) => ({
-      url: `${BASE}${p.url}`,
-      lastModified: p.frontmatter.updated ?? p.frontmatter.date,
-      changeFrequency: "monthly" as const,
-      // Tutoriels = fort potentiel SEO longue traîne → priorité max
-      // Devlog/insights = contenu court → priorité réduite
-      priority: p.section === "tutoriels" ? 0.9 : p.section === "articles" ? 0.85 : 0.7,
-    })),
+    ...posts.map((p) => {
+      const cp = new URLSearchParams({ t: p.frontmatter.title, s: p.section });
+      if (p.frontmatter.tags?.length) cp.set("g", p.frontmatter.tags.slice(0, 3).join(","));
+      if (p.readingTime) cp.set("r", p.readingTime);
+      return {
+        url: `${BASE}${p.url}`,
+        lastModified: p.frontmatter.updated ?? p.frontmatter.date,
+        changeFrequency: "monthly" as const,
+        priority: p.section === "tutoriels" ? 0.9 : p.section === "articles" ? 0.85 : 0.7,
+        images: [`${BASE}/api/cover?${cp.toString()}`],
+      };
+    }),
   ];
 }

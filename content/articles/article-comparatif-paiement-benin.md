@@ -3,6 +3,12 @@ title: "Paiement en ligne au Bénin : agrégateurs ou orchestrateur — comment 
 format: article
 status: published
 description: "FedaPay, KKiaPay et CinetPay sont des agrégateurs. Moneroo est un orchestrateur. Ce n'est pas le même niveau de la pile — et confondre les deux coûte du temps et des intégrations en double."
+tldr: "FedaPay, KKiaPay et Moneroo ne sont pas des concurrents — ils sont deux couches différentes de la même pile. Les agrégateurs connectent les opérateurs, l'orchestrateur connecte les agrégateurs. Le choix dépend du nombre de pays et du besoin de payout."
+takeaways:
+  - "Projet mono-pays sans payout multi-devises : intègre directement FedaPay ou KKiaPay"
+  - "Projet multi-pays ou payout dans plusieurs pays : Moneroo — une seule intégration pour tout"
+  - "Le failover automatique de Moneroo absorbe les pannes d'agrégateur sans que le client le remarque"
+  - "Le flux Mobile Money reste asynchrone quel que soit le niveau de la pile — c'est ta responsabilité de le gérer"
 tags: [paiement, moneroo, fedapay, kkiapay, cinetpay, bénin, afrique, api, mobile-money, développeur, nextjs, architecture]
 date: 2026-06-11
 created: 2026-06-11

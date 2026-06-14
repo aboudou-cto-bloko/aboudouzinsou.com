@@ -27,6 +27,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProjectBySlug(slug);
   if (!project) return {};
   const url = `${BASE}/projets/${slug}`;
+  const cp = new URLSearchParams({ t: `${project.name} — ${project.tagline}`, s: "projets" });
+  const coverUrl = `${BASE}/api/cover?${cp.toString()}`;
   return {
     title: `${project.name} — Aboudou Zinsou`,
     description: project.description,
@@ -36,6 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       title: `${project.name} — ${project.tagline}`,
       description: project.description,
+      images: [{ url: coverUrl, width: 1200, height: 630, alt: `${project.name} — ${project.tagline}` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} — ${project.tagline}`,
+      description: project.description,
+      images: [coverUrl],
     },
   };
 }

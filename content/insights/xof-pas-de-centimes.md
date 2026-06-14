@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: paiements
 order: 1
 tags: [moneroo, xof, devises, bug, afrique]
+tldr: "XOF, XAF, GNF, CDF n'ont pas de sous-unité. 5 000 FCFA = 5000, pas 500000. Le réflexe Stripe (montants en centimes) est le bug numéro un à l'intégration d'une API de paiement africaine."
+takeaways:
+  - "Utiliser `toMonerooAmount(amount, currency)` — retourne le montant direct pour les devises sans centimes"
+  - "`Intl.NumberFormat('fr-FR', {currency: 'XOF', minimumFractionDigits: 0})` pour l'affichage en FCFA"
 related:
   - f01-regle-balance
 status: published

@@ -3,6 +3,13 @@ title: "Comment intégrer le paiement Mobile Money MTN et Moov sur son site web 
 format: article
 status: published
 description: "Ajouter le Mobile Money sur un site web béninois n'est pas une configuration. C'est un circuit asynchrone avec des dizaines de cas d'erreur. Ce que ça implique vraiment."
+tldr: "Le Mobile Money n'est pas Stripe. C'est un circuit asynchrone en 10 étapes où chacune peut planter. Mutation → action → API → webhook → vérification → confirmation. Gérer les cas edge (centimes XOF, idempotence, double confirmation) sépare une boutique fonctionnelle d'une vitrine qui collecte parfois de l'argent."
+takeaways:
+  - "XOF n'a pas de centimes — envoyer 5000 et non 500000 pour 5 000 FCFA"
+  - "Les mutations Convex ne peuvent pas faire d'appels HTTP — déléguer à une action via le scheduler"
+  - "Vérifier la signature HMAC avant de parser le body — jamais l'inverse"
+  - "Ne jamais créditer sur la seule foi du webhook — appeler l'API de vérification en plus"
+  - "Vérifier le statut de la commande avant de traiter pour éviter les doubles confirmations"
 tags: [bénin, cotonou, mobile-money, mtn, moov, paiement, api, développeur, nextjs, convex, moneroo, webhook]
 date: 2026-05-20
 created: 2026-05-20

@@ -4,6 +4,10 @@ date: 2026-04-29
 topic: convex
 order: 4
 tags: [convex, auth, session, bug]
+tldr: "router.push() après signOut ne vide pas le cache Convex — les queries de l'ancienne session continuent quelques secondes. Sur des données financières, utiliser window.location.href pour forcer un rechargement complet."
+takeaways:
+  - "`window.location.href = '/login'` vide le cache Convex — `router.push('/login')` ne le vide pas"
+  - "Sur apps avec données financières ou personnelles : non-négociable"
 related:
   - convex-internal-vs-public
   - f01-regle-balance

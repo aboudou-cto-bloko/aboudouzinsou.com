@@ -4,6 +4,11 @@ date: 2026-06-01
 tags: [prospecto, crm, whatsapp, kanban, dnd-kit, landing, next-js, docker, build-in-public]
 status: published
 description: "Ce que j'ai construit aujourd'hui sur Prospecto : vue kanban avec drag-and-drop, système de tags colorés, variables personnalisées dans les messages WhatsApp, et refonte complète de la landing page."
+tldr: "En une journée sur Prospecto : kanban dnd-kit avec tags colorés et filtres cluster, variables personnalisées dans les messages WhatsApp ({{entreprise}}, {{ville}}...) lues depuis la base, et landing page réécrite dans la voix éditoriale du projet."
+takeaways:
+  - "Variables personnalisées lues depuis la base de données, jamais depuis la requête HTTP — zéro injection possible"
+  - "NEXT_PUBLIC_ ne fonctionne pas dans une image Docker pré-buildée — VAPID auto-générées à l'init du container"
+  - "Landing : headline avec tension + avant/après par persona convertit mieux que des cards avec emojis"
 related:
   - devlog-agent-commercial-autonome
   - article-crm-pme-africaines

@@ -2,6 +2,13 @@
 title: "Serveur MCP Moneroo : connecter les paiements Mobile Money aux agents IA Claude"
 format: article
 status: draft
+description: "Même API Moneroo, deux interfaces complètement différentes. Le SDK pour les développeurs qui intègrent dans du code. Le serveur MCP pour piloter Moneroo depuis un assistant IA en langage naturel."
+tldr: "Le SDK Moneroo et le serveur MCP ne font pas la même chose. Le SDK est pour les développeurs qui codent. Le MCP expose 28 outils Moneroo à Claude, Cursor, Windsurf — en langage naturel. Le MCP est construit sur le SDK, pas à côté."
+takeaways:
+  - "SDK : tu construis une app qui intègre Moneroo via du code TypeScript"
+  - "MCP : tu interroges Moneroo depuis Claude en langage naturel sans écrire de code"
+  - "Le MCP expose 28 outils en 6 catégories : paiements, payouts, analytics, insights, automations, exports"
+  - "Setup Claude Desktop : ajouter moneroo-mcp dans mcpServers avec la clé API en variable d'environnement"
 tags: [moneroo, mcp, sdk, ia, claude, typescript, npm]
 github: https://github.com/aboudou-cto-bloko/moneroo-tools
 npm_sdk: https://www.npmjs.com/package/moneroo

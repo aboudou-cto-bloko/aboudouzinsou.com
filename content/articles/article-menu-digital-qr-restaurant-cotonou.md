@@ -3,6 +3,12 @@ title: "Menu digital QR code pour restaurants à Cotonou : pourquoi ça change t
 format: article
 status: published
 description: "Imprimer une carte de restaurant, c'est payer pour quelque chose que tu vas jeter dans 3 mois. Le QR code n'est pas une tendance — c'est la fin d'une dépense inutile."
+tldr: "La carte papier coûte 30–80K XOF par an en réimpressions. Un menu QR code permet de changer un prix en 10 secondes depuis un téléphone, masquer un plat épuisé à la minute, et voir ce que les clients regardent. 89% des Béninois utilisent le Mobile Money — scanner un QR n'est pas une barrière."
+takeaways:
+  - "Changer un prix sur un menu QR prend 10 secondes — réimprimer une carte prend des jours et coûte de l'argent"
+  - "Un plat épuisé peut être masqué en 5 secondes — le client ne commande pas ce que tu n'as plus"
+  - "89% des Béninois utilisent déjà le Mobile Money — l'infrastructure pour scanner existe"
+  - "Les menus digitaux donnent des données sur ce que les clients regardent, une carte papier ne donne rien"
 tags: [restaurant, cotonou, bénin, menu-digital, qr-code, menuco, gestion, numérique, pme]
 date: 2026-06-11
 created: 2026-06-11

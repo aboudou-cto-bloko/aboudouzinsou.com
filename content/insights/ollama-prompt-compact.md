@@ -3,6 +3,10 @@ title: "Ollama timeout 5 minutes : résoudre le problème avec un prompt compact
 date: 2026-05-02
 topic: llm
 tags: [ollama, llm, performance, tokens, prompt]
+tldr: "11 621 caractères de contexte pour générer 3 phrases WhatsApp : Ollama tronquait silencieusement à 4096 tokens et tournait 5 minutes. La version compacte à ~300 tokens produit le même résultat en quelques secondes."
+takeaways:
+  - "Le log `truncating input prompt limit=4096 prompt=4180` est souvent la cause des timeouts silencieux"
+  - "Avant chaque appel LLM : quelle est la décision minimale ? Donner exactement ce qu'il faut, rien de plus"
 related:
   - ollama-streaming-timeout
   - ollama-keep-alive

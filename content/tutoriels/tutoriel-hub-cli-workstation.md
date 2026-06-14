@@ -3,6 +3,12 @@ title: "CLI personnel en Bash : gérer son workstation Linux depuis le terminal 
 format: tutoriel
 status: published
 tags: [bash, cli, terminal, zsh, fzf, docker, workstation, linux, outils]
+tldr: "Tutoriel pour construire un CLI Bash personnel : router principal case/esac avec shift, couleurs ANSI, menus interactifs fzf, spinner pour les longues opérations, gestion Docker déclarative, et wrapper zsh pour le cd dans le shell parent."
+takeaways:
+  - "Pattern dual : sans argument → menu fzf interactif. Avec argument → exécution directe. Les deux coexistent"
+  - "`cd` dans une fonction Bash affecte tout le script — toujours utiliser un subshell `(cd dir && cmd)`"
+  - "`set -euo pipefail` en tête — -e stoppe sur erreur, -u sur variable non définie, -o pipefail dans les pipes"
+  - "La navigation `hub go` dans le shell parent nécessite un wrapper zsh qui capture le stdout du script"
 date: 2026-04-30
 created: 2026-04-30
 updated: 2026-04-30

@@ -4,6 +4,12 @@ date: 2026-04-30
 tags: [ai, llm, rag, chromadb, groq, ollama, open-webui, infrastructure, brain]
 status: published
 description: "Comment j'ai connecté mon Second Brain à un LLM local pour avoir un assistant qui comprend mes projets, mes conventions et mes patterns — sans payer par token."
+tldr: "172 notes Obsidian découpées en 1 891 chunks, indexées dans ChromaDB, interrogeables via un proxy FastAPI qui injecte le contexte pertinent avant chaque appel Groq ou Ollama. L'assistant répond avec ta réalité, pas une généralité inventée."
+takeaways:
+  - "Fine-tuner sur 172 notes ne mémorise pas les faits — le RAG (lecture dynamique au moment de la requête) est la bonne approche"
+  - "Le fallback Groq→Ollama est non-optionnel : le free tier a des limites de débit, le 429 arrive"
+  - "Un modèle local moins capable + contexte Brain > grand modèle généraliste sans contexte pour les questions projet-spécifiques"
+  - "Changer de modèle d'embedding nécessite une réindexation complète — les vecteurs ne sont pas comparables entre modèles"
 related:
   - devlog-conception-ux-site
   - devlog-pipeline-site-perso

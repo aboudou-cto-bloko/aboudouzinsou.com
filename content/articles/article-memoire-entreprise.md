@@ -2,6 +2,13 @@
 title: "Mémoire d'entreprise : comment les PME africaines perdent leur savoir chaque jour"
 format: article
 status: published
+description: "WhatsApp est le CRM, l'ERP et le système de connaissance de la PME africaine. Mais WhatsApp n'a pas de mémoire — et tout ce qui naît dans un message disparaît dans l'oubli."
+tldr: "Les PME africaines perdent leur savoir chaque jour. Décisions, contacts, processus — tout vit dans WhatsApp et meurt dans le scroll. La solution ne peut pas exiger un changement de comportement radical : elle doit capturer la connaissance là où elle naît déjà."
+takeaways:
+  - "La connaissance qui ne vit que dans les têtes part avec les personnes qui quittent l'entreprise"
+  - "Imposer Notion ou HubSpot à des équipes qui travaillent sur WhatsApp ne fonctionne pas"
+  - "Un nouveau collaborateur opérationnel en jours (pas en mois) est la vraie mesure d'une base de connaissance efficace"
+  - "Ce que ton entreprise saurait si tous vos collaborateurs oubliaient tout demain — c'est ce qu'elle possède vraiment"
 tags: [intelligence-entreprise, base-de-connaissances, pme-afrique, whatsapp, agents-ia, memoire]
 date: 2026-05-04
 created: 2026-05-04

@@ -4,6 +4,12 @@ date: 2026-04-29
 tags: [next.js, cms, markdown, brain, pipeline, remark]
 status: published
 description: "Architecture du site : CMS markdown, résolution de liens croisés, et le workflow pour passer d'un draft Obsidian à un post publié."
+tldr: "Pas de CMS externe — les fichiers Markdown du Brain deviennent des posts après un copier-commit-push. Un plugin remark résout les liens croisés à la compilation, un slug stripping supprime les préfixes de date, gray-matter gère le frontmatter."
+takeaways:
+  - "gray-matter parse `date: 2026-04-29` en objet Date — toujours convertir en timestamp pour le tri des posts"
+  - "remarkResolveLinks construit un manifest slug→Post au build et remplace les liens .md par les routes Next.js"
+  - "toSlug() retire le préfixe YYYYMMDD-HHMM- pour des URLs propres lisibles"
+  - "CMS = fichiers .md locaux : versionnables git, lisibles offline, gratuits, sans lock-in"
 related:
   - article-workflow-claude-code
 ---

@@ -2,6 +2,12 @@
 title: "Audit SEO et performance pour sites web de PME africaines avec VitrinAI"
 format: article
 status: published
+description: "VitrinAI diagnostique la présence digitale des PME d'Afrique de l'Ouest — vitesse simulée sur réseau 4G AOF, SEO local, cohérence entre plateformes. Un score sur 100 en 30 secondes, sans inscription."
+tldr: "VitrinAI mesure ce que Google ne mesure pas pour le marché africain : la performance réelle sur réseau 4G AOF (latence 100ms, 5 Mbps), la cohérence entre Google Maps, Facebook et WhatsApp. Un site rapide à Paris peut être inutilisable à Cotonou."
+takeaways:
+  - "La simulation réseau 4G AOF est la fonctionnalité centrale — mesurer la performance locale, pas depuis Paris"
+  - "La cohérence nom/horaires entre Google Maps, Facebook et WhatsApp Business est souvent le critère le plus actionnable"
+  - "4 axes analysés : santé technique, SEO, présence en ligne, expérience visiteur — 30+ critères, rapport en 30s"
 tags: [vitrinai, saas, afrique, pme, seo, performance, diagnostic, nextjs, convex]
 github: https://github.com/aboudou-cto-bloko/vitrinai
 date: 2026-04-29

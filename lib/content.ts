@@ -25,9 +25,11 @@ export type PostFrontmatter = {
   status?: string;
   format?: string;
   description?: string;
+  tldr?: string;
+  takeaways?: string[];
   github?: string;
   npm?: string;
-  related?: string[]; // slugs of related posts
+  related?: string[];
 };
 
 export type Post = {
