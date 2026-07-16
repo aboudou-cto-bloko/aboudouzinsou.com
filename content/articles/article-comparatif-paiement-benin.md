@@ -112,6 +112,12 @@ Ce circuit — et les cas d'erreur qu'il génère — est ta responsabilité, pa
 
 ---
 
+**Besoin d'aide pour intégrer un de ces agrégateurs ou Moneroo sur ton projet ?** J'ai construit cette intégration plusieurs fois (Pixel-Mart, RendezApp) — webhooks, cas d'erreur, tests avec de vrais numéros MTN inclus.
+
+→ [Écris-moi sur WhatsApp](https://wa.me/2290167266360?text=Bonjour%2C%20j%27ai%20besoin%20d%27aide%20pour%20int%C3%A9grer%20un%20paiement%20Mobile%20Money%20sur%20mon%20projet.)
+
+---
+
 *→ [Comment intégrer le Mobile Money sur son site — le circuit complet](/articles/article-mobile-money-benin)*
 *→ [Le tutoriel Next.js + Convex + Moneroo avec tout le code](/tutoriels/tutoriel-moneroo-nextjs-convex)*
 *→ [Le SDK Moneroo — pourquoi il n'existait pas et comment je l'ai construit](/articles/article-moneroo-sdk)*

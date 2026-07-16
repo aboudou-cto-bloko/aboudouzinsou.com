@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
+import { track } from "@/lib/track";
 
 const KEY_SUB     = "nw_sub";
 const KEY_DISMISS = "nw_hide";
@@ -71,6 +72,7 @@ export function NewsletterModal() {
       if (res.ok) {
         setStatus("success");
         localStorage.setItem(KEY_SUB, "1");
+        track("newsletter_signup", { source: "modal" });
         setTimeout(() => setOpen(false), 2800);
       } else {
         setStatus("error");

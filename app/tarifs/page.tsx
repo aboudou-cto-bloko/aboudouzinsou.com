@@ -495,7 +495,7 @@ export default function TarifsPage() {
               Demander un devis gratuit
             </a>
             <a
-              href="https://wa.me/22901478768?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20la%20création%20de%20mon%20site%20web."
+              href="https://wa.me/2290167266360?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20la%20création%20de%20mon%20site%20web."
               target="_blank"
               rel="noopener noreferrer"
               className="profile-cta"

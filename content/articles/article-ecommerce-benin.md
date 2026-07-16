@@ -132,6 +132,12 @@ C'est différent. Et ça change tout sur ce qu'il doit faire en premier.
 
 ---
 
+**Tu veux lancer ce type d'e-commerce ?** Catalogue, paiement Mobile Money, tableau de bord commandes — décris-moi ton projet, je réponds sous 24h avec une estimation de délai et de budget, sans engagement.
+
+→ [Écris-moi sur WhatsApp](https://wa.me/2290167266360?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20mon%20site%20e-commerce%20avec%20Mobile%20Money.)
+
+---
+
 *→ [Combien coûte un site e-commerce au Bénin ?](/tarifs)*
 *→ [Comment Pixel-Mart a abordé le problème de confiance](/articles/article-confiance-comme-produit)*
 *→ [Pourquoi l'intégration Mobile Money n'est pas un bouton](/articles/article-cout-site-web-benin)*

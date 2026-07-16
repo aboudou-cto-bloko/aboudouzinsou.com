@@ -163,6 +163,12 @@ Le prix d'un site web au Bénin, c'est le prix de ce qu'il doit faire — pas le
 
 ---
 
+**Tu veux un devis clair pour ton projet ?** Décris-moi ton besoin en quelques lignes — type de site, secteur, fonctionnalités — je réponds sous 24h avec une estimation de délai et de budget, sans engagement.
+
+→ [Écris-moi sur WhatsApp](https://wa.me/2290167266360?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20la%20création%20de%20mon%20site%20web.)
+
+---
+
 *→ [Tarifs détaillés par type de projet](/tarifs)*
 *→ [Ce que j'ai construit : Pixel-Mart, VitrinAI, MomoGate et plus](/projets)*
 *→ [Pourquoi les outils d'audit SEO mentent aux entreprises africaines](/articles/article-vitrinai)*

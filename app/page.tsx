@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 
 const BASE = "https://aboudouzinsou.com";
 
-const TITLE = "Aboudou Zinsou — Intelligence d'entreprise · SaaS · Paiements Africains · Cotonou";
-const DESC = "Je construis la mémoire et l'intelligence opérationnelle des PME africaines — base de connaissances vivante, agents IA, tableau de bord. Aussi : intégration Mobile Money, SaaS sur mesure.";
+const TITLE = "Aboudou Zinsou — Développeur Web au Bénin (Cotonou) · Sites, E-commerce & Agents IA";
+const DESC = "Développeur web freelance basé à Cotonou. Sites vitrine, e-commerce avec Mobile Money, SaaS sur mesure et agents IA pour PME béninoises. Devis gratuit sous 24h.";
 
 export const metadata: Metadata = {
   title: TITLE,

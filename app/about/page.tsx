@@ -270,13 +270,13 @@ export default function AboutPage() {
             <span>SaasXpert</span>
           </a>
           <a
-            href="https://wa.me/2290147876843"
+            href="https://wa.me/2290167266360"
             target="_blank"
             rel="noopener noreferrer"
             className="about-contact__item"
           >
             <IconWhatsApp />
-            <span>+229 01 47 87 68 43</span>
+            <span>+229 01 67 26 63 60</span>
           </a>
         </div>
       </section>
