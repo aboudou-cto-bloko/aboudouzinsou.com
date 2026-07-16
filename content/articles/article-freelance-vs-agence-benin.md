@@ -127,6 +127,12 @@ Le choix entre freelance et agence n'est pas une question de confiance. C'est un
 
 ---
 
+**Tu penches pour le freelance ?** Décris-moi ton projet — je réponds sous 24h avec une estimation de délai et de budget, sans engagement.
+
+→ [Écris-moi sur WhatsApp](https://wa.me/2290167266360?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20mon%20projet%20de%20site%20web.)
+
+---
+
 *→ [Combien coûte un site web au Bénin en 2026 ?](/articles/article-cout-site-web-benin)*
 *→ [Tarifs détaillés par type de projet](/tarifs)*
 *→ [Projets livrés — portfolio](/projets)*

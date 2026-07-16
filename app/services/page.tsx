@@ -51,6 +51,15 @@ const jsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          name: "Site web & E-commerce",
+          description:
+            "Landing page, site vitrine ou e-commerce avec paiement Mobile Money (MTN, Moov). Livré avec code source, hébergement Vercel et SEO local.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
           name: "Intégration Paiements Africains",
           description:
             "Intégration FedaPay, Moneroo, MTN Mobile Money, Orange Money. Webhooks sécurisés, remboursements, conformité XOF.",
@@ -79,6 +88,14 @@ type Service = {
 };
 
 const SERVICES: Service[] = [
+  {
+    label: "Site web & E-commerce",
+    badge: "Le plus demandé",
+    tagline: "Landing page, site vitrine ou e-commerce — avec Mobile Money dès le départ.",
+    desc: "Site conçu pour convertir : mobile-first, SEO local Cotonou, paiement MTN/Moov intégré si besoin. Code source livré, hébergement sur votre compte — vous êtes propriétaire, pas locataire.",
+    deliver: "Landing page 1-2 sem · Vitrine 2-4 sem · E-commerce 4-8 sem",
+    note: "150K – 1,5M XOF selon le projet",
+  },
   {
     label: "Intégration Paiements Africains",
     badge: "Expertise principale",
@@ -355,13 +372,23 @@ export default function ServicesPage() {
             Décrivez votre projet en quelques lignes. Je réponds sous 24h avec
             une estimation de délai et de budget.
           </p>
-          <a
-            href="mailto:pro@aboudouzinsou.com"
-            className="about-contact__item"
-          >
-            <Mail size={14} strokeWidth={1.5} />
-            <span>pro@aboudouzinsou.com</span>
-          </a>
+          <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
+            <a
+              href="mailto:pro@aboudouzinsou.com"
+              className="about-contact__item"
+            >
+              <Mail size={14} strokeWidth={1.5} />
+              <span>pro@aboudouzinsou.com</span>
+            </a>
+            <a
+              href="https://wa.me/2290167266360?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20mon%20projet."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-contact__item"
+            >
+              <span>WhatsApp — +229 01 67 26 63 60</span>
+            </a>
+          </div>
         </section>
 
         <footer style={{ paddingBottom: "3rem" }}>

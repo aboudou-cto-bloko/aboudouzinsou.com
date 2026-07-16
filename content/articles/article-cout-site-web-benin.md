@@ -170,5 +170,6 @@ Le prix d'un site web au Bénin, c'est le prix de ce qu'il doit faire — pas le
 ---
 
 *→ [Tarifs détaillés par type de projet](/tarifs)*
+*→ [Freelance ou agence — ce que personne ne dit avant de choisir](/articles/article-freelance-vs-agence-benin)*
 *→ [Ce que j'ai construit : Pixel-Mart, VitrinAI, MomoGate et plus](/projets)*
 *→ [Pourquoi les outils d'audit SEO mentent aux entreprises africaines](/articles/article-vitrinai)*
