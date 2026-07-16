@@ -140,5 +140,5 @@ C'est différent. Et ça change tout sur ce qu'il doit faire en premier.
 
 *→ [Combien coûte un site e-commerce au Bénin ?](/tarifs)*
 *→ [Comment Pixel-Mart a abordé le problème de confiance](/articles/article-confiance-comme-produit)*
-*→ [Pourquoi l'intégration Mobile Money n'est pas un bouton](/articles/article-cout-site-web-benin)*
+*→ [Pourquoi l'intégration Mobile Money n'est pas un bouton](/articles/article-mobile-money-benin)*
 *→ [Voir les projets e-commerce livrés](/projets)*

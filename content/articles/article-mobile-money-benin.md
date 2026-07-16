@@ -2,7 +2,7 @@
 title: "Comment intégrer le paiement Mobile Money MTN et Moov sur son site web au Bénin"
 format: article
 status: published
-description: "Ajouter le Mobile Money sur un site web béninois n'est pas une configuration. C'est un circuit asynchrone avec des dizaines de cas d'erreur. Ce que ça implique vraiment."
+description: "Ajouter le Mobile Money sur un site web béninois n'est pas une configuration — c'est un circuit asynchrone avec des dizaines de cas d'erreur, et des frais qui se cachent à plusieurs niveaux. Ce que ça implique vraiment, pour un développeur comme pour un chef d'entreprise."
 tldr: "Le Mobile Money n'est pas Stripe. C'est un circuit asynchrone en 10 étapes où chacune peut planter. Mutation → action → API → webhook → vérification → confirmation. Gérer les cas edge (centimes XOF, idempotence, double confirmation) sépare une boutique fonctionnelle d'une vitrine qui collecte parfois de l'argent."
 takeaways:
   - "XOF n'a pas de centimes — envoyer 5000 et non 500000 pour 5 000 FCFA"
@@ -10,10 +10,14 @@ takeaways:
   - "Vérifier la signature HMAC avant de parser le body — jamais l'inverse"
   - "Ne jamais créditer sur la seule foi du webhook — appeler l'API de vérification en plus"
   - "Vérifier le statut de la commande avant de traiter pour éviter les doubles confirmations"
-tags: [bénin, cotonou, mobile-money, mtn, moov, paiement, api, développeur, nextjs, convex, moneroo, webhook]
+tags: [bénin, cotonou, mobile-money, mtn, moov, paiement, api, développeur, nextjs, convex, moneroo, webhook, frais]
 date: 2026-05-20
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-07-16
+related:
+  - article-comparatif-paiement-benin
+  - article-ecommerce-benin
+  - article-cout-site-web-benin
 ---
 
 # Intégrer le paiement Mobile Money sur son site au Bénin — ce que le bouton cache
@@ -215,6 +219,20 @@ Deux passes. La signature dit que l'expéditeur est Moneroo. L'appel API dit que
 **La double confirmation.** Webhook reçu deux fois → commande confirmée deux fois → stock décrémenté deux fois. Corrigé par la vérification `status !== "pending"` avant de traiter.
 
 **`"use node"` oublié.** L'action importe `crypto` → crash. Corrigé en mettant la directive en première ligne du fichier.
+
+---
+
+## Les vrais frais — la question qu'on évite
+
+Quand on demande "combien ça coûte d'accepter le Mobile Money", la réponse qu'on donne d'habitude est une commission en pourcentage. C'est incomplet.
+
+Les frais existent à plusieurs niveaux, empilés :
+
+1. **L'opérateur** (MTN, Moov) prend sa part sur la transaction.
+2. **L'agrégateur ou l'orchestrateur** (FedaPay, Moneroo, KKiaPay, CinetPay) prend sa commission pour l'intégration et le routage.
+3. **Le temps de développement** pour gérer les cas d'erreur ci-dessus n'apparaît sur aucune facture, mais c'est le coût le plus élevé si personne ne s'en occupe correctement — un paiement mal géré (double crédit, paiement perdu) coûte plus cher qu'une commission de quelques points.
+
+Les taux exacts et les critères pour choisir entre agrégateur direct et orchestrateur sont détaillés dans [l'article comparatif paiement](/articles/article-comparatif-paiement-benin). La règle courte : mono-pays et besoins simples → agrégateur direct (FedaPay, KKiaPay) ; multi-pays ou payouts variés → orchestrateur (Moneroo).
 
 ---
 
