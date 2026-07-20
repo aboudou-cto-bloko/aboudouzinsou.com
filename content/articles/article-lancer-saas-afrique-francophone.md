@@ -133,6 +133,12 @@ Ce ne sont pas des workarounds. C'est l'architecture native de ce marché.
 
 ---
 
+**Tu construis un SaaS pour ce marché et tu veux éviter ces 7 pièges ?** Décris-moi ton projet — je réponds sous 24h avec une estimation de délai et de budget.
+
+→ [Écris-moi sur WhatsApp](https://wa.me/2290167266360?text=Bonjour%2C%20je%20travaille%20sur%20un%20SaaS%20pour%20le%20march%C3%A9%20africain%20et%20je%20souhaite%20en%20discuter.)
+
+---
+
 *→ [Construire en Afrique, pas pour l'Afrique](/articles/article-construire-en-afrique)*
 *→ [Comment intégrer le Mobile Money — le circuit complet](/articles/article-mobile-money-benin)*
 *→ [La confiance comme produit — leçons de Pixel-Mart](/articles/article-confiance-comme-produit)*
